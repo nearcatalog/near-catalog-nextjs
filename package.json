@@ -1,5 +1,6 @@
 {
   "name": "near-directory-nextjs",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
