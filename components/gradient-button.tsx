@@ -1,4 +1,3 @@
-import React, { memo } from "react";
 import Link from "next/link";
 
 type GradientButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
