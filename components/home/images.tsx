@@ -9,17 +9,18 @@ export default function HomeImages() {
       <Image
         src={Stars}
         alt="Stars"
-        className="absolute left-0 top-0 z-[1] hidden h-full w-full object-cover sm:block"
+        priority={true}
+        className="animate-subtle-bounce pointer-events-none absolute left-0 top-0 z-[1] hidden h-full w-full object-cover sm:block"
       />
       <Image
         src={MobileLeft}
         alt="MobileLeft"
-        className="absolute left-0 top-[15%] z-[2] w-1/3 object-cover sm:hidden"
+        className="pointer-events-none absolute left-0 top-[15%] z-[2] w-1/3 object-cover sm:hidden"
       />
       <Image
         src={MobileRight}
         alt="MobileRight"
-        className="absolute right-0 top-[15%] z-[2] w-1/3 translate-y-1/4 object-cover sm:hidden"
+        className="pointer-events-none absolute right-0 top-[15%] z-[2] w-1/3 translate-y-1/4 object-cover sm:hidden"
       />
     </>
   );

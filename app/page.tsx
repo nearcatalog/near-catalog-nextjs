@@ -1,13 +1,13 @@
 import HomeHero from "@/components/home/hero";
 import HeroImages from "@/components/home/images";
+import EcosystemSupport from "@/components/ecosystem-support";
 
 export default function Home() {
   return (
-    <main className="relative">
-      <div className="container mx-auto flex flex-col items-center">
-        <HeroImages />
-        <HomeHero />
-      </div>
+    <main className="flex flex-col items-center">
+      <HeroImages />
+      <HomeHero />
+      <EcosystemSupport />
     </main>
   );
 }

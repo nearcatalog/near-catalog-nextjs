@@ -70,3 +70,19 @@ a {
 .bg-click-gradient:active::after {
   opacity: 1;
 }
+
+@keyframes subtle-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-subtle-bounce {
+  animation: subtle-bounce 3.5s ease-in-out infinite;
+}

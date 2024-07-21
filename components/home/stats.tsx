@@ -31,17 +31,17 @@ export default function HomeStats() {
           <InfoPoint value="32 mil." title="Total Value Locked" />
         </div>
         <Image
-          className="absolute left-0 top-1/2 z-0 -translate-y-1/2"
+          className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2"
           src={LeftBlur}
           alt="Left Blur"
         />
         <Image
-          className="absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
           src={MiddleBlur}
           alt="Middle Blur"
         />
         <Image
-          className="absolute right-0 top-1/2 z-0 -translate-y-1/2"
+          className="pointer-events-none absolute right-0 top-1/2 z-0 -translate-y-1/2"
           src={RightBlur}
           alt="Right Blur"
         />
