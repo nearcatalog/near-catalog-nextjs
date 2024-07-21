@@ -38,7 +38,7 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-full bg-black px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] active:bg-[#282828]"
+      className="rounded-full bg-black px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828]"
     >
       {children}
     </Link>
