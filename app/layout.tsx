@@ -45,7 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={manrope.className + " min-h-screen antialiased"}>
         <Navbar />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

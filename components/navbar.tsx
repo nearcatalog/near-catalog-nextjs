@@ -38,7 +38,7 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-full bg-black px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828]"
+      className="rounded-full px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828]"
     >
       {children}
     </Link>
@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`container ${isOpen ? "sticky top-0" : "relative"} z-20 mx-auto flex h-14 items-center justify-between gap-2 bg-black px-2 md:h-20 md:px-5 md:py-4`}
+        className={`container sticky top-0 z-20 mx-auto flex h-14 items-center justify-between gap-2 bg-black/60 px-2 backdrop-blur-sm md:h-20 md:px-5 md:py-4`}
       >
         <Link href="/" onClick={() => isOpen && handleClick()}>
           <Image
