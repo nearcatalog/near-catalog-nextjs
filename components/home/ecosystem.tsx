@@ -44,7 +44,7 @@ export default function EcosystemSupport() {
           title="Ecosystem Support"
           description="We are all about supporting our community and the builders of our ecosystem"
         />
-        <div className="flex w-full max-w-full flex-col items-center px-4">
+        <div className="flex w-full max-w-full flex-col items-center px-4 md:px-8">
           <EcosystemTabs
             tabsData={tabsData}
             selectedTab={selectedTab}

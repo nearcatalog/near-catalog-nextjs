@@ -88,11 +88,11 @@ export default function Project({ project }: ProjectProps) {
   } = projectData;
 
   return (
-    <div className="flex w-full max-w-60 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2">
+    <div className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2">
       <Image
         src={image.url}
         alt="Project Image"
-        className="size-16 rounded-full bg-gray-900 object-cover"
+        className="pointer-events-none size-16 rounded-full bg-gray-900 object-cover"
         width={64}
         height={64}
       />

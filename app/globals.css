@@ -86,3 +86,35 @@ a {
 .animate-subtle-bounce {
   animation: subtle-bounce 3.5s ease-in-out infinite;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    width: 40px;
+  }
+}
+
+.scroll-shadow.left {
+  left: 0;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.scroll-shadow.right {
+  right: 0;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.no-select {
+  user-select: none;
+}
