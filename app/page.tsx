@@ -1,6 +1,6 @@
 import HomeHero from "@/components/home/hero";
 import HeroImages from "@/components/home/images";
-import EcosystemSupport from "@/components/ecosystem-support";
+import EcosystemSupport from "@/components/home/ecosystem";
 
 export default function Home() {
   return (

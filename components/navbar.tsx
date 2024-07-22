@@ -5,7 +5,7 @@ import Logo from "@/public/Near-landscape.svg";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Route = {
   name: string;
@@ -34,10 +34,29 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, children, onClick }: NavLinkProps) {
+  const handleClick = (e: any) => {
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const targetId = href.substring(2); // Remove '/#'
+      const targetElement = document.getElementById(targetId);
+      const navbar: HTMLElement | null = document.querySelector(".navbar");
+
+      if (targetElement && navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        const offsetPosition = targetElement.offsetTop - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }
+    if (onClick) onClick();
+  };
   return (
     <Link
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className="rounded-full px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828]"
     >
       {children}
@@ -54,36 +73,36 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        className={`container sticky top-0 z-20 mx-auto flex h-14 items-center justify-between gap-2 bg-black/60 px-2 backdrop-blur-sm md:h-20 md:px-5 md:py-4`}
-      >
-        <Link href="/" onClick={() => isOpen && handleClick()}>
-          <Image
-            src={Logo}
-            className="h-10 w-24 object-contain md:h-14 md:w-28"
-            alt="Near Logo"
-            priority={true}
-          />
-        </Link>
-        <div className="hidden items-center gap-2 md:flex">
-          {routes.map((route) => (
-            <NavLink key={route.name} href={route.href}>
-              {route.name}
-            </NavLink>
-          ))}
-        </div>
+      <nav className={`navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm`}>
+        <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-2 md:h-20 md:px-5 md:py-4">
+          <Link href="/" onClick={() => isOpen && handleClick()}>
+            <Image
+              src={Logo}
+              className="h-10 w-24 object-contain md:h-14 md:w-28"
+              alt="Near Logo"
+              priority={true}
+            />
+          </Link>
+          <div className="hidden items-center gap-2 md:flex">
+            {routes.map((route) => (
+              <NavLink key={route.name} href={route.href}>
+                {route.name}
+              </NavLink>
+            ))}
+          </div>
 
-        <GradientButton className="hidden md:block" href={"/login"}>
-          Sign In
-        </GradientButton>
-        <div className="align-center flex justify-center md:hidden">
-          <button aria-label="Toggle Menu" onClick={handleClick}>
-            {isOpen ? (
-              <X className="text-white" />
-            ) : (
-              <Menu className="text-white" />
-            )}
-          </button>
+          <GradientButton className="hidden md:block" href={"/login"}>
+            Sign In
+          </GradientButton>
+          <div className="align-center flex justify-center md:hidden">
+            <button aria-label="Toggle Menu" onClick={handleClick}>
+              {isOpen ? (
+                <X className="text-white" />
+              ) : (
+                <Menu className="text-white" />
+              )}
+            </button>
+          </div>
         </div>
       </nav>
       <div

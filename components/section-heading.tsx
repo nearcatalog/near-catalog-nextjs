@@ -8,7 +8,7 @@ export default function SectionHeading({
   description,
 }: SectionHeadingProps) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3">
+    <div className="flex flex-col items-center justify-center gap-3 px-2">
       <h2 className="text-balance text-[32px] font-bold md:text-5xl md:font-medium">
         {title}
       </h2>
