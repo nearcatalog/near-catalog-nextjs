@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import ProjectModal from "@/components/modals/project";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Navbar />
         {children}
         <Footer />
+        <ProjectModal />
       </body>
     </html>
   );
