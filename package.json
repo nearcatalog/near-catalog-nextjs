@@ -17,6 +17,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.4",
+    "use-draggable-scroll": "^0.1.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

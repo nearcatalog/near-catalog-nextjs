@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Project from "./project";
+import useDraggableScroll from "use-draggable-scroll";
 
 interface EcosystemProjectsProps {
   projects: string[];
@@ -12,10 +13,7 @@ export default function EcosystemProjects({
   const [showRightShadow, setShowRightShadow] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // For drag functionality
-  const [isDragging, setIsDragging] = useState(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
+  const { onMouseDown } = useDraggableScroll(scrollContainerRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,53 +38,6 @@ export default function EcosystemProjects({
     };
   }, []);
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-
-    const handleMouseDown = (e: MouseEvent) => {
-      setIsDragging(true);
-      startXRef.current = e.pageX - container!.offsetLeft;
-      scrollLeftRef.current = container!.scrollLeft;
-      container!.classList.add("no-select");
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - container!.offsetLeft;
-      const walk = (x - startXRef.current) * 2; // Adjust scrolling speed
-      container!.scrollLeft = scrollLeftRef.current - walk;
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      container!.classList.remove("no-select");
-    };
-
-    const handleMouseLeave = () => {
-      if (isDragging) {
-        setIsDragging(false);
-        container!.classList.remove("no-select");
-      }
-    };
-
-    if (container) {
-      container.addEventListener("mousedown", handleMouseDown);
-      container.addEventListener("mousemove", handleMouseMove);
-      container.addEventListener("mouseup", handleMouseUp);
-      container.addEventListener("mouseleave", handleMouseLeave);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("mousedown", handleMouseDown);
-        container.removeEventListener("mousemove", handleMouseMove);
-        container.removeEventListener("mouseup", handleMouseUp);
-        container.removeEventListener("mouseleave", handleMouseLeave);
-      }
-    };
-  }, [isDragging]);
-
   return (
     <div className="relative mb-24 w-full rounded-b-lg bg-black/80 px-6 py-10 backdrop-blur-sm">
       <div
@@ -98,7 +49,7 @@ export default function EcosystemProjects({
       <div
         className="no-scrollbar relative flex cursor-grab items-stretch gap-6 overflow-x-auto"
         ref={scrollContainerRef}
-        style={{ cursor: isDragging ? "grabbing" : "grab" }}
+        onMouseDown={onMouseDown}
       >
         {projects.map((project) => (
           <Project key={project} project={project} />
