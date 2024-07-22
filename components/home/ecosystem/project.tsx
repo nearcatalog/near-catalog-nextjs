@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
+import useProjectModalStore from "@/stores/project-modal";
 
 interface ProjectProps {
   project: string;
@@ -62,6 +63,7 @@ const useProjectData = (project: string) => {
 
 export default function Project({ project }: ProjectProps) {
   const { data: projectData, loading, error } = useProjectData(project);
+  const { setIsOpen, setProjectId } = useProjectModalStore();
 
   const truncatedTitle = useMemo(() => {
     if (!projectData) return "";
@@ -88,7 +90,13 @@ export default function Project({ project }: ProjectProps) {
   } = projectData;
 
   return (
-    <div className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2">
+    <div
+      className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2"
+      onClick={() => {
+        setIsOpen(true);
+        setProjectId(project);
+      }}
+    >
       <Image
         src={image.url}
         alt="Project Image"

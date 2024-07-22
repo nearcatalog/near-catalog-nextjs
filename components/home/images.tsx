@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Stars from "@/public/bg/bg-stars.png";
+import Stars from "@/public/bg/bg-stars.webp";
 import MobileLeft from "@/public/bg/mobile-left.png";
 import MobileRight from "@/public/bg/mobile-right.png";
 
@@ -9,7 +9,6 @@ export default function HomeImages() {
       <Image
         src={Stars}
         alt="Stars"
-        priority={true}
         className="animate-subtle-bounce pointer-events-none absolute left-0 top-0 z-[1] hidden h-full w-full object-cover sm:block"
       />
       <Image
