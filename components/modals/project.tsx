@@ -85,7 +85,7 @@ const ProjectInfo = ({ projectData }: { projectData: any }) => {
           width={120}
           height={120}
         />
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <Dialog.Title className="text-2xl font-medium md:text-[32px] md:font-bold">
             {profile?.name}
           </Dialog.Title>
