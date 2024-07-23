@@ -13,7 +13,7 @@ import NearLogo from "@/public/Near-landscape.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1B1F2A] text-[#BEBDBE]">
+    <footer className="bg-[#1B1F2A] px-4 text-[#BEBDBE]">
       <div className="container mx-auto flex flex-col py-14 pl-6 md:py-14 md:pl-0 lg:py-20">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:flex-row">
           <div className="flex max-w-72 flex-col gap-4">
@@ -48,42 +48,78 @@ export default function Footer() {
                 href="#"
                 target="_blank"
               >
-                <Image src={Discord} alt="Discord" width={32} height={32} />
+                <Image
+                  src={Discord}
+                  alt="Discord"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image src={Subtract} alt="Subtract" width={32} height={32} />
+                <Image
+                  src={Subtract}
+                  alt="Subtract"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image src={Twitter} alt="Twitter" width={32} height={32} />
+                <Image
+                  src={Twitter}
+                  alt="Twitter"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image src={Github} alt="Github" width={32} height={32} />
+                <Image
+                  src={Github}
+                  alt="Github"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image src={Telegram} alt="Telegram" width={32} height={32} />
+                <Image
+                  src={Telegram}
+                  alt="Telegram"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image src={Youtube} alt="Youtube" width={32} height={32} />
+                <Image
+                  src={Youtube}
+                  alt="Youtube"
+                  className="size-8"
+                  width={32}
+                  height={32}
+                />
               </Link>
             </div>
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">

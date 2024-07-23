@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Project from "./project";
-import useDraggableScroll from "use-draggable-scroll";
+import { useDraggable } from "react-use-draggable-scroll";
 
 interface EcosystemProjectsProps {
   projects: string[];
@@ -11,9 +11,12 @@ export default function EcosystemProjects({
 }: EcosystemProjectsProps) {
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(true);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
 
-  const { onMouseDown } = useDraggableScroll(scrollContainerRef);
+  const { events } = useDraggable(scrollContainerRef, {
+    applyRubberBandEffect: true, // activate rubber band effect
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,9 +50,9 @@ export default function EcosystemProjects({
         className={`scroll-shadow right ${showRightShadow ? "opacity-100" : "opacity-0"}`}
       />
       <div
-        className="no-scrollbar relative flex cursor-grab snap-x snap-mandatory items-stretch gap-6 overflow-x-auto"
+        className="no-scrollbar relative flex cursor-grab items-stretch gap-6 overflow-x-auto"
         ref={scrollContainerRef}
-        onMouseDown={onMouseDown}
+        {...events}
       >
         {projects.map((project) => (
           <Project key={project} project={project} />

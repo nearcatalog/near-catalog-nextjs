@@ -59,6 +59,9 @@ export default function Project({ project }: ProjectProps) {
         setIsOpen(true);
         setProjectId(project);
       }}
+      style={{
+        userSelect: "none",
+      }}
     >
       <Image
         src={image.url}

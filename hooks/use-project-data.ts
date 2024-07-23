@@ -1,19 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
-type ProjectData = {
-  profile: {
-    tags: { [key: string]: string };
-    description: string | null | undefined;
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-  };
-}
-
 const useProjectData = (project: string) => {
-  const [data, setData] = useState<ProjectData | null>(null);
+  const [data, setData] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -31,7 +19,7 @@ const useProjectData = (project: string) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data: ProjectData = await response.json();
+      const data: any = await response.json();
       setData(data);
     } catch (error) {
       setError(error as Error);

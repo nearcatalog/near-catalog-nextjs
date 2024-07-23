@@ -73,10 +73,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        className={`navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm md:z-[20]`}
-      >
-        <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-2 md:h-20 md:px-5 md:py-4">
+      <nav className={`navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm`}>
+        <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-5 py-2 md:h-20 md:py-4">
           <Link href="/" onClick={() => isOpen && handleClick()}>
             <Image
               src={Logo}

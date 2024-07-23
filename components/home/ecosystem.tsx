@@ -14,7 +14,7 @@ const tabsData = [
   {
     title: "Accelerate Your Growth",
     icon: Cubes,
-    projects: ["potlock", "meme-cooking", "near-scope", "mintbase", "spin"],
+    projects: ["potlock", "senderwallet", "near-scope", "mintbase", "spin"],
   },
   {
     title: "Explore DAO Support",
