@@ -74,7 +74,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`navbar sticky top-0 z-[60] bg-black/60 backdrop-blur-sm md:z-[20]`}
+        className={`navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm md:z-[20]`}
       >
         <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-2 md:h-20 md:px-5 md:py-4">
           <Link href="/" onClick={() => isOpen && handleClick()}>
@@ -93,8 +93,12 @@ export default function Navbar() {
             ))}
           </div>
 
-          <GradientButton className="hidden md:block" href={"/login"}>
-            Sign In
+          <GradientButton
+            className="hidden md:block"
+            target="_blank"
+            href={"https://submit.nearcatalog.xyz/new-project/"}
+          >
+            Submit your project
           </GradientButton>
           <div className="align-center flex justify-center md:hidden">
             <button aria-label="Toggle Menu" onClick={handleClick}>
@@ -118,7 +122,13 @@ export default function Navbar() {
               {route.name}
             </NavLink>
           ))}
-          <GradientButton>Sign In</GradientButton>
+          <GradientButton
+            onClick={() => setIsOpen(false)}
+            target="_blank"
+            href={"https://submit.nearcatalog.xyz/new-project/"}
+          >
+            Submit your Project
+          </GradientButton>
         </div>
       </div>
     </>

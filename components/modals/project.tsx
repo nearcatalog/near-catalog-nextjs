@@ -20,7 +20,7 @@ export default function ProjectModal() {
   const { data: projectData, loading, error } = useProjectData(projectId);
 
   if (!projectId) {
-    return null; // or return a placeholder if desired
+    return null;
   }
   if (error)
     return <div className="text-red-500">Failed to load project data</div>;
@@ -60,7 +60,7 @@ export default function ProjectModal() {
                     {Object.values(projectData?.profile?.tags).map(
                       (value, key) => (
                         <p
-                          className="flex h-6 items-center justify-center gap-2 rounded-full bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
+                          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-full bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
                           key={key}
                         >
                           {value}

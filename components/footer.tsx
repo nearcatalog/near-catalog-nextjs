@@ -22,7 +22,11 @@ export default function Footer() {
               Is your project also built on NEAR but you could not find it in
               our Landscape? Submit your project and we will review it shortly.
             </p>
-            <GradientButton bgColor="#1B1F2A">
+            <GradientButton
+              bgColor="#1B1F2A"
+              target="_blank"
+              href={"https://submit.nearcatalog.xyz/new-project/"}
+            >
               Submit your project
             </GradientButton>
           </div>

@@ -14,7 +14,12 @@ export default function HomeHero() {
           Discover NEAR <br /> Landscape
         </h2>
         <HomeStats />
-        <GradientButton>Submit your project</GradientButton>
+        <GradientButton
+          target="_blank"
+          href={"https://submit.nearcatalog.xyz/new-project/"}
+        >
+          Submit your project
+        </GradientButton>
       </div>
     </>
   );

@@ -39,7 +39,7 @@ export default function EcosystemProjects({
   }, []);
 
   return (
-    <div className="relative mb-24 w-full rounded-b-lg bg-black/80 px-6 py-10 backdrop-blur-sm">
+    <div className="relative mb-36 w-full rounded-b-lg bg-black/80 px-6 py-10 backdrop-blur-sm md:mb-48">
       <div
         className={`scroll-shadow left ${showLeftShadow ? "opacity-100" : "opacity-0"}`}
       />
@@ -47,7 +47,7 @@ export default function EcosystemProjects({
         className={`scroll-shadow right ${showRightShadow ? "opacity-100" : "opacity-0"}`}
       />
       <div
-        className="no-scrollbar relative flex cursor-grab items-stretch gap-6 overflow-x-auto"
+        className="no-scrollbar relative flex cursor-grab snap-x snap-mandatory items-stretch gap-6 overflow-x-auto"
         ref={scrollContainerRef}
         onMouseDown={onMouseDown}
       >
