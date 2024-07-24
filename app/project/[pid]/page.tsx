@@ -1,11 +1,5 @@
-"use client";
-
-import * as Dialog from "@radix-ui/react-dialog";
-import useProjectModalStore from "@/stores/project-modal";
-import useProjectData from "@/hooks/use-project-data";
 import Image from "next/image";
 import Markdown from "react-markdown";
-import { X, LoaderCircle } from "lucide-react";
 import Globe from "@/components/icons/globe";
 import GitHub from "@/components/icons/github";
 import Link from "next/link";
@@ -13,14 +7,6 @@ import TwitterX from "@/components/icons/twitter-x";
 import Medium from "@/components/icons/medium";
 import Discord from "@/components/icons/discord";
 import Telegram from "@/components/icons/telegram";
-
-function Loader() {
-  return (
-    <div className="flex w-full items-center justify-center">
-      <LoaderCircle className="size-12 animate-spin" />
-    </div>
-  );
-}
 
 const MdImg = ({ src, alt }: { src: string; alt: string }) => {
   return (
@@ -68,15 +54,34 @@ const WebsiteLink = ({
   );
 };
 
-const ProjectInfo = ({ projectData }: { projectData: any }) => {
+type Project = {
+  profile: {
+    name: string;
+    tagline: string;
+    description: string;
+    image: {
+      url: string;
+    };
+    linktree: {
+      website: string;
+      github: string;
+      twitter: string;
+      medium: string;
+      discord: string;
+      telegram: string;
+    };
+    tags: Record<string, string>;
+  };
+};
+
+const ProjectInfo = ({ projectData }: { projectData: Project }) => {
   if (!projectData) return null;
 
   const { profile } = projectData;
   const { website, github, twitter, medium, discord, telegram } =
     profile?.linktree;
   return (
-    <div className="flex h-full w-full flex-col gap-4 overflow-y-auto text-[#ECEBE9] md:gap-0">
-      <Dialog.Description className="hidden" />
+    <div className="flex flex-col gap-4 text-[#ECEBE9] md:gap-0">
       <div className="flex gap-4">
         <Image
           src={profile?.image?.url}
@@ -86,9 +91,9 @@ const ProjectInfo = ({ projectData }: { projectData: any }) => {
           height={120}
         />
         <div className="flex flex-col gap-2">
-          <Dialog.Title className="text-2xl font-medium md:text-[32px] md:font-bold">
+          <h2 className="text-2xl font-medium md:text-[32px] md:font-bold">
             {profile?.name}
-          </Dialog.Title>
+          </h2>
           <p className="text-xs font-medium">{profile?.tagline}</p>
           <Tags tags={Object.values(profile?.tags)} />
         </div>
@@ -151,35 +156,42 @@ const ProjectInfo = ({ projectData }: { projectData: any }) => {
   );
 };
 
-export default function ProjectModal() {
-  const { isOpen, projectId, setIsOpen } = useProjectModalStore();
-  const { data: projectData, loading, error } = useProjectData(projectId);
+interface ProjectPageProps {
+  params: {
+    pid: string;
+  };
+}
 
-  if (!projectId) {
-    return null;
+async function getProjectData(pid: string) {
+  const res = await fetch(
+    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${pid}`,
+  );
+  const data = await res.json();
+  return data;
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { pid } = params;
+  const projectData = await getProjectData(pid);
+
+  if (!projectData) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
+        <Image
+          src={"/assets/error.webp"}
+          alt={"Not found error"}
+          width={182}
+          height={144}
+        />
+        <h2>Sorry, we could not find the results for:</h2>
+        <p className="text-2xl uppercase">{pid}</p>
+      </div>
+    );
   }
-  if (error)
-    return <div className="text-red-500">Failed to load project data</div>;
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black bg-opacity-65 backdrop-blur-[6px]" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[80%] min-h-[50%] w-full max-w-[85%] -translate-x-1/2 -translate-y-1/2 flex-col items-stretch justify-center overflow-auto rounded-[32px] bg-[#11141B] p-10 backdrop-blur-[6px] md:my-0 md:max-w-4xl">
-          <Dialog.Close className="absolute right-5 top-5 text-white hover:opacity-70">
-            <X />
-          </Dialog.Close>
-          {loading || !projectData ? (
-            <>
-              <Loader />
-              <Dialog.Title className="hidden" />
-              <Dialog.Description className="hidden" />
-            </>
-          ) : (
-            <ProjectInfo projectData={projectData} />
-          )}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <div className="container mx-auto px-4 py-12">
+      <ProjectInfo projectData={projectData} />
+    </div>
   );
 }

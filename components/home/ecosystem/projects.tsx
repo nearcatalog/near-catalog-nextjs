@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Project from "./project";
 import { useDraggable } from "react-use-draggable-scroll";
