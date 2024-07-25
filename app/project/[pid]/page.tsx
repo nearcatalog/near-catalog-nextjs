@@ -26,7 +26,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (!projectData) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
+      <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
           src={"/assets/error.webp"}
           alt={"Not found error"}
@@ -54,13 +54,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           className={`w-full ${Object.keys(tokenInfo).length ? "md:max-w-[65%]" : null}`}
         >
           <ProjectInfo projectData={projectData} />
+
+          {Object.keys(tokenInfo).length ? (
+            <div className="my-4 w-full md:hidden">
+              <PriceInfo
+                tokenInfo={tokenInfo}
+                name={projectData.profile.name}
+              />
+              <TokenInfo tokenInfo={tokenInfo} />
+            </div>
+          ) : null}
           <DiscoverMore
             pid={pid}
-            gridSize={Object.keys(tokenInfo).length ? 2 : 4}
+            gridSize={Object.keys(tokenInfo).length ? 3 : 1}
           />
         </div>
         {Object.keys(tokenInfo).length ? (
-          <div className="w-full md:max-w-[35%]">
+          <div className="hidden w-full md:block md:max-w-[35%]">
             <PriceInfo tokenInfo={tokenInfo} name={projectData.profile.name} />
             <TokenInfo tokenInfo={tokenInfo} />
           </div>

@@ -136,7 +136,7 @@ export default function Footer() {
           <Link href="#" target="_blank">
             <Image src={NearLogo} alt="Near Logo" />
           </Link>
-          <p className="w-60 font-medium md:w-fit md:font-extrabold">
+          <p className="max-w-60 font-medium md:w-fit md:font-extrabold">
             Built with ❤️ by Banyan, NEAR Balkans and NEAR Catalog 🚀{" "}
           </p>
         </div>

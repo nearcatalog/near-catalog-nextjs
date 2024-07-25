@@ -60,20 +60,20 @@ export default async function PriceInfo({
                 </small>
               </h4>
             </div>
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-              <div className="p-2">
+            <div className="flex flex-wrap gap-2 p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 ATH
                 <p className="text-green-500">
                   ${data?.market_data?.ath.usd.toFixed(8)}
                 </p>
               </div>
-              <div className="p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 24h high
                 <p>
                   <b>${data?.market_data?.high_24h.usd.toFixed(8)} </b>
                 </p>
               </div>
-              <div className="p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 Volume 24h
                 <p>
                   <b>
@@ -85,13 +85,13 @@ export default async function PriceInfo({
                   </b>
                 </p>
               </div>
-              <div className="p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 24h low
                 <p>
                   <b>${data.market_data.low_24h.usd.toFixed(8)} </b>
                 </p>
               </div>
-              <div className="p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 Market Cap
                 <p>
                   <b>
@@ -105,7 +105,7 @@ export default async function PriceInfo({
                   </b>
                 </p>
               </div>
-              <div className="p-2">
+              <div className="max-w-1/2 flex-grow basis-0">
                 Circulating Supply
                 <p>
                   <b>
