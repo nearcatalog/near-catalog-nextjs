@@ -3,7 +3,7 @@ import EcosystemTabs from "@/components/home/ecosystem/tabs";
 
 export default function EcosystemSupport() {
   return (
-    <div
+    <section
       id="ecosystem-support"
       className="relative flex w-full flex-col items-center justify-center gap-3 bg-cover bg-no-repeat"
       style={{
@@ -19,6 +19,6 @@ export default function EcosystemSupport() {
           <EcosystemTabs />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
