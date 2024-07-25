@@ -4,7 +4,7 @@ import GradientButton from "@/components/gradient-button";
 export default function HomeHero() {
   return (
     <>
-      <div className="container relative z-[2] mx-auto my-24 flex flex-col items-center justify-center gap-6 md:my-32">
+      <section className="container relative z-[2] mx-auto my-24 flex flex-col items-center justify-center gap-6 md:my-32">
         <h1 className="hidden text-balance text-center text-7xl font-bold leading-tight text-white md:block">
           Discover NEAR
           <br />
@@ -20,7 +20,7 @@ export default function HomeHero() {
         >
           Submit your project
         </GradientButton>
-      </div>
+      </section>
     </>
   );
 }

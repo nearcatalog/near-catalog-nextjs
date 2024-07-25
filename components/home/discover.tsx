@@ -1,0 +1,63 @@
+import Image from "next/image";
+import SectionHeading from "@/components/section-heading";
+import SearchImage from "@/public/assets/search.webp";
+import Search from "../search";
+import FilteredProjects from "./filtered-projects";
+
+async function getProjects() {
+  const res = await fetch(
+    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
+  );
+  const data = await res.json();
+  return data;
+}
+
+type Project = {
+  slug: string;
+  profile: {
+    name: string;
+    tagline: string;
+    image: {
+      url: string;
+    };
+    tags: Record<string, string>;
+  };
+};
+
+export default async function Discover() {
+  const projects = await getProjects();
+  const projectsLength = Object.keys(projects).length;
+
+  if (!projects) {
+    return <div>Error fetching projects</div>;
+  }
+
+  const projectArray: Project[] = Object.values(projects);
+  console.log(projectArray);
+  let tags: string[] = projectArray
+    .map((project: Project) => Object.values(project.profile.tags))
+    .flat();
+  const uniqueTags = Array.from(new Set(tags)).sort();
+
+  return (
+    <section id="discover" className="container mx-auto my-36 px-4">
+      <div className="relative flex flex-col items-center">
+        <SectionHeading
+          title="Discover All Projects"
+          description={`Explore ${projectsLength} innovative projects built within our vibrant ecosystem`}
+        />
+        <Image
+          className="absolute right-0 top-0 z-0 -translate-y-1/3 object-cover"
+          src={SearchImage}
+          alt={"Discover All Projects"}
+          width={347}
+          height={222}
+        />
+      </div>
+      <div className="z-1 relative my-16">
+        <Search tags={uniqueTags} />
+        <FilteredProjects />
+      </div>
+    </section>
+  );
+}
