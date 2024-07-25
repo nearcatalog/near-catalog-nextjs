@@ -13,7 +13,18 @@ export async function generateMetadata(
   // fetch data
   const project = await fetch(
     `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${id}`,
-  ).then((res) => res.json());
+  )
+    .then((res) => res.json())
+    .catch((error) => {
+      throw new Error("Error fetching project data", error);
+    });
+
+  if (!project) {
+    return {
+      title: "Project not found",
+      description: "Project not found",
+    };
+  }
 
   return {
     title: `${project.profile.name} - NEAR Landscape`,
