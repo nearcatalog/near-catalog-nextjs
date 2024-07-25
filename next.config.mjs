@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "nearcatalog.xyz",
       },
+      {
+        protocol: "https",
+        hostname: "assets.coingecko.com",
+      },
     ],
   },
 };

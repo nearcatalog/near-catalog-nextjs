@@ -1,0 +1,142 @@
+import Image from "next/image";
+
+async function getPriceData(tokenInfo: any) {
+  const res = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${tokenInfo.platform.coingecko}`,
+  );
+  if (res.ok) {
+    return await res.json();
+  } else {
+    throw new Error("Error fetching price data");
+  }
+}
+
+export default async function PriceInfo({
+  tokenInfo,
+  name,
+}: {
+  tokenInfo: any;
+  name: string;
+}) {
+  if (!tokenInfo?.platform?.coingecko) {
+    return "";
+  }
+  const data = await getPriceData(tokenInfo);
+
+  if (Object.keys(data).length === 0) {
+    return <></>;
+  }
+  return (
+    <div className="mb-4 rounded-3xl bg-[#1b1d2a] p-4">
+      {data !== null ? (
+        <div>
+          <h3 className="text-base font-bold">{name} Token Status</h3>
+          <div className="flex flex-row flex-wrap sm:flex-col">
+            <div className="flex flex-col gap-2 p-2">
+              <div className="flex items-center gap-2">
+                <Image
+                  alt={name}
+                  src={tokenInfo.icon.small}
+                  className="object-cover"
+                  width={25}
+                  height={25}
+                />
+                <b>{tokenInfo.symbol}</b>/usd
+              </div>
+              <h4 className="text-3xl font-bold">
+                ${data.market_data.current_price.usd}
+                <small
+                  className={`+ text-sm font-medium ${
+                    data.market_data.price_change_percentage_24h_in_currency
+                      .usd < 0
+                      ? "text-red-500"
+                      : "text-green-500"
+                  } `}
+                >
+                  {data.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
+                    2,
+                  )}
+                  %
+                </small>
+              </h4>
+            </div>
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
+              <div className="p-2">
+                ATH
+                <p className="text-green-500">
+                  ${data?.market_data?.ath.usd.toFixed(8)}
+                </p>
+              </div>
+              <div className="p-2">
+                24h high
+                <p>
+                  <b>${data?.market_data?.high_24h.usd.toFixed(8)} </b>
+                </p>
+              </div>
+              <div className="p-2">
+                Volume 24h
+                <p>
+                  <b>
+                    {"$" +
+                      data.market_data.total_volume.usd
+                        .toFixed(0)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </b>
+                </p>
+              </div>
+              <div className="p-2">
+                24h low
+                <p>
+                  <b>${data.market_data.low_24h.usd.toFixed(8)} </b>
+                </p>
+              </div>
+              <div className="p-2">
+                Market Cap
+                <p>
+                  <b>
+                    {data.market_data.market_cap?.usd
+                      ? "$" +
+                        data.market_data.market_cap.usd
+                          .toFixed(0)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      : "-"}
+                  </b>
+                </p>
+              </div>
+              <div className="p-2">
+                Circulating Supply
+                <p>
+                  <b>
+                    {data.market_data?.circulating_supply
+                      ? data.market_data.circulating_supply
+                          .toFixed(0)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      : "-"}
+                  </b>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a
+              target="_blank"
+              style={{ color: "inherit" }}
+              rel="nofollow"
+              href={
+                `https://www.coingecko.com/en/coins/` +
+                tokenInfo.platform.coingecko
+              }
+            >
+              View on CoinGecko
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div> {data.error ? data.error : "Loading ..."} </div>
+      )}
+    </div>
+  );
+}
