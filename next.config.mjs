@@ -4,11 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "nearcatalog.xyz",
-      },
-      {
-        protocol: "https",
-        hostname: "assets.coingecko.com",
+        hostname: "*",
       },
     ],
   },

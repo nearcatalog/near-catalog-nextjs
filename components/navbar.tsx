@@ -5,7 +5,8 @@ import Logo from "@/public/Near-landscape.svg";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 type Route = {
   name: string;
@@ -34,22 +35,31 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, children, onClick }: NavLinkProps) {
-  const handleClick = (e: any) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const handleClick = async (e: any) => {
     if (href.startsWith("/#")) {
       e.preventDefault();
       const targetId = href.substring(2); // Remove '/#'
-      const targetElement = document.getElementById(targetId);
-      const navbar: HTMLElement | null = document.querySelector(".navbar");
 
-      if (targetElement && navbar) {
-        const navbarHeight = navbar.offsetHeight;
-        const offsetPosition = targetElement.offsetTop - navbarHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+      if (pathname !== "/") {
+        await router.push("/");
       }
+
+      setTimeout(() => {
+        const targetElement = document.getElementById(targetId);
+        const navbar: HTMLElement | null = document.querySelector(".navbar");
+
+        if (targetElement && navbar) {
+          const navbarHeight = navbar.offsetHeight;
+          const offsetPosition = targetElement.offsetTop - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 500);
     }
     if (onClick) onClick();
   };

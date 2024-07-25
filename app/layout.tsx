@@ -46,7 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${manrope.className} flex min-h-screen flex-col antialiased`}
       >
         <Navbar />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
       </body>
     </html>
