@@ -1,6 +1,6 @@
 interface SectionHeadingProps {
-  title: string;
-  description: string;
+  title: React.ReactNode;
+  description: React.ReactNode;
 }
 
 export default function SectionHeading({

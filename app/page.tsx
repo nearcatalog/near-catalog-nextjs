@@ -1,6 +1,7 @@
 import HomeHero from "@/components/home/hero";
 import HeroImages from "@/components/home/images";
 import EcosystemSupport from "@/components/home/ecosystem";
+import HotProjects from "@/components/home/hot-projects";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroImages />
       <HomeHero />
       <EcosystemSupport />
+      <HotProjects />
     </main>
   );
 }
