@@ -40,7 +40,7 @@ export default async function Discover() {
 
   return (
     <section
-      id="discover"
+      id="all-projects"
       className="container mx-auto my-36 overflow-x-clip px-4"
     >
       <div className="relative flex flex-col items-center pt-24 md:pt-0">

@@ -17,7 +17,7 @@ export default async function HotProjects() {
 
   return (
     <>
-      <div className="container mx-auto mt-20 bg-black">
+      <section id="hot-projects" className="container mx-auto mt-20 bg-black">
         <SectionHeading
           title={
             <div className="flex items-center justify-center gap-4">
@@ -28,7 +28,7 @@ export default async function HotProjects() {
           }
           description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
         />
-      </div>
+      </section>
       <div className="max-w-full">
         <ScrollableProjects projects={projects} />
       </div>
