@@ -37,7 +37,7 @@ export default async function PriceInfo({
                 <Image
                   alt={name}
                   src={tokenInfo.icon.small}
-                  className="object-cover"
+                  className="rounded-full object-cover"
                   width={25}
                   height={25}
                 />
