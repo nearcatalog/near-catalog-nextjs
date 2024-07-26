@@ -27,7 +27,7 @@ export default async function HotProjects() {
         }
         description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
       />
-      <div className="mt-14 flex gap-4 overflow-x-auto">
+      <div className="no-scrollbar mt-14 flex gap-4 overflow-x-auto px-4">
         {projectKeys.map((project) => (
           <Project project={projects[project]} key={project} />
         ))}

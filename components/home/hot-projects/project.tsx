@@ -1,13 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-<<<<<<< HEAD
-=======
 
-const TITLE_MAX_CHARACTERS = 15;
-const DESCRIPTION_MAX_CHARACTERS = 100;
-
-
->>>>>>> footer
+const TITLE_MAX_CHARACTERS = 25;
+const DESCRIPTION_MAX_CHARACTERS = 90;
 
 type ProjectType = {
   slug: string;
@@ -58,25 +53,27 @@ export default function Project({ project }: ProjectProps) {
   return (
     <Link
       href={`/project/${project.slug}`}
-      className="flex shrink-0 flex-col items-start justify-start gap-6 rounded-[32px] bg-[#11141B] px-8 py-7"
+      className="flex shrink-0 flex-col items-start justify-between gap-6 rounded-[32px] bg-[#11141B] px-8 py-7"
     >
-      <Image
-        className="rounded-full"
-        src={profile.image.url}
-        alt={profile.name}
-        width={120}
-        height={120}
-      />
       <div className="w-72">
+        <Image
+          className="rounded-full"
+          src={profile.image.url}
+          alt={profile.name}
+          width={120}
+          height={120}
+        />
         <h3 className="m-0 overflow-ellipsis p-0 text-[32px] font-bold text-white">
           {truncatedTitle}
         </h3>
-        <p className="m-0 p-0 text-[16px] font-medium">{truncatedDescription}</p>
+        <p className="m-0 p-0 text-[16px] font-medium">
+          {truncatedDescription}
+        </p>
       </div>
+
       <div>
         <Tags tags={Object.values(profile.tags)} />
       </div>
-      <div></div>
     </Link>
   );
 }

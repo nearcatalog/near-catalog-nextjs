@@ -39,7 +39,10 @@ export default async function Discover() {
   const uniqueTags = Array.from(new Set(tags)).sort();
 
   return (
-    <section id="discover" className="container mx-auto my-36 px-4">
+    <section
+      id="discover"
+      className="container mx-auto my-36 overflow-x-clip px-4"
+    >
       <div className="relative flex flex-col items-center pt-24 md:pt-0">
         <SectionHeading
           title="Discover All Projects"
