@@ -1,3 +1,4 @@
+import site from "@/config/site";
 import { MetadataRoute } from "next";
 
 async function getProjects() {
@@ -8,14 +9,14 @@ async function getProjects() {
   return data;
 }
 
-const BASE_URL = "localhost:3000";
+const BASE_URL = site.url;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects();
   const projectSlugs = Object.keys(projects);
 
   const routes = projectSlugs.map((slug) => ({
-    url: `${BASE_URL}/projects/${slug}`,
+    url: `${BASE_URL}/project/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
   }));
@@ -23,8 +24,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: `${BASE_URL}/`,
-      priority: 1,
-      changeFrequency: "always",
+      priority: 0.9,
+      // changeFrequency: "always",
       lastModified: new Date(),
     },
     ...routes,

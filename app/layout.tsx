@@ -5,10 +5,11 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import TagsModal from "@/components/modals/tags";
+import site from "@/config/site";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
-const BASE_URL = "localhost:3000";
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: {
