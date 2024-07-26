@@ -2,24 +2,22 @@
 
 import { useSearchStore } from "@/store/search-store";
 import { useEffect, useState } from "react";
-import { Search as SearchIcon } from "lucide-react";
+import { ChevronDownIcon, Search as SearchIcon } from "lucide-react";
+import { useTagsModalStore } from "@/store/tags-modal-store";
 
 const Tags = ({
-  tags,
   handleTagClick,
-  selectedTags,
 }: {
-  tags: string[];
   handleTagClick: (tag: string) => void;
-  selectedTags: string[];
 }) => {
+  const { tags, allTags } = useSearchStore();
   return (
     <div className="hidden flex-wrap gap-2 md:flex">
-      {tags.map((tag) => (
+      {allTags.map((tag) => (
         <div
           key={tag}
           onClick={() => handleTagClick(tag)}
-          className={`${selectedTags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
+          className={`${tags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
         >
           {tag}
         </div>
@@ -49,14 +47,18 @@ const SearchInput = () => {
 };
 
 export default function Search({ tags }: SearchProps) {
-  const { setTags, tags: searchTags } = useSearchStore();
+  const { setTags, tags: searchTags, setAllTags, allTags } = useSearchStore();
+  const { isOpen, setIsOpen } = useTagsModalStore();
   const [searchAllTags, setSearchAllTags] = useState(true);
+
+  useEffect(() => {
+    setAllTags(tags);
+    setTags(tags);
+  }, [setAllTags, setTags, tags]);
 
   useEffect(() => {
     if (searchAllTags) {
       setTags(tags);
-    } else {
-      setTags([]);
     }
   }, [searchAllTags, tags, setTags]);
 
@@ -90,12 +92,17 @@ export default function Search({ tags }: SearchProps) {
           All Tags
         </span>
       </label>
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-full border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden"
+      >
+        <span>
+          {`Selected Tags: ${searchTags.length === allTags.length ? "All" : searchTags.join(", ")}`}
+        </span>
+        <ChevronDownIcon className="h-4 w-4" />
+      </div>
 
-      <Tags
-        tags={tags}
-        selectedTags={searchTags}
-        handleTagClick={handleTagClick}
-      />
+      <Tags handleTagClick={handleTagClick} />
     </div>
   );
 }

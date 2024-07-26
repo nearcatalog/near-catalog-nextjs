@@ -4,6 +4,8 @@ import "./globals.css";
 
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import TagsModal from "@/components/modals/tags";
+
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -48,6 +50,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        <TagsModal />
       </body>
     </html>
   );
