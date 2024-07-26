@@ -16,14 +16,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projectSlugs = Object.keys(projects);
 
   const routes = projectSlugs.map((slug) => ({
-    url: `${BASE_URL}/project/${slug}`,
+    url: `${BASE_URL}project/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
   }));
 
   return [
     {
-      url: `${BASE_URL}/`,
+      url: `${BASE_URL}`,
       priority: 0.9,
       // changeFrequency: "always",
       lastModified: new Date(),
