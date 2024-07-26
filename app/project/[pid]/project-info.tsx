@@ -37,16 +37,19 @@ const Tags = ({ tags }: { tags: string[] }) => {
 
 const WebsiteLink = ({
   href,
+  ariaLabel,
   children,
 }: {
   href: string;
   children: React.ReactNode;
+  ariaLabel: string;
 }) => {
   return (
     <Link
       href={href}
       target="_blank"
       rel="noreferrer"
+      aria-label={ariaLabel}
       className="flex items-center justify-center gap-1 rounded-full border border-[#80E9E5] p-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
     >
       {children}
@@ -104,12 +107,12 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
       <div className="flex flex-col gap-4 md:ml-[134px]">
         <div className="flex flex-wrap items-center gap-2">
           {website && (
-            <WebsiteLink href={website}>
+            <WebsiteLink href={website} ariaLabel={profile.name}>
               <Globe /> Go to project
             </WebsiteLink>
           )}
           {github && (
-            <WebsiteLink href={github}>
+            <WebsiteLink href={github} ariaLabel={`${profile.name} Github`}>
               <GitHub />
               Github
             </WebsiteLink>
@@ -132,22 +135,22 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
           </p>
           <div className="flex flex-wrap items-center gap-2">
             {twitter && (
-              <Link href={twitter}>
+              <Link href={twitter} aria-label="Twitter">
                 <TwitterX />
               </Link>
             )}
             {medium && (
-              <Link href={medium}>
+              <Link href={medium} aria-label="Medium">
                 <Medium />
               </Link>
             )}
             {discord && (
-              <Link href={discord}>
+              <Link href={discord} aria-label="Discord">
                 <Discord />
               </Link>
             )}
             {telegram && (
-              <Link href={telegram}>
+              <Link href={telegram} aria-label="Telegram">
                 <Telegram />
               </Link>
             )}
