@@ -39,7 +39,9 @@ export default function Project({ project }: ProjectProps) {
     )
       .then((res) => res.json())
       .then((data) => setProjectData(data.profile))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        throw new Error(err);
+      });
   }, [project]);
 
   if (!projectData) {
