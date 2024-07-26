@@ -27,7 +27,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${project.profile.name} - NEAR Landscape`,
+    title: `${project.profile.name}`,
     description: project.profile.description,
     openGraph: {
       title: project.profile.name,
