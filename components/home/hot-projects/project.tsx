@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type ProjectType = {
   slug: string;
@@ -20,7 +21,10 @@ export default function Project({ project }: ProjectProps) {
   const { profile } = project;
 
   return (
-    <div className="flex shrink-0 flex-col items-start justify-start gap-6 rounded-[32px] bg-[#11141B] px-8 py-7">
+    <Link
+      href={`/project/${project.slug}`}
+      className="flex shrink-0 flex-col items-start justify-start gap-6 rounded-[32px] bg-[#11141B] px-8 py-7"
+    >
       <Image
         className="rounded-full"
         src={profile.image.url}
@@ -35,6 +39,6 @@ export default function Project({ project }: ProjectProps) {
         <p className="m-0 p-0 text-[16px] font-medium">{profile.tagline}</p>
       </div>
       <div></div>
-    </div>
+    </Link>
   );
 }

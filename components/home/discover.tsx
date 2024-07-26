@@ -33,7 +33,6 @@ export default async function Discover() {
   }
 
   const projectArray: Project[] = Object.values(projects);
-  console.log(projectArray);
   let tags: string[] = projectArray
     .map((project: Project) => Object.values(project.profile.tags))
     .flat();
@@ -41,13 +40,13 @@ export default async function Discover() {
 
   return (
     <section id="discover" className="container mx-auto my-36 px-4">
-      <div className="relative flex flex-col items-center">
+      <div className="relative flex flex-col items-center pt-24 md:pt-0">
         <SectionHeading
           title="Discover All Projects"
           description={`Explore ${projectsLength} innovative projects built within our vibrant ecosystem`}
         />
         <Image
-          className="absolute right-0 top-0 z-0 -translate-y-1/3 object-cover"
+          className="absolute right-1/2 top-0 z-0 h-[141px] w-[221px] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[222px] md:w-[347px] md:translate-x-0"
           src={SearchImage}
           alt={"Discover All Projects"}
           width={347}

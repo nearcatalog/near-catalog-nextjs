@@ -14,12 +14,12 @@ const Tags = ({
   selectedTags: string[];
 }) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="hidden flex-wrap gap-2 md:flex">
       {tags.map((tag) => (
         <div
           key={tag}
           onClick={() => handleTagClick(tag)}
-          className={`${selectedTags.includes(tag) ? "" : "opacity-75"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
+          className={`${selectedTags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
         >
           {tag}
         </div>
@@ -39,9 +39,9 @@ const SearchInput = () => {
       <input
         type="text"
         value={searchKey}
-        placeholder="Search projects, tags"
+        placeholder="Search projects"
         onChange={(e) => useSearchStore.setState({ searchKey: e.target.value })}
-        className="rounded-full border border-[#BEBDBE] bg-black p-4 pl-12 font-medium text-white"
+        className="w-full rounded-full border border-[#BEBDBE] bg-black p-4 pl-12 font-medium text-white"
       />
       <SearchIcon className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 text-[#7E7E7E]" />
     </div>
@@ -49,26 +49,36 @@ const SearchInput = () => {
 };
 
 export default function Search({ tags }: SearchProps) {
-  const { setTags, tags: searchTags, searchKey } = useSearchStore();
+  const { setTags, tags: searchTags } = useSearchStore();
   const [searchAllTags, setSearchAllTags] = useState(true);
 
   useEffect(() => {
     if (searchAllTags) {
       setTags(tags);
+    } else {
+      setTags([]);
     }
   }, [searchAllTags, tags, setTags]);
 
   const handleTagClick = (tag: string) => {
     if (searchAllTags) {
       setSearchAllTags(false);
+      setTags([tag]);
+    } else {
+      if (searchTags.includes(tag)) {
+        setTags(searchTags.filter((searchTag) => searchTag !== tag));
+      } else {
+        setTags(Array.from(new Set([...searchTags, tag])));
+      }
     }
-    setTags([tag]);
   };
 
   return (
     <div className="flex flex-col gap-2">
-      <SearchInput />
-      <label className="inline-flex cursor-pointer items-center">
+      <div className="relative">
+        <SearchInput />
+      </div>
+      <label className="hidden cursor-pointer items-center md:inline-flex">
         <input
           type="checkbox"
           checked={searchAllTags}
