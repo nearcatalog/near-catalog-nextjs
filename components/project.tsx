@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const TITLE_MAX_CHARACTERS = 25;
 const DESCRIPTION_MAX_CHARACTERS = 90;
@@ -36,6 +38,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
 };
 
 export default function Project({ project }: ProjectProps) {
+  const router = useRouter();
   const { profile } = project;
 
   const title = profile.name;
@@ -51,11 +54,12 @@ export default function Project({ project }: ProjectProps) {
       : description;
 
   return (
-    <Link
-      href={`/project/${project.slug}`}
-      className="flex shrink-0 flex-col items-start justify-between gap-6 rounded-[32px] bg-[#11141B] px-8 py-7"
+    <div
+      style={{ userSelect: "none" }}
+      onClick={() => router.push(`/project/${project.slug}`)}
+      className="grow-1 h-92 flex w-full max-w-[20rem] shrink-0 cursor-pointer flex-col items-start justify-between gap-6 rounded-[32px] bg-[#11141B] px-8 py-7"
     >
-      <div className="w-72">
+      <div className="flex h-full w-full flex-col">
         <Image
           className="rounded-full"
           src={profile.image.url}
@@ -63,17 +67,14 @@ export default function Project({ project }: ProjectProps) {
           width={120}
           height={120}
         />
-        <h3 className="m-0 overflow-ellipsis p-0 text-[32px] font-bold text-white">
+        <h3 className="m-0 overflow-ellipsis p-0 text-[32px] font-bold leading-9 text-white">
           {truncatedTitle}
         </h3>
         <p className="m-0 p-0 text-[16px] font-medium">
           {truncatedDescription}
         </p>
       </div>
-
-      <div>
-        <Tags tags={Object.values(profile.tags)} />
-      </div>
-    </Link>
+      <Tags tags={Object.values(profile.tags)} />
+    </div>
   );
 }

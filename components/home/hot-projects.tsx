@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SectionHeading from "../section-heading";
-import Project from "../project";
 import Fire from "@/public/icons/fire.svg";
+import ScrollableProjects from "./hot-projects/scrollable-projects";
 
 async function getHotProjects() {
   const res = await fetch(
@@ -16,22 +16,22 @@ export default async function HotProjects() {
   const projectKeys = Object.keys(projects);
 
   return (
-    <div className="container mx-auto mt-20 bg-black">
-      <SectionHeading
-        title={
-          <div className="flex items-center justify-center gap-4">
-            <Image src={Fire} alt="Github" width={42} height={42} />
-            <h3>Hot Projects</h3>
-            <Image src={Fire} alt="Github" width={42} height={42} />
-          </div>
-        }
-        description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
-      />
-      <div className="no-scrollbar mt-14 flex gap-4 overflow-x-auto px-4">
-        {projectKeys.map((project) => (
-          <Project project={projects[project]} key={project} />
-        ))}
+    <>
+      <div className="container mx-auto mt-20 bg-black">
+        <SectionHeading
+          title={
+            <div className="flex items-center justify-center gap-4">
+              <Image src={Fire} alt="Github" width={42} height={42} />
+              <h3>Hot Projects</h3>
+              <Image src={Fire} alt="Github" width={42} height={42} />
+            </div>
+          }
+          description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
+        />
       </div>
-    </div>
+      <div className="max-w-full">
+        <ScrollableProjects projects={projects} />
+      </div>
+    </>
   );
 }
