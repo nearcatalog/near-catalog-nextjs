@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Loader } from "lucide-react";
 
-import Project from "./hot-projects/project";
+import Project from "../project";
 import Link from "next/link";
 
 async function getProjects() {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SectionHeading from "../section-heading";
-import Project from "./hot-projects/project";
+import Project from "../project";
 import Fire from "@/public/icons/fire.svg";
 
 async function getHotProjects() {
