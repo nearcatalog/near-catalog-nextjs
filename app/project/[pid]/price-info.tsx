@@ -53,9 +53,11 @@ export default async function PriceInfo({
                       : "text-green-500"
                   } `}
                 >
-                  {data.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
-                    2,
-                  )}
+                  {data.market_data.price_change_percentage_24h_in_currency.usd
+                    ? data.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
+                        2,
+                      )
+                    : "-"}
                   %
                 </small>
               </h4>
@@ -64,31 +66,45 @@ export default async function PriceInfo({
               <div className="max-w-1/2 flex-grow basis-0">
                 ATH
                 <p className="text-green-500">
-                  ${data?.market_data?.ath.usd.toFixed(8)}
+                  $
+                  {data?.market_data?.ath.usd
+                    ? data?.market_data?.ath.usd.toFixed(8)
+                    : " -"}
                 </p>
               </div>
               <div className="max-w-1/2 flex-grow basis-0">
                 24h high
                 <p>
-                  <b>${data?.market_data?.high_24h.usd.toFixed(8)} </b>
+                  <b>
+                    $
+                    {data?.market_data?.high_24h.usd
+                      ? data?.market_data?.high_24h.usd.toFixed(8)
+                      : " -"}
+                  </b>
                 </p>
               </div>
               <div className="max-w-1/2 flex-grow basis-0">
                 Volume 24h
                 <p>
                   <b>
-                    {"$" +
-                      data.market_data.total_volume.usd
-                        .toFixed(0)
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    {"$" + data.market_data.total_volume.usd
+                      ? data.market_data.total_volume.usd
+                          .toFixed(0)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      : " -"}
                   </b>
                 </p>
               </div>
               <div className="max-w-1/2 flex-grow basis-0">
                 24h low
                 <p>
-                  <b>${data.market_data.low_24h.usd.toFixed(8)} </b>
+                  <b>
+                    $
+                    {data.market_data.low_24h.usd
+                      ? data.market_data.low_24h.usd.toFixed(8)
+                      : " -"}
+                  </b>
                 </p>
               </div>
               <div className="max-w-1/2 flex-grow basis-0">
@@ -101,7 +117,7 @@ export default async function PriceInfo({
                           .toFixed(0)
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      : "-"}
+                      : " -"}
                   </b>
                 </p>
               </div>
