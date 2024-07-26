@@ -4,10 +4,12 @@ async function getPriceData(tokenInfo: any) {
   const res = await fetch(
     `https://api.coingecko.com/api/v3/coins/${tokenInfo.platform.coingecko}`,
   );
-  if (res.ok) {
-    return await res.json();
-  } else {
-    throw new Error("Error fetching price data");
+  try {
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error(`Error fetching price data: ${error}`);
   }
 }
 
@@ -44,17 +46,21 @@ export default async function PriceInfo({
                 <b>{tokenInfo.symbol}</b>/usd
               </div>
               <h4 className="text-3xl font-bold">
-                ${data.market_data.current_price.usd}
+                $
+                {data.market_data?.current_price?.usd
+                  ? data.market_data?.current_price?.usd
+                  : " -"}
                 <small
                   className={`+ text-sm font-medium ${
-                    data.market_data.price_change_percentage_24h_in_currency
-                      .usd < 0
+                    data.market_data?.price_change_percentage_24h_in_currency
+                      ?.usd < 0
                       ? "text-red-500"
                       : "text-green-500"
                   } `}
                 >
-                  {data.market_data.price_change_percentage_24h_in_currency.usd
-                    ? data.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
+                  {data.market_data?.price_change_percentage_24h_in_currency
+                    ?.usd
+                    ? data.market_data?.price_change_percentage_24h_in_currency?.usd.toFixed(
                         2,
                       )
                     : "-"}
@@ -87,8 +93,8 @@ export default async function PriceInfo({
                 Volume 24h
                 <p>
                   <b>
-                    {"$" + data.market_data.total_volume.usd
-                      ? data.market_data.total_volume.usd
+                    {"$" + data.market_data?.total_volume?.usd
+                      ? data.market_data?.total_volume?.usd
                           .toFixed(0)
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -101,8 +107,8 @@ export default async function PriceInfo({
                 <p>
                   <b>
                     $
-                    {data.market_data.low_24h.usd
-                      ? data.market_data.low_24h.usd.toFixed(8)
+                    {data.market_data?.low_24h?.usd
+                      ? data.market_data?.low_24h?.usd.toFixed(8)
                       : " -"}
                   </b>
                 </p>
@@ -111,9 +117,9 @@ export default async function PriceInfo({
                 Market Cap
                 <p>
                   <b>
-                    {data.market_data.market_cap?.usd
+                    {data.market_data?.market_cap?.usd
                       ? "$" +
-                        data.market_data.market_cap.usd
+                        data.market_data?.market_cap.usd
                           .toFixed(0)
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -126,7 +132,7 @@ export default async function PriceInfo({
                 <p>
                   <b>
                     {data.market_data?.circulating_supply
-                      ? data.market_data.circulating_supply
+                      ? data.market_data?.circulating_supply
                           .toFixed(0)
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
