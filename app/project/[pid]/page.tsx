@@ -3,6 +3,7 @@ import ProjectInfo from "./project-info";
 import DiscoverMore from "./discover-more";
 import TokenInfo from "./token-info";
 import PriceInfo from "./price-info";
+import Script from "next/script";
 
 interface ProjectPageProps {
   params: {
@@ -18,6 +19,31 @@ async function getProjectData(pid: string) {
   });
   const data = await res.json();
   return data;
+}
+
+function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
+  return (
+    <div className="mt-3 rounded-3xl bg-[#1b1d2a]">
+      <div className="p-4">
+        <small>
+          <i>Open link in new tab with right click or hold</i>
+        </small>
+      </div>
+      <div className="max-h-[500px] min-h-[500px] overflow-y-auto rounded-xl">
+        <a
+          className="twitter-timeline"
+          data-theme="dark"
+          data-height="500"
+          data-dnt="true"
+          data-tweet-limit="10"
+          href={href}
+        >
+          Tweets by {name}
+        </a>
+        <Script async src="https://platform.twitter.com/widgets.js"></Script>
+      </div>
+    </div>
+  );
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -65,29 +91,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           ) : null}
           {projectData.profile.linktree?.twitter && (
-            <div className="mt-3 rounded-3xl bg-[#1b1d2a] md:hidden">
-              <div className="p-4">
-                <small>
-                  <i>Open link in new tab with right click or hold</i>
-                </small>
-              </div>
-              <div className="max-h-[500px] min-h-[500px] overflow-y-auto rounded-xl">
-                <a
-                  className="twitter-timeline"
-                  data-theme="dark"
-                  data-height="500"
-                  data-dnt="true"
-                  data-tweet-limit="10"
-                  href={projectData.profile.linktree?.twitter}
-                >
-                  Tweets by {projectData.profile.name}
-                </a>
-                <script
-                  async
-                  src="https://platform.twitter.com/widgets.js"
-                ></script>
-              </div>
-            </div>
+            <TwitterTimelineEmbed
+              href={projectData.profile.linktree?.twitter}
+              name={projectData.profile.name}
+            />
           )}
           <DiscoverMore
             pid={pid}
@@ -107,29 +114,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </>
             ) : null}
             {projectData.profile.linktree?.twitter && (
-              <div className="mt-3 rounded-3xl bg-[#1b1d2a]">
-                <div className="p-4">
-                  <small>
-                    <i>Open link in new tab with right click or hold</i>
-                  </small>
-                </div>
-                <div className="max-h-[500px] min-h-[500px] overflow-y-auto rounded-xl">
-                  <a
-                    className="twitter-timeline"
-                    data-theme="dark"
-                    data-height="500"
-                    data-dnt="true"
-                    data-tweet-limit="10"
-                    href={projectData.profile.linktree?.twitter}
-                  >
-                    Tweets by {projectData.profile.name}
-                  </a>
-                  <script
-                    async
-                    src="https://platform.twitter.com/widgets.js"
-                  ></script>
-                </div>
-              </div>
+              <TwitterTimelineEmbed
+                href={projectData.profile.linktree?.twitter}
+                name={projectData.profile.name}
+              />
             )}
           </div>
         ) : null}
