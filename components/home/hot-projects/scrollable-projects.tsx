@@ -19,6 +19,8 @@ export default function ScrollableProjects({
   });
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +44,32 @@ export default function ScrollableProjects({
       }
     };
   }, []);
+
+  useEffect(() => {
+    const scrollElement = containerRef.current;
+    let scrollInterval: NodeJS.Timeout;
+
+    const startScrolling = () => {
+      scrollInterval = setInterval(() => {
+        if (scrollElement) {
+          scrollElement.scrollLeft += 1;
+          if (
+            scrollElement.scrollLeft + scrollElement.clientWidth >=
+            scrollElement.scrollWidth
+          ) {
+            scrollElement.scrollLeft = 0; // Reset scroll to top when it reaches the bottom
+          }
+        }
+      }, 15); // Adjust the speed of scrolling here
+    };
+
+    if (!isHovered || !isTouched) {
+      startScrolling();
+    }
+
+    return () => clearInterval(scrollInterval);
+  }, [isHovered, isTouched]);
+
   return (
     <div className="relative max-w-full">
       <div
@@ -53,6 +81,10 @@ export default function ScrollableProjects({
       <div
         ref={containerRef}
         {...events}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={() => setIsTouched(true)}
+        onTouchEnd={() => setIsTouched(false)}
         className="no-scrollbar mt-14 flex gap-4 overflow-x-auto px-4"
       >
         {projectKeys.map((project) => (
