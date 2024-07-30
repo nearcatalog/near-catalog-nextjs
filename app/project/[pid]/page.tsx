@@ -23,6 +23,10 @@ async function getProjectData(pid: string) {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { pid } = params;
   const projectData = await getProjectData(pid);
+  const twtIframe = `<div align="center"><a class="twitter-timeline" data-theme="dark" data-dnt="true"  data-tweet-limit="10"
+ href="${projectData.profile.linktree?.twitter}">X</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>`;
 
   if (!projectData) {
     return (
@@ -64,15 +68,43 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <TokenInfo tokenInfo={tokenInfo} />
             </div>
           ) : null}
+          {projectData.profile.linktree?.twitter && (
+            <div className="mt-3 rounded-3xl bg-[#1b1d2a] md:hidden">
+              <div className="p-4">
+                <small>
+                  <i>Open link in new tab with right click or hold</i>
+                </small>
+              </div>
+              <iframe srcDoc={twtIframe} className="min-h-[500px] w-full" />
+            </div>
+          )}
           <DiscoverMore
             pid={pid}
             gridSize={Object.keys(tokenInfo).length ? 3 : 1}
           />
         </div>
-        {Object.keys(tokenInfo).length ? (
+        {Object.keys(tokenInfo).length ||
+        projectData.profile.linktree?.twitter ? (
           <div className="hidden w-full md:block md:max-w-[35%]">
-            <PriceInfo tokenInfo={tokenInfo} name={projectData.profile.name} />
-            <TokenInfo tokenInfo={tokenInfo} />
+            {Object.keys(tokenInfo).length ? (
+              <>
+                <PriceInfo
+                  tokenInfo={tokenInfo}
+                  name={projectData.profile.name}
+                />
+                <TokenInfo tokenInfo={tokenInfo} />
+              </>
+            ) : null}
+            {projectData.profile.linktree?.twitter && (
+              <div className="mt-3 rounded-3xl bg-[#1b1d2a]">
+                <div className="p-4">
+                  <small>
+                    <i>Open link in new tab with right click or hold</i>
+                  </small>
+                </div>
+                <iframe srcDoc={twtIframe} className="min-h-[500px] w-full" />
+              </div>
+            )}
           </div>
         ) : null}
       </div>
