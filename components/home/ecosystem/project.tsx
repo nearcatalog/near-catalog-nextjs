@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ProjectProps {
   project: string;
@@ -32,6 +33,7 @@ type Project = {
 
 export default function Project({ project }: ProjectProps) {
   const [projectData, setProjectData] = useState<null | Project>();
+  const router = useRouter();
 
   useEffect(() => {
     fetch(
@@ -51,18 +53,18 @@ export default function Project({ project }: ProjectProps) {
   const title = projectData.name;
   const truncatedTitle =
     title.length > TITLE_MAX_CHARACTERS
-      ? `${title.substring(0, TITLE_MAX_CHARACTERS)}...`
+      ? `${Array.from(title).slice(0, TITLE_MAX_CHARACTERS).join("")}...`
       : title;
 
   const description = projectData.tagline;
   const truncatedDescription =
     description.length > DESCRIPTION_MAX_CHARACTERS
-      ? `${description.substring(0, DESCRIPTION_MAX_CHARACTERS)}...`
+      ? `${Array.from(description).slice(0, DESCRIPTION_MAX_CHARACTERS).join("")}...`
       : description;
 
   return (
-    <Link
-      href={`/project/${project}`}
+    <div
+      onClick={() => router.push(`/project/${project}`)}
       className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2"
       style={{
         userSelect: "none",
@@ -81,6 +83,6 @@ export default function Project({ project }: ProjectProps) {
       <p className="max-w-full break-words text-center text-xs font-medium text-[#7E7E7E]">
         {truncatedDescription}
       </p>
-    </Link>
+    </div>
   );
 }
