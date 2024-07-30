@@ -8,18 +8,6 @@ import Medium from "@/components/icons/medium";
 import Discord from "@/components/icons/discord";
 import Telegram from "@/components/icons/telegram";
 
-const MdImg = ({ src, alt }: { src: string; alt: string }) => {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      className="h-full max-h-56 w-full object-contain"
-      width={0}
-      height={0}
-    />
-  );
-};
-
 const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -118,16 +106,8 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
             </WebsiteLink>
           )}
         </div>
-        <div className="flex flex-col gap-2 text-base font-medium text-white">
-          <Markdown
-            components={{
-              img: ({ src, alt }) => {
-                return <MdImg src={src as string} alt={alt as string} />;
-              },
-            }}
-          >
-            {profile?.description}
-          </Markdown>
+        <div className="prose prose-invert lg:prose-lg">
+          <Markdown>{profile?.description}</Markdown>
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-xs font-medium">

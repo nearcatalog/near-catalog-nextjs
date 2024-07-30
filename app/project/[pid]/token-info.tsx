@@ -1,4 +1,20 @@
+"use client";
+
+import { useRef } from "react";
+
 export default function TokenInfo({ tokenInfo }: { tokenInfo: any }) {
+  const nearRef = useRef(null);
+  const auroraRef = useRef(null);
+  const ethereumRef = useRef(null);
+
+  const handleClick = (ref: any) => {
+    const range = document.createRange();
+    range.selectNode(ref.current);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  };
+
   return (
     (tokenInfo.address.near ||
       tokenInfo.address.aurora ||
@@ -15,7 +31,11 @@ export default function TokenInfo({ tokenInfo }: { tokenInfo: any }) {
               >
                 NEAR Chain (NEP-141) ↗
               </a>
-              <div className="overflow-x-auto rounded-md bg-[#2b2d3a] p-1">
+              <div
+                ref={nearRef}
+                onClick={() => handleClick(nearRef)}
+                className="max-w-full break-all rounded-md bg-[#2b2d3a] p-1 text-xs"
+              >
                 {tokenInfo.address.near}
               </div>
             </div>
@@ -29,13 +49,17 @@ export default function TokenInfo({ tokenInfo }: { tokenInfo: any }) {
               >
                 Aurora ↗
               </a>
-              <div className="overflow-x-auto rounded-md bg-[#2b2d3a] p-1">
+              <div
+                ref={auroraRef}
+                onClick={() => handleClick(auroraRef)}
+                className="max-w-full break-all rounded-md bg-[#2b2d3a] p-1 text-xs"
+              >
                 {tokenInfo.address.aurora}
               </div>
             </div>
           )}
           {tokenInfo.address.ethereum && (
-            <div className="flex flex-col">
+            <div className="flex shrink flex-col">
               <a
                 href={`https://etherscan.io/address/${tokenInfo.address.ethereum}`}
                 target="_blank"
@@ -43,7 +67,11 @@ export default function TokenInfo({ tokenInfo }: { tokenInfo: any }) {
               >
                 Ethereum ↗
               </a>
-              <div className="overflow-x-auto rounded-md bg-[#2b2d3a] p-1">
+              <div
+                ref={ethereumRef}
+                onClick={() => handleClick(ethereumRef)}
+                className="max-w-full break-all rounded-md bg-[#2b2d3a] p-1 text-xs"
+              >
                 {tokenInfo.address.ethereum}
               </div>
             </div>
