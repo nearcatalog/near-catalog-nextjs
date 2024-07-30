@@ -63,7 +63,7 @@ export default function ScrollableProjects({
       }, 15); // Adjust the speed of scrolling here
     };
 
-    if (!isHovered || !isTouched) {
+    if (!isHovered && !isTouched) {
       startScrolling();
     }
 

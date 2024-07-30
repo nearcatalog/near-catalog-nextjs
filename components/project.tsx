@@ -44,13 +44,13 @@ export default function Project({ project }: ProjectProps) {
   const title = profile.name;
   const truncatedTitle =
     title.length > TITLE_MAX_CHARACTERS
-      ? `${title.substring(0, TITLE_MAX_CHARACTERS)}...`
+      ? `${Array.from(title).slice(0, TITLE_MAX_CHARACTERS).join("")}...`
       : title;
 
   const description = profile.tagline;
   const truncatedDescription =
     description.length > DESCRIPTION_MAX_CHARACTERS
-      ? `${description.substring(0, DESCRIPTION_MAX_CHARACTERS)}...`
+      ? `${Array.from(description).slice(0, DESCRIPTION_MAX_CHARACTERS).join("")}...`
       : description;
 
   return (
@@ -67,10 +67,10 @@ export default function Project({ project }: ProjectProps) {
           width={120}
           height={120}
         />
-        <h3 className="m-0 overflow-ellipsis p-0 text-[32px] font-bold leading-9 text-white">
+        <h3 className="m-0 overflow-ellipsis break-words p-0 text-[32px] font-bold leading-9 text-white">
           {truncatedTitle}
         </h3>
-        <p className="m-0 p-0 text-[16px] font-medium">
+        <p className="m-0 break-all p-0 text-[16px] font-medium">
           {truncatedDescription}
         </p>
       </div>
