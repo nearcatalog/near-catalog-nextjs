@@ -4,6 +4,7 @@ import { useSearchStore } from "@/store/search-store";
 import { useEffect, useState } from "react";
 import { ChevronDownIcon, Search as SearchIcon } from "lucide-react";
 import { useTagsModalStore } from "@/store/tags-modal-store";
+import SearchInput from "./search-input";
 
 const Tags = ({
   handleTagClick,
@@ -29,22 +30,6 @@ const Tags = ({
 interface SearchProps {
   tags: string[];
 }
-
-const SearchInput = () => {
-  const { searchKey } = useSearchStore();
-  return (
-    <div className="relative mx-auto w-full max-w-72">
-      <input
-        type="text"
-        value={searchKey}
-        placeholder="Search projects"
-        onChange={(e) => useSearchStore.setState({ searchKey: e.target.value })}
-        className="w-full rounded-full border border-[#BEBDBE] bg-black p-4 pl-12 font-medium text-white"
-      />
-      <SearchIcon className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 text-[#7E7E7E]" />
-    </div>
-  );
-};
 
 export default function Search({ tags }: SearchProps) {
   const { setTags, tags: searchTags, setAllTags, allTags } = useSearchStore();

@@ -8,16 +8,17 @@ import Medium from "@/components/icons/medium";
 import Discord from "@/components/icons/discord";
 import Telegram from "@/components/icons/telegram";
 
-const Tags = ({ tags }: { tags: string[] }) => {
+const Tags = ({ tags }: { tags: Record<string, string> }) => {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {tags.map((value, key) => (
-        <p
+      {Object.keys(tags).map((key, index) => (
+        <Link
+          href={`/category/${key}`}
           className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-full bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
-          key={key}
+          key={index}
         >
-          {value}
-        </p>
+          {tags[key]}
+        </Link>
       ))}
     </div>
   );
@@ -88,7 +89,7 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
             {profile?.name}
           </h2>
           <p className="text-xs font-medium">{profile?.tagline}</p>
-          <Tags tags={Object.values(profile?.tags)} />
+          <Tags tags={profile.tags} />
         </div>
       </div>
 

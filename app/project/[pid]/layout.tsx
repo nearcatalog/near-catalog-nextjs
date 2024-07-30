@@ -1,3 +1,5 @@
+import MobileDropdown from "@/components/home/mobile-dropdown";
+import SearchInput from "@/components/search-input";
 import type { Metadata, ResolvingMetadata } from "next";
 
 type MetadataProps = {
@@ -41,10 +43,39 @@ type Props = MetadataProps & {
   children: React.ReactNode;
 };
 
-export default function ProjectLayout({ params, children }: Props) {
+type ProjectType = {
+  slug: string;
+  profile: {
+    name: string;
+    tagline: string;
+    image: {
+      url: string;
+    };
+    tags: Record<string, string>;
+  };
+};
+
+async function getProjects() {
+  const res = await fetch(
+    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
+  );
+  const data = await res.json();
+  return data;
+}
+
+export default async function ProjectLayout({ params, children }: Props) {
   const { pid } = params;
   if (!pid) {
     return <div>Project ID not found</div>;
   }
-  return <div>{children}</div>;
+
+  const projects = await getProjects();
+  const projectValues: ProjectType[] = Object.values(projects);
+  return (
+    <div className="relative mt-4">
+      <SearchInput />
+      <MobileDropdown projects={projectValues} showOnDesktop />
+      {children}
+    </div>
+  );
 }

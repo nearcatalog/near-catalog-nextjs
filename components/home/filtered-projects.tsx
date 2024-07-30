@@ -7,6 +7,7 @@ import { Loader } from "lucide-react";
 
 import Project from "../project";
 import Link from "next/link";
+import MobileDropdown from "./mobile-dropdown";
 
 async function getProjects() {
   const res = await fetch(
@@ -26,36 +27,6 @@ type ProjectType = {
     };
     tags: Record<string, string>;
   };
-};
-
-const MobileDropdown = ({ projects }: { projects: ProjectType[] }) => {
-  const { searchKey } = useSearchStore();
-
-  if (searchKey === "") {
-    return null;
-  }
-
-  const filteredProjects = projects
-    .filter((project: any) => {
-      const projectName = project.profile.name.toLowerCase();
-
-      return projectName.startsWith(searchKey.toLowerCase());
-    })
-    .sort();
-
-  if (filteredProjects.length === 0) {
-    return null;
-  }
-
-  return (
-    <div className="shadow-[rgba(0, 0, 0, 0.55)] absolute left-1/2 top-0 mt-16 flex w-full max-w-72 -translate-x-1/2 flex-col gap-4 rounded-3xl border border-[#BEBDBE] bg-[#1A1A17] p-4 px-12 py-4 text-white shadow-lg md:hidden">
-      {filteredProjects.map((project: any) => (
-        <Link href={`/project/${project.slug}`} key={project.slug}>
-          {project.profile.name}
-        </Link>
-      ))}
-    </div>
-  );
 };
 
 export default function FilteredProjects() {
