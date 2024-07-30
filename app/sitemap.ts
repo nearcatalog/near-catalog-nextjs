@@ -1,6 +1,8 @@
 import site from "@/config/site";
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-dynamic";
+
 async function getProjects() {
   const res = await fetch(
     "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",

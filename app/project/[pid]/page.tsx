@@ -23,10 +23,6 @@ async function getProjectData(pid: string) {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { pid } = params;
   const projectData = await getProjectData(pid);
-  const twtIframe = `<div align="center"><a class="twitter-timeline" data-theme="dark" data-dnt="true"  data-tweet-limit="10"
- href="${projectData.profile.linktree?.twitter}">X</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>`;
 
   if (!projectData) {
     return (
@@ -75,7 +71,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <i>Open link in new tab with right click or hold</i>
                 </small>
               </div>
-              <iframe srcDoc={twtIframe} className="min-h-[500px] w-full" />
+              <div className="max-h-[500px] min-h-[500px] overflow-y-auto rounded-xl">
+                <a
+                  className="twitter-timeline"
+                  data-theme="dark"
+                  data-height="500"
+                  data-dnt="true"
+                  data-tweet-limit="10"
+                  href={projectData.profile.linktree?.twitter}
+                >
+                  Tweets by {projectData.profile.name}
+                </a>
+                <script
+                  async
+                  src="https://platform.twitter.com/widgets.js"
+                ></script>
+              </div>
             </div>
           )}
           <DiscoverMore
@@ -102,7 +113,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     <i>Open link in new tab with right click or hold</i>
                   </small>
                 </div>
-                <iframe srcDoc={twtIframe} className="min-h-[500px] w-full" />
+                <div className="max-h-[500px] min-h-[500px] overflow-y-auto rounded-xl">
+                  <a
+                    className="twitter-timeline"
+                    data-theme="dark"
+                    data-height="500"
+                    data-dnt="true"
+                    data-tweet-limit="10"
+                    href={projectData.profile.linktree?.twitter}
+                  >
+                    Tweets by {projectData.profile.name}
+                  </a>
+                  <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                  ></script>
+                </div>
               </div>
             )}
           </div>
