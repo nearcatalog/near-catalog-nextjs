@@ -62,6 +62,10 @@ type Project = {
       discord: string;
       telegram: string;
     };
+    lnc?: {
+      slug: string;
+      score: number;
+    };
     tags: Record<string, string>;
     tokens: any;
   };
@@ -71,6 +75,7 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
   if (!projectData) return null;
 
   const { profile } = projectData;
+  const { lnc } = profile;
   const { website, github, twitter, medium, discord, telegram } =
     profile?.linktree;
 
@@ -94,7 +99,7 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
       </div>
 
       <div className="flex flex-col gap-4 md:ml-[134px]">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 md:hidden">
           {website && (
             <WebsiteLink href={website} ariaLabel={profile.name}>
               <Globe /> Go to project
@@ -107,14 +112,11 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
             </WebsiteLink>
           )}
         </div>
-        <div className="prose prose-invert lg:prose-lg">
-          <Markdown>{profile?.description}</Markdown>
-        </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:hidden">
           <p className="text-xs font-medium">
             Connect with {profile?.name} on Social Media:
           </p>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="mb-4 flex flex-wrap items-center gap-2">
             {twitter && (
               <Link href={twitter} aria-label="Twitter">
                 <TwitterX />
@@ -135,7 +137,25 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
                 <Telegram />
               </Link>
             )}
+            {lnc && (
+              <Link
+                href={`https://learnnear.club/near-ecosystem/${lnc.slug}/`}
+                target="_blank"
+                aria-label="LNC"
+                className="flex gap-1 rounded bg-orange-400 px-2 py-1 font-extrabold text-black"
+              >
+                <ul className="flex items-baseline">
+                  <li className="text-xs">L</li>
+                  <li className="text-sm">N</li>
+                  <li>C</li>
+                </ul>{" "}
+                {lnc.score}
+              </Link>
+            )}
           </div>
+        </div>
+        <div className="prose prose-invert lg:prose-lg">
+          <Markdown>{profile?.description}</Markdown>
         </div>
       </div>
     </div>

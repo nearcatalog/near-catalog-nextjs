@@ -4,6 +4,36 @@ import DiscoverMore from "./discover-more";
 import TokenInfo from "./token-info";
 import PriceInfo from "./price-info";
 import Script from "next/script";
+import Globe from "@/components/icons/globe";
+import GitHub from "@/components/icons/github";
+import Link from "next/link";
+import TwitterX from "@/components/icons/twitter-x";
+import Medium from "@/components/icons/medium";
+import Discord from "@/components/icons/discord";
+import Telegram from "@/components/icons/telegram";
+import { AppWindow } from "lucide-react";
+
+const WebsiteLink = ({
+  href,
+  ariaLabel,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+  ariaLabel: string;
+}) => {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={ariaLabel}
+      className="flex items-center justify-center gap-1 rounded-full border border-[#80E9E5] p-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
+    >
+      {children}
+    </Link>
+  );
+};
 
 interface ProjectPageProps {
   params: {
@@ -72,6 +102,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     tokenTicket && projectData.profile.tokens
       ? projectData.profile.tokens[tokenTicket]
       : {};
+  const { website, github, twitter, medium, discord, telegram } =
+    projectData.profile?.linktree;
+  const { dapp, lnc } = projectData.profile;
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -91,10 +124,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           ) : null}
           {projectData.profile.linktree?.twitter && (
-            <TwitterTimelineEmbed
-              href={projectData.profile.linktree?.twitter}
-              name={projectData.profile.name}
-            />
+            <div className="md:hidden">
+              <TwitterTimelineEmbed
+                href={projectData.profile.linktree?.twitter}
+                name={projectData.profile.name}
+              />
+            </div>
           )}
           <DiscoverMore
             pid={pid}
@@ -104,6 +139,72 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {Object.keys(tokenInfo).length ||
         projectData.profile.linktree?.twitter ? (
           <div className="hidden w-full md:block md:max-w-[35%]">
+            <div className="hidden flex-wrap items-center justify-end gap-2 md:flex">
+              {website && (
+                <WebsiteLink
+                  href={website}
+                  ariaLabel={projectData.profile.name}
+                >
+                  <Globe /> Go to project
+                </WebsiteLink>
+              )}
+              {github && (
+                <WebsiteLink
+                  href={github}
+                  ariaLabel={`${projectData.profile.name} Github`}
+                >
+                  <GitHub />
+                  Github
+                </WebsiteLink>
+              )}
+              {dapp && (
+                <WebsiteLink href={dapp} ariaLabel="Go to App">
+                  <AppWindow /> App
+                </WebsiteLink>
+              )}
+            </div>
+            <div className="mt-2 hidden flex-col gap-2 md:flex">
+              <p className="text-right text-xs font-medium">
+                Connect with {projectData.profile?.name} on Social Media:
+              </p>
+              <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
+                {twitter && (
+                  <Link href={twitter} aria-label="Twitter">
+                    <TwitterX />
+                  </Link>
+                )}
+                {medium && (
+                  <Link href={medium} aria-label="Medium">
+                    <Medium />
+                  </Link>
+                )}
+                {discord && (
+                  <Link href={discord} aria-label="Discord">
+                    <Discord />
+                  </Link>
+                )}
+                {telegram && (
+                  <Link href={telegram} aria-label="Telegram">
+                    <Telegram />
+                  </Link>
+                )}
+                {lnc.score && (
+                  <Link
+                    href={`https://learnnear.club/near-ecosystem/${lnc.slug}/`}
+                    target="_blank"
+                    aria-label="LNC"
+                    className="flex gap-1 rounded bg-orange-400 px-2 py-1 font-extrabold text-black"
+                  >
+                    <ul className="flex items-baseline">
+                      <li className="text-xs">L</li>
+                      <li className="text-sm">N</li>
+                      <li>C</li>
+                    </ul>{" "}
+                    {lnc.score}
+                  </Link>
+                )}
+              </div>
+            </div>
             {Object.keys(tokenInfo).length ? (
               <>
                 <PriceInfo
@@ -114,10 +215,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </>
             ) : null}
             {projectData.profile.linktree?.twitter && (
-              <TwitterTimelineEmbed
-                href={projectData.profile.linktree?.twitter}
-                name={projectData.profile.name}
-              />
+              <div className="hidden md:block">
+                <TwitterTimelineEmbed
+                  href={projectData.profile.linktree?.twitter}
+                  name={projectData.profile.name}
+                />
+              </div>
             )}
           </div>
         ) : null}

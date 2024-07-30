@@ -103,12 +103,12 @@ export default function FilteredProjects() {
       <MobileDropdown projects={projectValues} />
       <div className="mt-4 hidden max-w-full grid-cols-3 place-items-center items-stretch gap-4 md:grid lg:grid-cols-4">
         {Object.values(filteredProjects).map((project: any) => (
-          <Project key={project.slug} project={project} />
+          <Project key={project.slug} project={project} maxWidth />
         ))}
       </div>
       <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2">
         {Object.values(projects).map((project: any) => (
-          <Project key={project.slug} project={project} />
+          <Project key={project.slug} project={project} maxWidth />
         ))}
       </div>
     </>

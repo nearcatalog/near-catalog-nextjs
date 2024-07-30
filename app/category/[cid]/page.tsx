@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       />
       <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Object.values(categoryData.data).map((project: any) => (
-          <Project key={project.slug} project={project} />
+          <Project key={project.slug} project={project} maxWidth />
         ))}
       </div>
     </div>

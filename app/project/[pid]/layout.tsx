@@ -30,11 +30,11 @@ export async function generateMetadata(
 
   return {
     title: `${project.profile.name}`,
-    description: project.profile.description,
+    description: project.profile.tagline,
     keywords: Object.values(project.profile.tags),
     openGraph: {
       title: `${project.profile.name} - NEAR Landscape`,
-      description: project.profile.description,
+      description: project.profile.tagline,
     },
   };
 }
