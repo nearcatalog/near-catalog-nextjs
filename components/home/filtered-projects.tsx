@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Loader } from "lucide-react";
 
 import Project from "../project";
-import Link from "next/link";
+import { ProjectType } from "@/lib/types";
 import MobileDropdown from "./mobile-dropdown";
 
 async function getProjects() {
@@ -16,18 +16,6 @@ async function getProjects() {
   const data = await res.json();
   return data;
 }
-
-type ProjectType = {
-  slug: string;
-  profile: {
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-    tags: Record<string, string>;
-  };
-};
 
 export default function FilteredProjects() {
   const { tags, searchKey } = useSearchStore();

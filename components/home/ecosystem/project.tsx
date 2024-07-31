@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { ProjectType } from "@/lib/types";
 import { useRouter } from "next/navigation";
 
 interface ProjectProps {
@@ -23,16 +23,8 @@ function SkeletonProject() {
   );
 }
 
-type Project = {
-  name: string;
-  tagline: string;
-  image: {
-    url: string;
-  };
-};
-
 export default function Project({ project }: ProjectProps) {
-  const [projectData, setProjectData] = useState<null | Project>();
+  const [projectData, setProjectData] = useState<null | ProjectType>();
   const router = useRouter();
 
   useEffect(() => {
@@ -40,7 +32,7 @@ export default function Project({ project }: ProjectProps) {
       `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${project}`,
     )
       .then((res) => res.json())
-      .then((data) => setProjectData(data.profile))
+      .then((data) => setProjectData(data))
       .catch((err) => {
         throw new Error(err);
       });
@@ -50,13 +42,13 @@ export default function Project({ project }: ProjectProps) {
     return <SkeletonProject />;
   }
 
-  const title = projectData.name;
+  const title = projectData.profile.name;
   const truncatedTitle =
     title.length > TITLE_MAX_CHARACTERS
       ? `${Array.from(title).slice(0, TITLE_MAX_CHARACTERS).join("")}...`
       : title;
 
-  const description = projectData.tagline;
+  const description = projectData.profile.tagline;
   const truncatedDescription =
     description.length > DESCRIPTION_MAX_CHARACTERS
       ? `${Array.from(description).slice(0, DESCRIPTION_MAX_CHARACTERS).join("")}...`
@@ -71,7 +63,7 @@ export default function Project({ project }: ProjectProps) {
       }}
     >
       <Image
-        src={projectData.image.url}
+        src={projectData.profile.image.url}
         alt="Project Image"
         className="pointer-events-none size-16 rounded-full bg-gray-900 object-cover"
         width={64}

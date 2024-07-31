@@ -1,22 +1,10 @@
 "use client";
 import Image from "next/image";
-// import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ProjectType } from "@/lib/types";
 
 const TITLE_MAX_CHARACTERS = 25;
 const DESCRIPTION_MAX_CHARACTERS = 90;
-
-type ProjectType = {
-  slug: string;
-  profile: {
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-    tags: Record<string, string>;
-  };
-};
 
 interface ProjectProps {
   project: ProjectType;

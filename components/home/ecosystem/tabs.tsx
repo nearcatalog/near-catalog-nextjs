@@ -18,7 +18,17 @@ const tabsData: TabData[] = [
   {
     title: "Accelerate Your Growth",
     icon: Cubes,
-    projects: ["potlock", "senderwallet", "near-scope", "mintbase", "spin"],
+    projects: [
+      "potlock",
+      "senderwallet",
+      "near-scope",
+      "mintbase",
+      "spin",
+      "build-dao",
+      "race-of-sloths",
+      "reclaim-protocol",
+      "exabits",
+    ],
   },
   {
     title: "Explore DAO Support",

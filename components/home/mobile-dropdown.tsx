@@ -1,18 +1,7 @@
 "use client";
 import { useSearchStore } from "@/store/search-store";
 import Link from "next/link";
-
-type ProjectType = {
-  slug: string;
-  profile: {
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-    tags: Record<string, string>;
-  };
-};
+import { ProjectType } from "@/lib/types";
 
 export default function MobileDropdown({
   projects,

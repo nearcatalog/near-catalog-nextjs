@@ -3,6 +3,7 @@ import SectionHeading from "@/components/section-heading";
 import SearchImage from "@/public/assets/search.webp";
 import Search from "../search";
 import FilteredProjects from "./filtered-projects";
+import { ProjectType as Project } from "@/lib/types";
 
 async function getProjects() {
   const res = await fetch(
@@ -11,18 +12,6 @@ async function getProjects() {
   const data = await res.json();
   return data;
 }
-
-type Project = {
-  slug: string;
-  profile: {
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-    tags: Record<string, string>;
-  };
-};
 
 export default async function Discover() {
   const projects = await getProjects();

@@ -1,6 +1,7 @@
 import MobileDropdown from "@/components/home/mobile-dropdown";
 import SearchInput from "@/components/search-input";
 import type { Metadata, ResolvingMetadata } from "next";
+import { ProjectType } from "@/lib/types";
 
 type MetadataProps = {
   params: { pid: string };
@@ -41,18 +42,6 @@ export async function generateMetadata(
 
 type Props = MetadataProps & {
   children: React.ReactNode;
-};
-
-type ProjectType = {
-  slug: string;
-  profile: {
-    name: string;
-    tagline: string;
-    image: {
-      url: string;
-    };
-    tags: Record<string, string>;
-  };
 };
 
 async function getProjects() {

@@ -13,6 +13,7 @@ export default function EcosystemProjects({
 }: EcosystemProjectsProps) {
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(true);
+
   const scrollContainerRef =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
 
@@ -33,7 +34,7 @@ export default function EcosystemProjects({
     const container = scrollContainerRef.current;
     if (container) {
       container.addEventListener("scroll", handleScroll);
-      handleScroll(); // Initialize shadows on mount
+      handleScroll();
     }
 
     return () => {

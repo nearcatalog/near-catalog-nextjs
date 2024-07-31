@@ -7,6 +7,7 @@ import TwitterX from "@/components/icons/twitter-x";
 import Medium from "@/components/icons/medium";
 import Discord from "@/components/icons/discord";
 import Telegram from "@/components/icons/telegram";
+import { ProjectType } from "@/lib/types";
 
 const Tags = ({ tags }: { tags: Record<string, string> }) => {
   return (
@@ -46,32 +47,11 @@ const WebsiteLink = ({
   );
 };
 
-type Project = {
-  profile: {
-    name: string;
-    tagline: string;
-    description: string;
-    image: {
-      url: string;
-    };
-    linktree: {
-      website: string;
-      github: string;
-      twitter: string;
-      medium: string;
-      discord: string;
-      telegram: string;
-    };
-    lnc?: {
-      slug: string;
-      score: number;
-    };
-    tags: Record<string, string>;
-    tokens: any;
-  };
-};
-
-export default function ProjectInfo({ projectData }: { projectData: Project }) {
+export default function ProjectInfo({
+  projectData,
+}: {
+  projectData: ProjectType;
+}) {
   if (!projectData) return null;
 
   const { profile } = projectData;
@@ -148,7 +128,7 @@ export default function ProjectInfo({ projectData }: { projectData: Project }) {
                   <li className="text-xs">L</li>
                   <li className="text-sm">N</li>
                   <li>C</li>
-                </ul>{" "}
+                </ul>
                 {lnc.score}
               </Link>
             )}

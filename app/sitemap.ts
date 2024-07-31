@@ -1,5 +1,6 @@
 import site from "@/config/site";
 import { MetadataRoute } from "next";
+import { ProjectType as Project } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -17,11 +18,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects();
   const projectSlugs = Object.keys(projects);
 
-  const routes = projectSlugs.map((slug) => ({
+  const projectArray: Project[] = Object.values(projects);
+  let tags: string[] = projectArray
+    .map((project: Project) => Object.keys(project.profile.tags))
+    .flat();
+  const uniqueTags = Array.from(new Set(tags)).sort();
+
+  const projectRoutes = projectSlugs.map((slug) => ({
     url: `${BASE_URL}project/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
   }));
+
+  const categoryRoutes = uniqueTags.map((slug)  => ({
+    url: `${BASE_URL}category/${slug}`,
+    lastModified: new Date(),
+    priority: 0.5,
+  }))
 
   return [
     {
@@ -30,6 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // changeFrequency: "always",
       lastModified: new Date(),
     },
-    ...routes,
+    ...projectRoutes,
+    ...categoryRoutes,
   ];
 }

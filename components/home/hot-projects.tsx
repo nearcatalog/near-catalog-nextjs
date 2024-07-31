@@ -13,7 +13,6 @@ async function getHotProjects() {
 
 export default async function HotProjects() {
   const projects = await getHotProjects();
-  const projectKeys = Object.keys(projects);
 
   return (
     <>
