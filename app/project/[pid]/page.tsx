@@ -53,7 +53,7 @@ async function getProjectData(pid: string) {
 
 function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
   return (
-    <div className="mt-3 rounded-3xl bg-[#1b1d2a]">
+    <div className="my-3 rounded-3xl bg-[#1b1d2a]">
       <div className="p-4">
         <small>
           <i>Open link in new tab with right click or hold</i>
@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { dapp, lnc } = projectData.profile;
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto my-4 px-4 md:my-12">
       <div className="flex flex-col gap-4 md:flex-row">
         <div
           className={`w-full ${Object.keys(tokenInfo).length ? "md:max-w-[65%]" : null}`}

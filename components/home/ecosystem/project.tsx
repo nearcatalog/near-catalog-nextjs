@@ -56,7 +56,7 @@ export default function Project({ project }: ProjectProps) {
 
   return (
     <div
-      onClick={() => router.push(`/project/${project}`)}
+      onClick={() => router.push(`/project/${project}#top`, { scroll: true })}
       className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2"
       style={{
         userSelect: "none",

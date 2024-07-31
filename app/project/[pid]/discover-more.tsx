@@ -17,7 +17,7 @@ async function getRelatedProjects(pid: string) {
 function ProjectCard({ project }: { project: any }) {
   return (
     <Link
-      href={`/project/${project.slug}`}
+      href={`/project/${project.slug}#top`}
       className="flex flex-col gap-2 rounded-3xl bg-[#1b1d2a] p-4 transition-colors duration-300 ease-in-out hover:bg-[#2b2d3a] md:flex-row"
     >
       <Image

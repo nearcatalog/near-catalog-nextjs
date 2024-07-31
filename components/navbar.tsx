@@ -43,7 +43,7 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
       const targetId = href.substring(2); // Remove '/#'
 
       if (pathname !== "/") {
-        await router.push("/");
+        await router.push("/#");
       }
 
       setTimeout(() => {

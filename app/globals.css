@@ -14,6 +14,7 @@ body {
   background: var(--background);
   color: var(--text-color);
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 a {

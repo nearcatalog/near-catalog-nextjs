@@ -45,7 +45,9 @@ export default function Project({ project, maxWidth }: ProjectProps) {
   return (
     <div
       style={{ userSelect: "none" }}
-      onClick={() => router.push(`/project/${project.slug}`)}
+      onClick={() =>
+        router.push(`/project/${project.slug}#top`, { scroll: true })
+      }
       className={`grow-1 h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} shrink-0 cursor-pointer flex-col items-start justify-start gap-3 rounded-[32px] bg-[#11141B] px-8 py-7 md:justify-normal`}
     >
       <div className="flex h-full w-full items-center gap-2 md:h-auto md:flex-col md:items-start">

@@ -31,7 +31,7 @@ export default function MobileDropdown({
       {filteredProjects.length ? (
         filteredProjects.map((project: any) => (
           <Link
-            href={`/project/${project.slug}`}
+            href={`/project/${project.slug}#top`}
             key={project.slug}
             onClick={() => setSearchKey("")}
             className="rounded-lg bg-[#1A1A17] px-12 py-2 hover:bg-[#1c1b2a]"

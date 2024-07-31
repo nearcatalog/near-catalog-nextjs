@@ -61,7 +61,7 @@ export default async function ProjectLayout({ params, children }: Props) {
   const projects = await getProjects();
   const projectValues: ProjectType[] = Object.values(projects);
   return (
-    <div className="relative mt-4">
+    <div className="relative mt-4" id="top">
       <SearchInput />
       <MobileDropdown projects={projectValues} showOnDesktop />
       {children}
