@@ -1,10 +1,8 @@
 # Near Directory
 
-Old Version: [Near Catalog](https://dev.near.org/nearcatalog.near/widget/Index)
-
-Designs: [Figma](https://www.figma.com/design/I9qRE8BQA8dfFYyYrFRnnm/NBH-Ongoing-Design-Files?node-id=245-2&t=KbwqZF8zbf7uFCt4-0)
-
-Live Demo: [Near Directory](https://near-directory-nextjs.vercel.app/)
+- Old Version: [Near Catalog](https://dev.near.org/nearcatalog.near/widget/Index)
+- Designs: [Figma](https://www.figma.com/design/I9qRE8BQA8dfFYyYrFRnnm/NBH-Ongoing-Design-Files?node-id=245-2&t=KbwqZF8zbf7uFCt4-0)
+- Live Demo: [Near Directory](https://near-directory-nextjs.vercel.app/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
