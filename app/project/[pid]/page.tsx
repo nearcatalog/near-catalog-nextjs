@@ -133,7 +133,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
           <DiscoverMore
             pid={pid}
-            gridSize={Object.keys(tokenInfo).length ? 3 : 1}
+            gridSize={
+              Object.keys(tokenInfo).length ||
+              projectData.profile.linktree?.twitter
+                ? 3
+                : 1
+            }
           />
         </div>
         {Object.keys(tokenInfo).length ||
