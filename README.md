@@ -32,6 +32,23 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Routes
+
+The routes are defined in the `app` folder. There are three main pages:
+
+- `/`: This is the home page of the application. It displays a list of projects that are available on the NEAR platform.
+- `/project/:projectId`: This is the page that displays the details of a specific project. It includes information about the project, such as the name, description, and the list of tags associated with the project.
+- `/category/:categoryId`: This is the page that displays a list of projects that are associated with a specific category.
+
+## Global State
+
+[zustand](https://github.com/pmndrs/zustand) is used to manage global state. It is a state management library that provides a simple and scalable solution for managing application state in a React or Preact application.
+
+The state is stored in the `store` folder. There are two stores that are used in this project:
+
+- `search-store.ts`: This store manages the search state, including the search query and the tags that are selected.
+- `tags-modal-store.ts`: This store manages the state of the tags modal for mobile devices.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
