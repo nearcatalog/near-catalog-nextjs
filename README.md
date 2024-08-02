@@ -11,7 +11,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ### Cloning the repo
 
 ```bash
-git clone https://github.com/nearbuilders/near-directory-nextjs.git
+git clone https://github.com/NEARBuilders/near-directory-nextjs.git
 ```
 
 ### Installing dependencies
