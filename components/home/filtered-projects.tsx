@@ -1,52 +1,35 @@
 "use client";
 
 import { useSearchStore } from "@/store/search-store";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Loader } from "lucide-react";
 
 import Project from "../project";
 import { ProjectType } from "@/lib/types";
 import MobileDropdown from "./mobile-dropdown";
 
-async function getProjects() {
-  const res = await fetch(
-    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
-  );
-  const data = await res.json();
-  return data;
+interface FilteredProjectsProps {
+  projects: ProjectType[];
 }
 
-export default function FilteredProjects() {
+export default function FilteredProjects({ projects }: FilteredProjectsProps) {
   const { tags, searchKey } = useSearchStore();
-  const [loading, setLoading] = useState(false);
-  const [projects, setProjects] = useState({});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const projects = await getProjects();
-      setProjects(projects);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
 
   const projectValues: ProjectType[] = Object.values(projects);
 
-  let filteredProjects = projectValues.filter((project: any) => {
-    const projectTags: string[] = Object.values(project.profile.tags);
-    return projectTags.some((tag: string) => tags.includes(tag));
-  });
+  let filteredProjects = projectValues;
+
+  if (tags.length > 0) {
+    filteredProjects = filteredProjects.filter((project: any) => {
+      const projectTags = Object.values(project.profile.tags);
+      return tags.some((tag: string) => projectTags.includes(tag));
+    });
+  }
 
   if (searchKey !== "") {
-    filteredProjects = filteredProjects
-      .filter((project: any) => {
-        const projectName = project.profile.name.toLowerCase();
-
-        return projectName.startsWith(searchKey.toLowerCase());
-      })
-      .sort();
+    filteredProjects = filteredProjects.filter((project: any) => {
+      const projectName = project.profile.name.toLowerCase();
+      return projectName.startsWith(searchKey.toLowerCase());
+    });
   }
 
   if (tags.length === 0) {
@@ -66,22 +49,14 @@ export default function FilteredProjects() {
   if (filteredProjects.length === 0) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
-        {loading ? (
-          <h2 className="flex items-center gap-2">
-            Loading Projects <Loader className="h-6 w-6 animate-spin" />
-          </h2>
-        ) : (
-          <>
-            <Image
-              src={"/assets/error.webp"}
-              alt={"Not found error"}
-              width={182}
-              height={144}
-            />
-            <h2>Sorry, we could not find the results for:</h2>
-            <p className="text-2xl uppercase">{searchKey}</p>
-          </>
-        )}
+        <Image
+          src={"/assets/error.webp"}
+          alt={"Not found error"}
+          width={182}
+          height={144}
+        />
+        <h2>Sorry, we could not find the results for:</h2>
+        <p className="text-2xl uppercase">{searchKey}</p>
       </div>
     );
   }
@@ -94,7 +69,7 @@ export default function FilteredProjects() {
           <Project key={project.slug} project={project} maxWidth />
         ))}
       </div>
-      <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:hidden">
         {Object.values(projects).map((project: any) => (
           <Project key={project.slug} project={project} maxWidth />
         ))}

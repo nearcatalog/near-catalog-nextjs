@@ -8,6 +8,7 @@ import { ProjectType as Project } from "@/lib/types";
 async function getProjects() {
   const res = await fetch(
     "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
+    { cache: "no-cache" },
   );
   const data = await res.json();
   return data;
@@ -47,7 +48,7 @@ export default async function Discover() {
       </div>
       <div className="z-1 relative my-16">
         <Search tags={uniqueTags} />
-        <FilteredProjects />
+        <FilteredProjects projects={projects} />
       </div>
     </section>
   );

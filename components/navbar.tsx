@@ -2,7 +2,6 @@
 
 import GradientButton from "@/components/gradient-button";
 import Logo from "@/public/Near-landscape.svg";
-import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -116,9 +115,9 @@ export default function Navbar() {
           <div className="align-center flex justify-center md:hidden">
             <button aria-label="Toggle Menu" onClick={handleClick}>
               {isOpen ? (
-                <X className="text-white" />
+                <i className="bi bi-x text-xl text-white" />
               ) : (
-                <Menu className="text-white" />
+                <i className="bi bi-list text-xl text-white" />
               )}
             </button>
           </div>

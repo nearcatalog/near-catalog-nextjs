@@ -1,12 +1,5 @@
 import Link from "next/link";
 import GradientButton from "./gradient-button";
-
-import Discord from "@/public/icons/discord.svg";
-import Twitter from "@/public/icons/twitter.svg";
-import Github from "@/public/icons/github.svg";
-import Telegram from "@/public/icons/telegram.svg";
-import Subtract from "@/public/icons/subtract.svg";
-import Youtube from "@/public/icons/youtube.svg";
 import Image from "next/image";
 
 import NearLogo from "@/public/Near-landscape.svg";
@@ -42,84 +35,48 @@ export default function Footer() {
                 near.foundation
               </Link>
             </div>
-            <div className="flex gap-5 md:items-center md:justify-end">
+            <div className="flex gap-5 text-[#34f0e8] md:items-center md:justify-end">
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Discord}
-                  alt="Discord"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-discord text-[32px]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Subtract}
-                  alt="Subtract"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-chat text-[32px]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Twitter}
-                  alt="Twitter"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-twitter-x text-[32px]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Github}
-                  alt="Github"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-github text-[32px]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Telegram}
-                  alt="Telegram"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-telegram text-[32px]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
               >
-                <Image
-                  src={Youtube}
-                  alt="Youtube"
-                  className="size-8"
-                  width={32}
-                  height={32}
-                />
+                <i className="bi bi-youtube text-[32px]" />
               </Link>
             </div>
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">

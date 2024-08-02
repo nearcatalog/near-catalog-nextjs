@@ -3,7 +3,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTagsModalStore } from "@/store/tags-modal-store";
 import { useSearchStore } from "@/store/search-store";
-import { X, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Tags = ({
@@ -20,7 +19,11 @@ const Tags = ({
           onClick={() => handleTagClick(tag)}
           className={`${tags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
         >
-          {tags.includes(tag) ? <Check /> : <X />}
+          {tags.includes(tag) ? (
+            <i className="bi bi-check text-xl" />
+          ) : (
+            <i className="bi bi-x text-xl" />
+          )}
           {tag}
         </div>
       ))}
@@ -61,7 +64,7 @@ function TagsModal() {
           <Dialog.Title className="flex items-center justify-between">
             <span className="text-xs font-medium">Select Tags</span>
             <Dialog.Close>
-              <X className="h-6 w-6" />
+              <i className="bi bi-x text-xl" />
             </Dialog.Close>
           </Dialog.Title>
           <Dialog.Description className="hidden" />

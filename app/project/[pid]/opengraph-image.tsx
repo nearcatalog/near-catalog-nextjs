@@ -26,6 +26,7 @@ export default async function Image({ params }: { params: { pid: string } }) {
   // project data
   const project = await fetch(
     `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${params.pid}`,
+    { cache: "no-cache" },
   )
     .then((res) => res.json())
     .catch((error) => {
@@ -109,9 +110,7 @@ export default async function Image({ params }: { params: { pid: string } }) {
           }}
         >
           <span>{truncatedTitle}</span>
-          <span style={{ fontSize: "2rem", wordBreak: "break-all" }}>
-            {truncatedDescription}
-          </span>
+          <span style={{ fontSize: "2rem" }}>{truncatedDescription}</span>
         </div>
       </div>
     ),

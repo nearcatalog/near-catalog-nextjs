@@ -16,6 +16,7 @@ export async function generateMetadata(
   // fetch data
   const project = await fetch(
     `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${id}`,
+    { cache: "no-cache" },
   )
     .then((res) => res.json())
     .catch((error) => {
@@ -47,6 +48,7 @@ type Props = MetadataProps & {
 async function getProjects() {
   const res = await fetch(
     "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
+    { cache: "no-cache" },
   );
   const data = await res.json();
   return data;

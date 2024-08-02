@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 async function getProjects() {
   const res = await fetch(
     "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
+    { cache: "no-cache" },
   );
   const data = await res.json();
   return data;
@@ -30,11 +31,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  const categoryRoutes = uniqueTags.map((slug)  => ({
+  const categoryRoutes = uniqueTags.map((slug) => ({
     url: `${BASE_URL}category/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
-  }))
+  }));
 
   return [
     {

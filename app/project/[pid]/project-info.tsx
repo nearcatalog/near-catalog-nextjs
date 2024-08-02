@@ -1,12 +1,6 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
-import Globe from "@/components/icons/globe";
-import GitHub from "@/components/icons/github";
 import Link from "next/link";
-import TwitterX from "@/components/icons/twitter-x";
-import Medium from "@/components/icons/medium";
-import Discord from "@/components/icons/discord";
-import Telegram from "@/components/icons/telegram";
 import { ProjectType } from "@/lib/types";
 
 const Tags = ({ tags }: { tags: Record<string, string> }) => {
@@ -82,12 +76,13 @@ export default function ProjectInfo({
         <div className="flex flex-wrap items-center gap-2 md:hidden">
           {website && (
             <WebsiteLink href={website} ariaLabel={profile.name}>
-              <Globe /> Go to project
+              <i className="bi bi-globe text-2xl text-[#80E9E5]" /> Go to
+              project
             </WebsiteLink>
           )}
           {github && (
             <WebsiteLink href={github} ariaLabel={`${profile.name} Github`}>
-              <GitHub />
+              <i className="bi bi-github text-2xl text-[#80E9E5]" /> Github
               Github
             </WebsiteLink>
           )}
@@ -99,22 +94,22 @@ export default function ProjectInfo({
           <div className="mb-4 flex flex-wrap items-center gap-2">
             {twitter && (
               <Link href={twitter} aria-label="Twitter">
-                <TwitterX />
+                <i className="bi bi-twitter-x text-2xl text-[#80E9E5]" />
               </Link>
             )}
             {medium && (
               <Link href={medium} aria-label="Medium">
-                <Medium />
+                <i className="bi bi-medium text-2xl text-[#80E9E5]" />
               </Link>
             )}
             {discord && (
               <Link href={discord} aria-label="Discord">
-                <Discord />
+                <i className="bi bi-discord text-2xl text-[#80E9E5]" />
               </Link>
             )}
             {telegram && (
               <Link href={telegram} aria-label="Telegram">
-                <Telegram />
+                <i className="bi bi-telegram text-2xl text-[#80E9E5]" />
               </Link>
             )}
             {lnc && (

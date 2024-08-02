@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -9,7 +8,7 @@ export default function NotFound() {
         className="flex gap-1 rounded-full bg-slate-500 px-4 py-2 text-white transition-colors duration-300 ease-in-out hover:bg-slate-600 active:bg-slate-700"
         href="/#"
       >
-        <ArrowLeft /> Back to Home
+        <i className="bi bi-arrow-left text-xl" /> Back to Home
       </Link>
     </div>
   );

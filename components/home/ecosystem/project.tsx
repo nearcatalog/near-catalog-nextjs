@@ -69,10 +69,10 @@ export default function Project({ project }: ProjectProps) {
         width={64}
         height={64}
       />
-      <h3 className="max-w-full break-words text-center font-medium text-[#FFFFFFE5]">
+      <h3 className="max-w-full text-center font-medium text-[#FFFFFFE5]">
         {truncatedTitle}
       </h3>
-      <p className="max-w-full break-words text-center text-xs font-medium text-[#7E7E7E]">
+      <p className="max-w-full text-center text-xs font-medium text-[#7E7E7E]">
         {truncatedDescription}
       </p>
     </div>

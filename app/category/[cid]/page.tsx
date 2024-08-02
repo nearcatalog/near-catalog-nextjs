@@ -31,6 +31,7 @@ type CatagoryData = {
 async function getCategoryData(cid: string) {
   const res = await fetch(
     `https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects-by-category?cid=${cid}`,
+    { cache: "no-cache" },
   ).catch((error) => {
     throw new Error(error);
   });

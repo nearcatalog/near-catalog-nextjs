@@ -2,7 +2,6 @@
 
 import { useSearchStore } from "@/store/search-store";
 import { useEffect, useState } from "react";
-import { ChevronDownIcon, Search as SearchIcon } from "lucide-react";
 import { useTagsModalStore } from "@/store/tags-modal-store";
 import SearchInput from "./search-input";
 
@@ -84,7 +83,7 @@ export default function Search({ tags }: SearchProps) {
         <span>
           {`Selected Tags: ${searchTags.length === allTags.length ? "All" : searchTags.join(", ")}`}
         </span>
-        <ChevronDownIcon className="h-4 w-4" />
+        <i className="bi bi-chevron-down h-4 w-4 text-xl" />
       </div>
 
       <Tags handleTagClick={handleTagClick} />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { RefreshCw } from "lucide-react";
 
 export default function Error({
   error,
@@ -21,7 +20,7 @@ export default function Error({
         className="flex gap-1 rounded-full bg-slate-500 px-4 py-2 text-white transition-colors duration-300 ease-in-out hover:bg-slate-600 active:bg-slate-700"
         onClick={() => reset()}
       >
-        <RefreshCw /> Try Again
+        <i className="bi bi-arrow-clockwise text-xl"></i> Try Again
       </button>
     </div>
   );

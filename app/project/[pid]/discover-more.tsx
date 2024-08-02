@@ -8,7 +8,8 @@ interface DiscoverMoreProps {
 
 async function getRelatedProjects(pid: string) {
   const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/related-projects?pid==${pid}`,
+    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/related-projects?pid=${pid}`,
+    { cache: "no-cache" },
   );
   const data = await res.json();
   return data;

@@ -4,14 +4,7 @@ import DiscoverMore from "./discover-more";
 import TokenInfo from "./token-info";
 import PriceInfo from "./price-info";
 import Script from "next/script";
-import Globe from "@/components/icons/globe";
-import GitHub from "@/components/icons/github";
 import Link from "next/link";
-import TwitterX from "@/components/icons/twitter-x";
-import Medium from "@/components/icons/medium";
-import Discord from "@/components/icons/discord";
-import Telegram from "@/components/icons/telegram";
-import { AppWindow } from "lucide-react";
 
 const WebsiteLink = ({
   href,
@@ -28,7 +21,7 @@ const WebsiteLink = ({
       target="_blank"
       rel="noreferrer"
       aria-label={ariaLabel}
-      className="flex items-center justify-center gap-1 rounded-full border border-[#80E9E5] p-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
+      className="flex items-center justify-center gap-1 rounded-full border border-[#80E9E5] px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
     >
       {children}
     </Link>
@@ -44,6 +37,7 @@ interface ProjectPageProps {
 async function getProjectData(pid: string) {
   const res = await fetch(
     `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${pid}`,
+    { cache: "no-cache" },
   ).catch((error) => {
     throw new Error(error);
   });
@@ -150,7 +144,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={website}
                   ariaLabel={projectData.profile.name}
                 >
-                  <Globe /> Go to project
+                  <i className="bi bi-globe text-2xl text-[#80E9E5]" /> Go to
+                  project
                 </WebsiteLink>
               )}
               {github && (
@@ -158,13 +153,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={github}
                   ariaLabel={`${projectData.profile.name} Github`}
                 >
-                  <GitHub />
+                  <i className="bi bi-github text-2xl text-[#80E9E5]" /> Github
                   Github
                 </WebsiteLink>
               )}
               {dapp && (
                 <WebsiteLink href={dapp} ariaLabel="Go to App">
-                  <AppWindow /> App
+                  <i className="bi bi-app-indicator text-2xl text-[#80E9E5]" />{" "}
+                  App
                 </WebsiteLink>
               )}
             </div>
@@ -175,22 +171,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
                 {twitter && (
                   <Link href={twitter} aria-label="Twitter">
-                    <TwitterX />
+                    <i className="bi bi-twitter-x text-2xl text-[#80E9E5]" />
                   </Link>
                 )}
                 {medium && (
                   <Link href={medium} aria-label="Medium">
-                    <Medium />
+                    <i className="bi bi-medium text-2xl text-[#80E9E5]" />
                   </Link>
                 )}
                 {discord && (
                   <Link href={discord} aria-label="Discord">
-                    <Discord />
+                    <i className="bi bi-discord text-2xl text-[#80E9E5]" />
                   </Link>
                 )}
                 {telegram && (
                   <Link href={telegram} aria-label="Telegram">
-                    <Telegram />
+                    <i className="bi bi-telegram text-2xl text-[#80E9E5]" />
                   </Link>
                 )}
                 {lnc.score && (
