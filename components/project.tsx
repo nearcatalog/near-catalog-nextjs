@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ProjectType } from "@/lib/types";
 
-const TITLE_MAX_CHARACTERS = 25;
 const DESCRIPTION_MAX_CHARACTERS = 90;
 
 interface ProjectProps {
@@ -31,10 +30,6 @@ export default function Project({ project, maxWidth }: ProjectProps) {
   const { profile } = project;
 
   const title = profile.name;
-  const truncatedTitle =
-    title.length > TITLE_MAX_CHARACTERS
-      ? `${Array.from(title).slice(0, TITLE_MAX_CHARACTERS).join("")}...`
-      : title;
 
   const description = profile.tagline;
   const truncatedDescription =
@@ -60,7 +55,7 @@ export default function Project({ project, maxWidth }: ProjectProps) {
         />
         <div className="flex flex-col gap-1">
           <h3 className="m-0 overflow-ellipsis break-words p-0 text-[32px] font-bold leading-9 text-white md:break-words">
-            {truncatedTitle}
+            {title}
           </h3>
         </div>
       </div>

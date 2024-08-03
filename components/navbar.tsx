@@ -82,7 +82,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm`}>
+      <nav className="navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm">
         <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-5 py-2 md:h-20 md:py-4">
           <Link
             href="/"
@@ -115,7 +115,7 @@ export default function Navbar() {
           <div className="align-center flex justify-center md:hidden">
             <button aria-label="Toggle Menu" onClick={handleClick}>
               {isOpen ? (
-                <i className="bi bi-x text-xl text-white" />
+                <i className="bi bi-x text-2xl text-white" />
               ) : (
                 <i className="bi bi-list text-xl text-white" />
               )}

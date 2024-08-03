@@ -49,11 +49,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head />
       <body
-        className={`${manrope.className} flex min-h-screen flex-col antialiased`}
+        className={`${manrope.className} min-h-screen bg-black font-sans antialiased`}
       >
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <div className="bg-background relative flex min-h-screen flex-col">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
         <TagsModal />
       </body>
     </html>
