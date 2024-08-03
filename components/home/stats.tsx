@@ -22,7 +22,7 @@ function InfoPoint({ title, value }: InfoPointProps) {
 export default function HomeStats() {
   return (
     <>
-      <div className="relative hidden h-16 max-w-3xl items-center justify-center overflow-clip rounded-full bg-[#17D9D4] px-10 py-4 md:flex">
+      <div className="relative z-[5] hidden h-16 max-w-3xl items-center justify-center overflow-clip rounded-full bg-[#17D9D4] px-10 py-4 md:flex">
         <div className="z-[2] flex max-w-fit gap-2 text-black">
           <InfoPoint value="568" title="Projects Launched" />
           <InfoPoint value="45" title="Projects Being Built" />
@@ -45,7 +45,7 @@ export default function HomeStats() {
           alt="Right Blur"
         />
       </div>
-      <div className="flex flex-col items-center justify-center gap-2 text-black md:hidden">
+      <div className="z-[5] flex flex-col items-center justify-center gap-2 text-black md:hidden">
         <div className="flex flex-wrap items-center justify-center rounded-full bg-gradient-to-r from-[#00e7de] to-[#00fda9] px-5 py-3">
           <InfoPoint value="568" title="Projects Launched" />
           <InfoPoint value="45" title="Projects Being Built" />
