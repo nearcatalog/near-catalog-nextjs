@@ -74,7 +74,9 @@ export default function ProjectInfo({
       </div>
 
       <div className="flex flex-col gap-4 lg:ml-[134px]">
-        <LinkTree project={projectData} direction="left" />
+        <div className="md:hidden">
+          <LinkTree project={projectData} direction="left" />
+        </div>
         <div className="prose prose-invert min-h-[250px] lg:prose-lg">
           <Markdown>{profile?.description}</Markdown>
         </div>
