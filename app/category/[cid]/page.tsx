@@ -69,6 +69,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         className="absolute right-1/2 top-0 z-0 h-[141px] w-[221px] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[222px] md:w-[347px] md:translate-x-0"
         src={SearchImage}
         alt={"Discover All Projects"}
+        style={{ userSelect: "none" }}
         width={347}
         height={222}
       />
