@@ -9,7 +9,7 @@ export default function HomeImages() {
       <Image
         src={Stars}
         alt="Stars"
-        className="animate-subtle-bounce pointer-events-none absolute left-0 top-0 z-[1] hidden h-full w-full object-cover sm:block"
+        className="animate-subtle-bounce pointer-events-none absolute left-0 top-0 z-[2] hidden h-full w-full object-cover sm:block"
       />
       <Image
         src={MobileLeft}
