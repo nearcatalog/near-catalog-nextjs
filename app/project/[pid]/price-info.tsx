@@ -34,7 +34,7 @@ export default async function PriceInfo({
       {data !== null ? (
         <div>
           <h3 className="text-base font-bold">{name} Token Status</h3>
-          <div className="flex flex-row flex-wrap sm:flex-col">
+          <div className="flex flex-col">
             <div className="flex flex-col gap-2 p-2">
               <div className="flex items-center gap-2">
                 <Image
@@ -69,8 +69,8 @@ export default async function PriceInfo({
                 </small>
               </h4>
             </div>
-            <div className="flex flex-wrap gap-2 p-2">
-              <div className="max-w-1/2 flex-grow basis-0">
+            <div className="flex flex-col flex-wrap gap-4 p-2 sm:flex-row">
+              <div className="max-w-1/2 flex-grow basis-0 overflow-hidden text-ellipsis">
                 ATH
                 <p className="text-green-500">
                   $

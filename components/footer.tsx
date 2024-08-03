@@ -35,7 +35,7 @@ export default function Footer() {
                 near.foundation
               </Link>
             </div>
-            <div className="flex gap-5 text-[#34f0e8] md:items-center md:justify-end">
+            <div className="flex flex-wrap gap-5 text-[#34f0e8] md:items-center md:justify-end">
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"

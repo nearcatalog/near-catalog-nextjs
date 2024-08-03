@@ -1,6 +1,7 @@
 "use client";
 import { useSearchStore } from "@/store/search-store";
 import Link from "next/link";
+import Image from "next/image";
 import { ProjectType } from "@/lib/types";
 
 export default function MobileDropdown({
@@ -26,7 +27,7 @@ export default function MobileDropdown({
 
   return (
     <div
-      className={`shadow-[rgba(0, 0, 0, 0.55)] absolute left-1/2 top-0 mt-16 flex w-full max-w-72 -translate-x-1/2 flex-col gap-1 rounded-3xl border border-[#BEBDBE] bg-[#1A1A17] py-4 text-white shadow-lg ${showOnDesktop ? "" : "md:hidden"}`}
+      className={`shadow-[rgba(0, 0, 0, 0.55)] container absolute left-1/2 top-0 z-20 mt-16 flex -translate-x-1/2 flex-col gap-1 rounded-3xl border border-[#BEBDBE] bg-[#1A1A17] py-4 text-white shadow-lg ${showOnDesktop ? "" : "md:hidden"}`}
     >
       {filteredProjects.length ? (
         filteredProjects.map((project: any) => (
@@ -34,8 +35,15 @@ export default function MobileDropdown({
             href={`/project/${project.slug}#top`}
             key={project.slug}
             onClick={() => setSearchKey("")}
-            className="rounded-lg bg-[#1A1A17] px-12 py-2 hover:bg-[#1c1b2a]"
+            className="flex flex-wrap items-center gap-2 rounded-lg bg-[#1A1A17] px-12 py-2 hover:bg-[#1c1b2a]"
           >
+            <Image
+              src={project.profile.image.url}
+              alt={project.profile.name}
+              width={40}
+              height={40}
+              className="rounded-full object-cover"
+            />
             {project.profile.name}
           </Link>
         ))

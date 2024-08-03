@@ -54,17 +54,17 @@ export default function ProjectInfo({
     profile?.linktree;
 
   return (
-    <div className="flex flex-col gap-4 text-[#ECEBE9] md:gap-0">
+    <div className="flex flex-col gap-4 text-[#ECEBE9] lg:gap-0">
       <div className="flex items-center gap-4">
         <Image
           src={profile?.image?.url}
           alt={profile?.name}
-          className="pointer-events-none size-[80px] rounded-full bg-gray-900 object-cover md:size-[120px]"
+          className="pointer-events-none size-[80px] rounded-full bg-gray-900 object-cover lg:size-[120px]"
           width={120}
           height={120}
         />
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-medium md:text-[32px] md:font-bold">
+          <h2 className="text-2xl font-medium lg:text-[32px] lg:font-bold">
             {profile?.name}
           </h2>
           <p className="text-xs font-medium">{profile?.tagline}</p>
@@ -72,8 +72,8 @@ export default function ProjectInfo({
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 md:ml-[134px]">
-        <div className="flex flex-wrap items-center gap-2 md:hidden">
+      <div className="flex flex-col gap-4 lg:ml-[134px]">
+        <div className="flex flex-wrap items-center gap-2 lg:hidden">
           {website && (
             <WebsiteLink href={website} ariaLabel={profile.name}>
               <i className="bi bi-globe text-2xl text-[#80E9E5]" /> Go to
@@ -87,7 +87,7 @@ export default function ProjectInfo({
             </WebsiteLink>
           )}
         </div>
-        <div className="flex flex-col gap-2 md:hidden">
+        <div className="flex flex-col gap-2 lg:hidden">
           <p className="text-xs font-medium">
             Connect with {profile?.name} on Social Media:
           </p>
@@ -129,7 +129,7 @@ export default function ProjectInfo({
             )}
           </div>
         </div>
-        <div className="prose prose-invert lg:prose-lg">
+        <div className="prose prose-invert min-h-[250px] lg:prose-lg">
           <Markdown>{profile?.description}</Markdown>
         </div>
       </div>
