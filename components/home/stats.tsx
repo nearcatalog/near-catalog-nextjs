@@ -2,7 +2,6 @@ import LeftBlur from "@/public/stats/left-blur.png";
 import RightBlur from "@/public/stats/right-blur.png";
 import MiddleBlur from "@/public/stats/middle-blur.png";
 import Image from "next/image";
-import { Info } from "lucide-react";
 
 interface InfoPointProps {
   title: string;
