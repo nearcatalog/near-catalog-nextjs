@@ -53,7 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <div className="bg-background relative flex min-h-screen flex-col">
           <Navbar />
-          {children}
+          <div className="flex-grow">{children}</div>
           <Footer />
         </div>
         <TagsModal />

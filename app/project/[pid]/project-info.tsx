@@ -2,6 +2,7 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import Link from "next/link";
 import { ProjectType } from "@/lib/types";
+import LinkTree from "./linktree";
 
 const Tags = ({ tags }: { tags: Record<string, string> }) => {
   return (
@@ -73,62 +74,7 @@ export default function ProjectInfo({
       </div>
 
       <div className="flex flex-col gap-4 lg:ml-[134px]">
-        <div className="flex flex-wrap items-center gap-2 lg:hidden">
-          {website && (
-            <WebsiteLink href={website} ariaLabel={profile.name}>
-              <i className="bi bi-globe text-2xl text-[#80E9E5]" /> Go to
-              project
-            </WebsiteLink>
-          )}
-          {github && (
-            <WebsiteLink href={github} ariaLabel={`${profile.name} Github`}>
-              <i className="bi bi-github text-2xl text-[#80E9E5]" /> Github
-              Github
-            </WebsiteLink>
-          )}
-        </div>
-        <div className="flex flex-col gap-2 lg:hidden">
-          <p className="text-xs font-medium">
-            Connect with {profile?.name} on Social Media:
-          </p>
-          <div className="mb-4 flex flex-wrap items-center gap-2">
-            {twitter && (
-              <Link href={twitter} aria-label="Twitter">
-                <i className="bi bi-twitter-x text-2xl text-[#80E9E5]" />
-              </Link>
-            )}
-            {medium && (
-              <Link href={medium} aria-label="Medium">
-                <i className="bi bi-medium text-2xl text-[#80E9E5]" />
-              </Link>
-            )}
-            {discord && (
-              <Link href={discord} aria-label="Discord">
-                <i className="bi bi-discord text-2xl text-[#80E9E5]" />
-              </Link>
-            )}
-            {telegram && (
-              <Link href={telegram} aria-label="Telegram">
-                <i className="bi bi-telegram text-2xl text-[#80E9E5]" />
-              </Link>
-            )}
-            {lnc && (
-              <Link
-                href={`https://learnnear.club/near-ecosystem/${lnc.slug}/`}
-                target="_blank"
-                aria-label="LNC"
-                className="flex gap-1 rounded bg-orange-400 px-2 py-1 font-extrabold text-black"
-              >
-                <ul className="flex items-baseline">
-                  <li className="text-xs">L</li>
-                  <li className="text-sm">N</li>
-                  <li>C</li>
-                </ul>
-                {lnc.score}
-              </Link>
-            )}
-          </div>
-        </div>
+        <LinkTree project={projectData} direction="left" />
         <div className="prose prose-invert min-h-[250px] lg:prose-lg">
           <Markdown>{profile?.description}</Markdown>
         </div>
