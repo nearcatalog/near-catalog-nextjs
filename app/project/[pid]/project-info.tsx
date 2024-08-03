@@ -74,7 +74,7 @@ export default function ProjectInfo({
       </div>
 
       <div className="flex flex-col gap-4 lg:ml-[134px]">
-        <div className="md:hidden">
+        <div className="max-w-fit md:hidden">
           <LinkTree project={projectData} direction="left" />
         </div>
         <div className="prose prose-invert min-h-[250px] lg:prose-lg">
