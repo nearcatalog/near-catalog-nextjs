@@ -87,7 +87,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/error.webp"}
+          src={"/assets/images/error.webp"}
           alt={"Not found error"}
           width={182}
           height={144}

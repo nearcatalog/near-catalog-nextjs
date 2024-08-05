@@ -1,6 +1,6 @@
-import LeftBlur from "@/public/stats/left-blur.png";
-import RightBlur from "@/public/stats/right-blur.png";
-import MiddleBlur from "@/public/stats/middle-blur.png";
+import LeftBlur from "@/public/assets/images/stats/left-blur.png";
+import RightBlur from "@/public/assets/images/stats/right-blur.png";
+import MiddleBlur from "@/public/assets/images/stats/middle-blur.png";
 import Image from "next/image";
 
 interface InfoPointProps {

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Stars from "@/public/bg/bg-stars.webp";
-import MobileLeft from "@/public/bg/mobile-left.png";
-import MobileRight from "@/public/bg/mobile-right.png";
+import Stars from "@/public/assets/images/bg/stars.webp";
+import MobileLeft from "@/public/assets/images/bg/dots-left.png";
+import MobileRight from "@/public/assets/images/bg/dots-right.png";
 
 export default function HomeImages() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import GradientButton from "@/components/ui/gradient-button";
-import Logo from "@/public/Near-landscape.svg";
+import NearLogo from "@/public/assets/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -90,7 +90,7 @@ export default function Navbar() {
             className="min-w-max flex-1"
           >
             <Image
-              src={Logo}
+              src={NearLogo}
               className="h-10 w-24 object-contain md:h-14 md:w-28"
               alt="Near Logo"
               priority={true}

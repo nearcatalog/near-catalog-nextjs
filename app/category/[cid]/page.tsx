@@ -1,7 +1,7 @@
 import Project from "@/components/ui/project";
 import SectionHeading from "@/components/ui/section-heading";
 import Image from "next/image";
-import SearchImage from "@/public/assets/search.webp";
+import SearchImage from "@/public/assets/images/search.webp";
 
 interface CategoryPageProps {
   params: {
@@ -52,7 +52,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/error.webp"}
+          src={"/assets/images/error.webp"}
           alt={"Not found error"}
           width={182}
           height={144}

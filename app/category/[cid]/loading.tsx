@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SearchImage from "@/public/assets/search.webp";
+import SearchImage from "@/public/assets/images/search.webp";
 
 const ProjectSkeleton = ({ maxWidth }: { maxWidth?: boolean }) => {
   return (

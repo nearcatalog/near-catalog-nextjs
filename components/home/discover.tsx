@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SectionHeading from "@/components/ui/section-heading";
-import SearchImage from "@/public/assets/search.webp";
+import SearchImage from "@/public/assets/images/search.webp";
 import Search from "../search";
 import FilteredProjects from "./filtered-projects";
 import { ProjectType as Project } from "@/lib/types";
