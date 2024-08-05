@@ -24,15 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/cache@v3
+        id: playwright-cache
         with:
-          node-version: 20
-          cache: "npm"
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: |
-          npm add bos-workspace
-          npm playwright install-deps
-          npm playwright install
+        run: npx playwright install --with-deps chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run tests
-        run: |
-          npm playwright test
+        run: npx playwright test
