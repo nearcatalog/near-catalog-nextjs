@@ -29,10 +29,11 @@ export default function Project({ pid }: ProjectProps) {
   const router = useRouter();
 
   useEffect(() => {
-    fetchProject(pid).then((data) => setProjectData(data))
-    .catch((err) => {
-      throw new Error(err);
-    });
+    fetchProject(pid)
+      .then((data) => setProjectData(data))
+      .catch((err) => {
+        throw new Error(err);
+      });
   }, [pid]);
 
   if (!projectData) {

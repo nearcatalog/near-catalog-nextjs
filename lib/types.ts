@@ -24,10 +24,9 @@ export type ProjectProfile = {
   tokens: any;
 };
 
-
 export type ProjectRecord = {
   slug: ProjectId;
-  profile: ProjectProfile
+  profile: ProjectProfile;
 };
 
 export type ProjectCategory = {

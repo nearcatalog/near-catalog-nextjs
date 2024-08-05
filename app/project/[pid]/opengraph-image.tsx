@@ -25,8 +25,8 @@ export default async function Image({ params }: { params: { pid: string } }) {
   ).then((res) => res.arrayBuffer());
 
   // project data
-  const project = await fetchProject(params.pid)
-  
+  const project = await fetchProject(params.pid);
+
   if (!project) {
     return new ImageResponse(
       (
