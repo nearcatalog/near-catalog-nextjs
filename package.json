@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check ."
   },
