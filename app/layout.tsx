@@ -3,8 +3,8 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import Navbar from "@/components/ui/navbar";
+import Footer from "@/components/ui/footer";
 import TagsModal from "@/components/modals/tags";
 import site from "@/config/site";
 

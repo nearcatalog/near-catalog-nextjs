@@ -1,4 +1,4 @@
-import SectionHeading from "@/components/section-heading";
+import SectionHeading from "@/components/ui/section-heading";
 import EcosystemTabs from "@/components/home/ecosystem/tabs";
 
 export default function EcosystemSupport() {

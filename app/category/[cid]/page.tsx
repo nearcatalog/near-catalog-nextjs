@@ -1,5 +1,5 @@
-import Project from "@/components/project";
-import SectionHeading from "@/components/section-heading";
+import Project from "@/components/ui/project";
+import SectionHeading from "@/components/ui/section-heading";
 import Image from "next/image";
 import SearchImage from "@/public/assets/search.webp";
 

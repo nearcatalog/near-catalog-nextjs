@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionHeading from "@/components/section-heading";
+import SectionHeading from "@/components/ui/section-heading";
 import SearchImage from "@/public/assets/search.webp";
 import Search from "../search";
 import FilteredProjects from "./filtered-projects";

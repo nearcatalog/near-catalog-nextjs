@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionHeading from "../section-heading";
+import SectionHeading from "../ui/section-heading";
 import Fire from "@/components/icons/fire";
 import ScrollableProjects from "./hot-projects/scrollable-projects";
 

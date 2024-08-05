@@ -1,6 +1,6 @@
 "use client";
 
-import GradientButton from "@/components/gradient-button";
+import GradientButton from "@/components/ui/gradient-button";
 import Logo from "@/public/Near-landscape.svg";
 import Image from "next/image";
 import Link from "next/link";
