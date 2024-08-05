@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ProjectType } from "@/lib/types";
+import { ProjectId, ProjectRecord } from "@/lib/types";
 import { useRouter } from "next/navigation";
+import { fetchProject } from "@/lib/near-catalog";
 
 interface ProjectProps {
-  project: string;
+  pid: ProjectId;
 }
 
 const TITLE_MAX_CHARACTERS = 25;
@@ -23,20 +24,16 @@ function SkeletonProject() {
   );
 }
 
-export default function Project({ project }: ProjectProps) {
-  const [projectData, setProjectData] = useState<null | ProjectType>();
+export default function Project({ pid }: ProjectProps) {
+  const [projectData, setProjectData] = useState<null | ProjectRecord>();
   const router = useRouter();
 
   useEffect(() => {
-    fetch(
-      `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${project}`,
-    )
-      .then((res) => res.json())
-      .then((data) => setProjectData(data))
-      .catch((err) => {
-        throw new Error(err);
-      });
-  }, [project]);
+    fetchProject(pid).then((data) => setProjectData(data))
+    .catch((err) => {
+      throw new Error(err);
+    });
+  }, [pid]);
 
   if (!projectData) {
     return <SkeletonProject />;
@@ -56,7 +53,7 @@ export default function Project({ project }: ProjectProps) {
 
   return (
     <div
-      onClick={() => router.push(`/project/${project}#top`, { scroll: true })}
+      onClick={() => router.push(`/project/${pid}#top`, { scroll: true })}
       className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2"
       style={{
         userSelect: "none",

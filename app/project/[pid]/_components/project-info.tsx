@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
 import Link from "next/link";
-import { ProjectType } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
 import LinkTree from "./linktree";
 
 const Tags = ({ tags }: { tags: Record<string, string> }) => {
@@ -45,7 +45,7 @@ const WebsiteLink = ({
 export default function ProjectInfo({
   projectData,
 }: {
-  projectData: ProjectType;
+  projectData: ProjectRecord;
 }) {
   if (!projectData) return null;
 

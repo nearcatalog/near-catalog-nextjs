@@ -1,11 +1,12 @@
 "use client";
 
-import Project from "../../ui/project";
+import ProjectCard from "@/components/ui/project";
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useState, useEffect } from "react";
+import { ProjectId, ProjectRecord } from "@/lib/types";
 
 interface ScrollableProjectsProps {
-  projects: any;
+  projects: Record<ProjectId, ProjectRecord>;
 }
 
 export default function ScrollableProjects({
@@ -87,8 +88,8 @@ export default function ScrollableProjects({
         onTouchEnd={() => setIsTouched(false)}
         className="no-scrollbar mt-14 flex gap-4 overflow-x-auto px-4"
       >
-        {projectKeys.map((project) => (
-          <Project project={projects[project]} key={project} />
+        {projectKeys.map((pid: any) => (
+          <ProjectCard project={projects[pid]} key={pid} />
         ))}
       </div>
     </div>

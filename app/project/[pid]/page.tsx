@@ -6,6 +6,7 @@ import PriceInfo from "./_components/price-info";
 import Script from "next/script";
 import Link from "next/link";
 import LinkTree from "./_components/linktree";
+import { fetchProject } from "@/lib/near-catalog";
 
 const WebsiteLink = ({
   href,
@@ -40,17 +41,6 @@ interface ProjectPageProps {
   };
 }
 
-async function getProjectData(pid: string) {
-  const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${pid}`,
-    { cache: "no-cache" },
-  ).catch((error) => {
-    throw new Error(error);
-  });
-  const data = await res.json();
-  return data;
-}
-
 function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
   return (
     <div className="my-3 rounded-3xl bg-[#1b1d2a]">
@@ -81,7 +71,7 @@ function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { pid } = params;
-  const projectData = await getProjectData(pid);
+  const projectData = await fetchProject(pid);
 
   if (!projectData) {
     return (

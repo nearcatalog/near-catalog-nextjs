@@ -1,12 +1,12 @@
 "use client";
 
 import site from "@/config/site";
-import { ProjectType } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 
 interface ShareDropdownProps {
-  project: ProjectType;
+  project: ProjectRecord;
 }
 
 export default function ShareDropdown({ project }: ShareDropdownProps) {

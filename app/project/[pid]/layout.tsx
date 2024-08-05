@@ -1,7 +1,8 @@
 import MobileDropdown from "@/components/home/mobile-dropdown";
 import SearchInput from "@/components/search-input";
 import type { Metadata, ResolvingMetadata } from "next";
-import { ProjectType } from "@/lib/types";
+import { fetchAllProjects, fetchProject } from "@/lib/near-catalog";
+import { ProjectRecord } from "@/lib/types";
 
 type MetadataProps = {
   params: { pid: string };
@@ -13,15 +14,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.pid;
 
-  // fetch data
-  const project = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${id}`,
-    { cache: "no-cache" },
-  )
-    .then((res) => res.json())
-    .catch((error) => {
-      throw new Error("Error fetching project data", error);
-    });
+  const project: ProjectRecord = await fetchProject(id);
 
   if (!project) {
     return {
@@ -45,23 +38,14 @@ type Props = MetadataProps & {
   children: React.ReactNode;
 };
 
-async function getProjects() {
-  const res = await fetch(
-    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
-    { cache: "no-cache" },
-  );
-  const data = await res.json();
-  return data;
-}
-
 export default async function ProjectLayout({ params, children }: Props) {
   const { pid } = params;
   if (!pid) {
     return <div>Project ID not found</div>;
   }
 
-  const projects = await getProjects();
-  const projectValues: ProjectType[] = Object.values(projects);
+  const projects = await fetchAllProjects();
+  const projectValues: ProjectRecord[] = Object.values(projects);
   return (
     <div className="relative mt-4" id="top">
       <SearchInput />

@@ -1,18 +1,10 @@
+import { fetchRelatedProjects } from "@/lib/near-catalog";
 import Image from "next/image";
 import Link from "next/link";
 
 interface DiscoverMoreProps {
   pid: string;
   gridSize: number;
-}
-
-async function getRelatedProjects(pid: string) {
-  const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/related-projects?pid=${pid}`,
-    { cache: "no-cache" },
-  );
-  const data = await res.json();
-  return data;
 }
 
 function ProjectCard({ project }: { project: any }) {
@@ -40,7 +32,7 @@ export default async function DiscoverMore({
   pid,
   gridSize,
 }: DiscoverMoreProps) {
-  const relatedProjects = await getRelatedProjects(pid);
+  const relatedProjects = await fetchRelatedProjects(pid);
 
   if (!relatedProjects) {
     return (

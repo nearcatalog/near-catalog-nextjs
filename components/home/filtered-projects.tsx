@@ -3,18 +3,18 @@
 import { useSearchStore } from "@/store/search-store";
 import Image from "next/image";
 
-import Project from "../ui/project";
-import { ProjectType } from "@/lib/types";
-import MobileDropdown from "./mobile-dropdown";
+import ProjectCard from "@/components/ui/project";
+import { ProjectId, ProjectRecord } from "@/lib/types";
+import MobileDropdown from "@/components/home/mobile-dropdown";
 
 interface FilteredProjectsProps {
-  projects: ProjectType[];
+  projects: Record<ProjectId, ProjectRecord>;
 }
 
 export default function FilteredProjects({ projects }: FilteredProjectsProps) {
   const { tags, searchKey } = useSearchStore();
 
-  const projectValues: ProjectType[] = Object.values(projects);
+  const projectValues: ProjectRecord[] = Object.values(projects);
 
   let filteredProjects = projectValues;
 
@@ -66,12 +66,12 @@ export default function FilteredProjects({ projects }: FilteredProjectsProps) {
       <MobileDropdown projects={projectValues} />
       <div className="projects-desktop mt-4 hidden max-w-full grid-cols-3 place-items-center items-stretch gap-4 md:grid lg:grid-cols-4">
         {Object.values(filteredProjects).map((project: any) => (
-          <Project key={project.slug} project={project} maxWidth />
+          <ProjectCard key={project.slug} project={project} maxWidth />
         ))}
       </div>
       <div className="projects-mobile mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:hidden">
         {Object.values(projects).map((project: any) => (
-          <Project key={project.slug} project={project} maxWidth />
+          <ProjectCard key={project.slug} project={project} maxWidth />
         ))}
       </div>
     </>

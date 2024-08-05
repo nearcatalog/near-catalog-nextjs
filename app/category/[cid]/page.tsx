@@ -1,42 +1,14 @@
-import Project from "@/components/ui/project";
+import ProjectCard from "@/components/ui/project";
 import SectionHeading from "@/components/ui/section-heading";
-import Image from "next/image";
+import { fetchProjectCategory } from "@/lib/near-catalog";
+import { ProjectCategory } from "@/lib/types";
 import SearchImage from "@/public/assets/images/search.webp";
+import Image from "next/image";
 
 interface CategoryPageProps {
   params: {
     cid: string;
   };
-}
-
-type CatagoryData = {
-  cat_title: string;
-  cat_description: string;
-  cat_slug: string;
-  data: {
-    [key: string]: {
-      slug: string;
-      profile: {
-        name: string;
-        tagline: string;
-        image: {
-          url: string;
-        };
-        tags: Record<string, string>;
-      };
-    };
-  };
-};
-
-async function getCategoryData(cid: string) {
-  const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects-by-category?cid=${cid}`,
-    { cache: "no-cache" },
-  ).catch((error) => {
-    throw new Error(error);
-  });
-  const data = await res.json();
-  return data;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -46,7 +18,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return <div>Category ID not found</div>;
   }
 
-  const categoryData: CatagoryData = await getCategoryData(cid);
+  const categoryData: ProjectCategory = await fetchProjectCategory(cid);
 
   if (!categoryData.cat_title) {
     return (
@@ -79,7 +51,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       />
       <div className="projects mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Object.values(categoryData.data).map((project: any) => (
-          <Project key={project.slug} project={project} maxWidth />
+          <ProjectCard key={project.slug} project={project} maxWidth />
         ))}
       </div>
     </div>

@@ -1,19 +1,12 @@
 import Image from "next/image";
-import SectionHeading from "../ui/section-heading";
+import SectionHeading from "@/components/ui/section-heading";
 import Fire from "@/components/icons/fire";
-import ScrollableProjects from "./hot-projects/scrollable-projects";
-
-async function getHotProjects() {
-  const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects-by-category?cid=trending`,
-    { cache: "no-cache" },
-  );
-  const data = await res.json();
-  return data.data;
-}
+import ScrollableProjects from "@/components/home/hot-projects/scrollable-projects";
+import { fetchHotProjects } from "@/lib/near-catalog";
+import { ProjectId, ProjectRecord } from "@/lib/types";
 
 export default async function HotProjects() {
-  const projects = await getHotProjects();
+  const projects: Record<ProjectId, ProjectRecord> = await fetchHotProjects();
 
   return (
     <>
