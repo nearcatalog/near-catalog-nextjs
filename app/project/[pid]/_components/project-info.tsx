@@ -20,28 +20,6 @@ const Tags = ({ tags }: { tags: Record<string, string> }) => {
   );
 };
 
-const WebsiteLink = ({
-  href,
-  ariaLabel,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-  ariaLabel: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={ariaLabel}
-      className="flex items-center justify-center gap-1 rounded-full border border-[#80E9E5] p-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
-    >
-      {children}
-    </Link>
-  );
-};
-
 export default function ProjectInfo({
   projectData,
 }: {
@@ -50,9 +28,6 @@ export default function ProjectInfo({
   if (!projectData) return null;
 
   const { profile } = projectData;
-  const { lnc } = profile;
-  const { website, github, twitter, medium, discord, telegram } =
-    profile?.linktree;
 
   return (
     <div className="flex flex-col gap-4 text-[#ECEBE9] lg:gap-0">

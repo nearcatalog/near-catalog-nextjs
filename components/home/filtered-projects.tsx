@@ -3,7 +3,7 @@
 import { useSearchStore } from "@/store/search-store";
 import Image from "next/image";
 
-import ProjectCard from "@/components/ui/project";
+import ProjectCard from "@/components/ui/project-card";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import MobileDropdown from "@/components/home/mobile-dropdown";
 

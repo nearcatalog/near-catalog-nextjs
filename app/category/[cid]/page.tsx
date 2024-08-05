@@ -1,4 +1,4 @@
-import ProjectCard from "@/components/ui/project";
+import ProjectCard from "@/components/ui/project-card";
 import SectionHeading from "@/components/ui/section-heading";
 import { fetchProjectCategory } from "@/lib/near-catalog";
 import { ProjectCategory } from "@/lib/types";

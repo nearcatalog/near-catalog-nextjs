@@ -1,6 +1,6 @@
 "use client";
 
-import ProjectCard from "@/components/ui/project";
+import ProjectCard from "@/components/ui/project-card";
 import { useDraggable } from "react-use-draggable-scroll";
 import { useRef, useState, useEffect } from "react";
 import { ProjectId, ProjectRecord } from "@/lib/types";

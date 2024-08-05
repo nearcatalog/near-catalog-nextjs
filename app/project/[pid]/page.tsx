@@ -1,39 +1,11 @@
-import Image from "next/image";
-import ProjectInfo from "./_components/project-info";
-import DiscoverMore from "./_components/discover-more";
-import TokenInfo from "./_components/token-info";
-import PriceInfo from "./_components/price-info";
-import Script from "next/script";
-import Link from "next/link";
-import LinkTree from "./_components/linktree";
 import { fetchProject } from "@/lib/near-catalog";
-
-const WebsiteLink = ({
-  href,
-  ariaLabel,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  ariaLabel: string;
-  className?: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={ariaLabel}
-      className={
-        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
-        className
-      }
-    >
-      {children}
-    </Link>
-  );
-};
+import Image from "next/image";
+import Script from "next/script";
+import DiscoverMore from "./_components/discover-more";
+import LinkTree from "./_components/linktree";
+import PriceInfo from "./_components/price-info";
+import ProjectInfo from "./_components/project-info";
+import TokenInfo from "./_components/token-info";
 
 interface ProjectPageProps {
   params: {
