@@ -1,12 +1,11 @@
 import Image from "next/image";
-import ProjectInfo from "./project-info";
-import DiscoverMore from "./discover-more";
-import TokenInfo from "./token-info";
-import PriceInfo from "./price-info";
+import ProjectInfo from "./_components/project-info";
+import DiscoverMore from "./_components/discover-more";
+import TokenInfo from "./_components/token-info";
+import PriceInfo from "./_components/price-info";
 import Script from "next/script";
 import Link from "next/link";
-import ShareDropdown from "./share-dropdown";
-import LinkTree from "./linktree";
+import LinkTree from "./_components/linktree";
 
 const WebsiteLink = ({
   href,
