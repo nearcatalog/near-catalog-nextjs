@@ -67,6 +67,7 @@ export default function Search({ tags }: SearchProps) {
       <label className="hidden cursor-pointer items-center md:inline-flex">
         <input
           type="checkbox"
+          name="desktop-tags"
           checked={searchAllTags}
           className="peer sr-only"
           onChange={() => setSearchAllTags((prev) => !prev)}

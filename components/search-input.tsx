@@ -9,6 +9,7 @@ export default function SearchInput() {
       <div className="relative mx-4">
         <input
           type="text"
+          name="search"
           value={searchKey}
           placeholder="Search projects"
           onChange={(e) =>

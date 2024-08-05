@@ -72,6 +72,7 @@ function TagsModal() {
             <label className="inline-flex cursor-pointer items-center md:hidden">
               <input
                 type="checkbox"
+                name="mobile-tags"
                 checked={searchAllTags}
                 className="peer sr-only"
                 onChange={() => setSearchAllTags((prev) => !prev)}
