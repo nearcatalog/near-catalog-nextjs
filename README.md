@@ -18,9 +18,10 @@
   <summary>Table of Contents</summary>
 
 - [Getting Started](#getting-started)
-  - [Cloning the repo](#cloning-the-repo)
   - [Installing dependencies](#installing-dependencies)
   - [Running the app](#running-the-app)
+  - [Building for production](#building-for-production)
+  - [Running tests](#running-tests)
 - [Project Structure](#project-structure)
   - [Routes](#routes)
   - [Global State](#global-state)
@@ -49,18 +50,22 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 ### Building for production
 
 ```bash
-npm build
+npm run build
 ```
 
 ### Running tests
 
 ```bash
-npm test
+npm run test
 ```
+
+See the full [testing guide](./playwright-tests/README.md).
 
 ## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load [Inter](https://fonts.google.com/specimen/Inter), a custom Google Font.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+It uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load [Inter](https://fonts.google.com/specimen/Inter), a custom Google Font.
 
 ### Routes
 
