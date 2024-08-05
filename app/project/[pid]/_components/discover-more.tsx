@@ -60,7 +60,7 @@ export default async function DiscoverMore({
     <div className="mt-4 flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Discover More</h2>
       <div
-        className={`grid grid-cols-1 gap-4 ${gridSize >= 3 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
+        className={`discover-more grid grid-cols-1 gap-4 ${gridSize >= 3 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
       >
         {Object.keys(relatedProjects).map((key) => (
           <ProjectCard key={key} project={relatedProjects[key]} />

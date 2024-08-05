@@ -41,7 +41,7 @@ export default function LoadingPage() {
         </div>
       </div>
       <div className="mt-4 flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">Discover More</h2>
+        <h3 className="text-2xl font-bold">Discover More</h3>
         <div className={`grid grid-cols-1 gap-4 md:grid-cols-3`}>
           <div className="flex animate-pulse flex-col gap-2 rounded-3xl bg-[#1b1d2a] p-4 md:flex-row">
             <div className="h-16 w-16 rounded-full bg-gray-700"></div>
