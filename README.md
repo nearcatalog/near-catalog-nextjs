@@ -26,7 +26,7 @@
   - [Routes](#routes)
   - [Global State](#global-state)
 - [Contributing](#contributing)
-  
+
 </details>
 
 ## Getting Started
