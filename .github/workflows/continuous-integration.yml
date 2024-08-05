@@ -35,6 +35,8 @@ jobs:
             ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        run: npm ci
+      - name: Install dependencies
         run: |
           npx playwright install-deps
           npx playwright install
