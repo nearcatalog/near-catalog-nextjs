@@ -9,10 +9,12 @@ import { getBookmarkedProjects } from "@/lib/bookmark-project";
 
 export default function Bookmarks() {
   const [projects, setProjects] = useState<Record<string, ProjectRecord>>();
-  const starredProjects = getBookmarkedProjects();
   const [loading, setLoading] = useState(false);
+  const [starredProjects, setStarredProjects] = useState<ProjectId[]>([]);
 
   useEffect(() => {
+    const starredProjects = getBookmarkedProjects();
+    setStarredProjects(starredProjects);
     const fetchProjects = async () => {
       setLoading(true);
       const projects = await fetchAllProjects();

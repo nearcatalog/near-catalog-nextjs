@@ -6,7 +6,7 @@ import {
 } from "@/lib/bookmark-project";
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShareDropdown from "./share-dropdown";
 
 const WebsiteLink = ({
@@ -47,9 +47,11 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
   const { dapp, lnc } = project.profile;
   const pid = project.slug;
 
-  const [isProjectStarred, setProjectStarred] = useState(
-    isProjectBookmarked(pid),
-  );
+  const [isProjectStarred, setProjectStarred] = useState(false);
+
+  useEffect(() => {
+    setProjectStarred(isProjectBookmarked(pid));
+  }, [pid]);
 
   const handleStarProject = () => {
     const updatedBookmarkState = toggleProjectBookmark(pid);
