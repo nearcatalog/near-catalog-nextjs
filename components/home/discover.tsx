@@ -5,6 +5,7 @@ import Search from "@/components/search";
 import FilteredProjects from "@/components/home/filtered-projects";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
+import TagsModal from "@/components/modals/tags";
 
 export default async function Discover() {
   const projects = await fetchAllProjects();
@@ -41,6 +42,7 @@ export default async function Discover() {
       <div className="z-1 relative my-16">
         <Search tags={uniqueTags} />
         <FilteredProjects projects={projects} />
+        <TagsModal tags={uniqueTags} />
       </div>
     </section>
   );

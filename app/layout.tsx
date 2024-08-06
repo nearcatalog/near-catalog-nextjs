@@ -1,11 +1,10 @@
+import "bootstrap-icons/font/bootstrap-icons.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 
-import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
-import TagsModal from "@/components/modals/tags";
+import Navbar from "@/components/ui/navbar";
 import site from "@/config/site";
 
 const manrope = Manrope({ subsets: ["latin"] });
@@ -56,7 +55,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex-grow">{children}</div>
           <Footer />
         </div>
-        <TagsModal />
       </body>
     </html>
   );
