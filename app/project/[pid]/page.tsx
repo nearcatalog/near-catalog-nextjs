@@ -90,24 +90,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           className={`w-full ${Object.keys(tokenInfo).length ? "lg:max-w-[65%]" : null}`}
         >
           <ProjectInfo projectData={projectData} />
-
-          {Object.keys(tokenInfo).length ? (
-            <div className="my-4 w-full lg:hidden">
-              <PriceInfo
-                tokenInfo={tokenInfo}
-                name={projectData.profile.name}
-              />
-              <TokenInfo tokenInfo={tokenInfo} />
-            </div>
-          ) : null}
-          {projectData.profile.linktree?.twitter && (
-            <div className="lg:hidden">
-              <TwitterTimelineEmbed
-                href={projectData.profile.linktree?.twitter}
-                name={projectData.profile.name}
-              />
-            </div>
-          )}
           <DiscoverMore
             pid={pid}
             gridSize={
@@ -120,8 +102,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
         {Object.keys(tokenInfo).length ||
         projectData.profile.linktree?.twitter ? (
-          <div className="hidden w-full lg:block lg:max-w-[35%]">
-            <LinkTree project={projectData} />
+          <div className="w-full lg:max-w-[35%]">
+            <div className="hidden lg:block">
+              <LinkTree project={projectData} />
+            </div>
             {Object.keys(tokenInfo).length ? (
               <>
                 <PriceInfo
@@ -132,7 +116,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </>
             ) : null}
             {projectData.profile.linktree?.twitter && (
-              <div className="hidden lg:block">
+              <div>
                 <TwitterTimelineEmbed
                   href={projectData.profile.linktree?.twitter}
                   name={projectData.profile.name}
