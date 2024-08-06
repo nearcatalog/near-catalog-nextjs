@@ -27,7 +27,7 @@ const routes: Route[] = [
   },
   {
     name: "Bookmarked Projects",
-    href: "/bookmarked",
+    href: "/bookmarks",
   },
 ];
 
