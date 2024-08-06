@@ -41,8 +41,8 @@ export default async function Discover() {
       </div>
       <div className="z-1 relative my-16">
         <Search tags={uniqueTags} />
-        <FilteredProjects projects={projects} />
         <TagsModal tags={uniqueTags} />
+        <FilteredProjects projects={projects} />
       </div>
     </section>
   );

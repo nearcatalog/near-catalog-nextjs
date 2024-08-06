@@ -3,7 +3,11 @@ import Image from "next/image";
 async function getPriceData(tokenInfo: any) {
   const res = await fetch(
     `https://api.coingecko.com/api/v3/coins/${tokenInfo.platform.coingecko}`,
-    { cache: "no-cache" },
+    {
+      next: {
+        revalidate: 30,
+      },
+    },
   );
   try {
     const data = await res.json();

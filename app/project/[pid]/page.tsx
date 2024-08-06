@@ -13,6 +13,16 @@ interface ProjectPageProps {
   };
 }
 
+function Loader() {
+  return (
+    <div className="my-3 rounded-3xl">
+      <div className="flex size-6 w-fit animate-spin items-center justify-center p-4">
+        <i className="bi bi-arrow-repeat text-2xl"></i>
+      </div>
+    </div>
+  );
+}
+
 function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
   return (
     <div className="my-3 rounded-3xl bg-[#1b1d2a]">
@@ -33,7 +43,12 @@ function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
           data-tweet-limit="10"
           href={href}
         >
-          Tweets by {name}
+          <div className="flex flex-col items-center justify-center gap-2">
+            <span className="underline underline-offset-2">
+              Tweets by {name} 🚀
+            </span>
+            <Loader />
+          </div>
         </a>
         <Script async src="https://platform.twitter.com/widgets.js"></Script>
       </div>
@@ -69,7 +84,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       : {};
 
   return (
-    <div className="container mx-auto my-4 px-4 lg:my-12">
+    <main className="container mx-auto my-4 px-4 lg:my-12">
       <div className="flex flex-col gap-4 lg:flex-row">
         <div
           className={`w-full ${Object.keys(tokenInfo).length ? "lg:max-w-[65%]" : null}`}
@@ -127,6 +142,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         ) : null}
       </div>
-    </div>
+    </main>
   );
 }

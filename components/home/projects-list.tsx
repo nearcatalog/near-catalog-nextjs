@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProjectRecord } from "@/lib/types";
 
-export default function MobileDropdown({
+export default function ProjectsList({
   projects,
   showOnDesktop,
 }: {
