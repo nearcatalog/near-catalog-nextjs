@@ -1,4 +1,4 @@
-import MobileDropdown from "@/components/home/mobile-dropdown";
+import ProjectsList from "@/components/home/projects-list";
 import SearchInput from "@/components/search-input";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchAllProjects, fetchProject } from "@/lib/near-catalog";
@@ -49,7 +49,7 @@ export default async function ProjectLayout({ params, children }: Props) {
   return (
     <div className="relative mt-4" id="top">
       <SearchInput />
-      <MobileDropdown projects={projectValues} showOnDesktop />
+      <ProjectsList projects={projectValues} showOnDesktop />
       {children}
     </div>
   );
