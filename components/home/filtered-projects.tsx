@@ -12,9 +12,7 @@ interface FilterProjectsProps {
   projects: Record<ProjectId, ProjectRecord>;
 }
 
-export default function FilterProjects({
-  projects,
-}: FilterProjectsProps) {
+export default function FilterProjects({ projects }: FilterProjectsProps) {
   const { tags, searchKey } = useSearchStore();
   const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
   const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>(
