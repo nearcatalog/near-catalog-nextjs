@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img src="https://near-directory-nextjs.vercel.app/_next/static/media/logo.0c496378.svg" alt="near landscape" height="100" />
+<img src="https://builders.mypinata.cloud/ipfs/Qmcqobusok9iYD4NKshxpnMWLwTCAGQxtP8bwmVx4nGDPA" alt="near landscape" height="100" />
 <br />
 <br />
   <p>
@@ -93,7 +93,7 @@ If you're interested in contributing to this project, please read the [contribut
 <div align="right">
 <a href="https://nearbuilders.org" target="_blank">
 <img
-  src="https://ipfs.near.social/ipfs/bafkreiavh7rnvf4zzb5rjohul7xwrlgz4y6ysdtmdsvpjeqpjtmuvgal7a"
+  src="https://builders.mypinata.cloud/ipfs/QmWt1Nm47rypXFEamgeuadkvZendaUvAkcgJ3vtYf1rBFj"
   alt="Near Builders"
   height="40"
 />
