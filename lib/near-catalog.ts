@@ -10,7 +10,7 @@ export async function fetchAllProjects(): Promise<
   Record<ProjectId, ProjectRecord>
 > {
   const response = await fetch(`${NEAR_CATALOG_API}/projects`, {
-    next: { revalidate: 30 },
+    next: { revalidate: 300 },
   });
   if (!response.ok) {
     throw new Error(
@@ -25,7 +25,7 @@ export async function fetchAllProjects(): Promise<
  */
 export async function fetchProject(pid: string): Promise<ProjectRecord> {
   const response = await fetch(`${NEAR_CATALOG_API}/project?pid=${pid}`, {
-    next: { revalidate: 30 },
+    next: { revalidate: 300 },
   });
   if (!response.ok) {
     throw new Error(
@@ -44,7 +44,7 @@ export async function fetchRelatedProjects(
   const response = await fetch(
     `${NEAR_CATALOG_API}/related-projects?pid=${pid}`,
     {
-      next: { revalidate: 30 },
+      next: { revalidate: 300 },
     },
   );
   if (!response.ok) {
@@ -64,7 +64,7 @@ export async function fetchProjectCategory(
   const response = await fetch(
     `${NEAR_CATALOG_API}/projects-by-category?cid=${cid}`,
     {
-      next: { revalidate: 30 },
+      next: { revalidate: 300 },
     },
   );
   if (!response.ok) {

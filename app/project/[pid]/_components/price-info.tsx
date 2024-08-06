@@ -5,7 +5,7 @@ async function getPriceData(tokenInfo: any) {
     `https://api.coingecko.com/api/v3/coins/${tokenInfo.platform.coingecko}`,
     {
       next: {
-        revalidate: 30,
+        revalidate: 300,
       },
     },
   );
