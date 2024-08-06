@@ -43,10 +43,7 @@ export default function TwitterTimelineEmbed({
             <Loader />
           </div>
         </a>
-        <Script
-          async
-          src="https://platform.twitter.com/widgets.js"
-        />
+        <Script async src="https://platform.twitter.com/widgets.js" />
       </div>
     </div>
   );
