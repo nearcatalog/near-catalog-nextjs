@@ -1,9 +1,13 @@
 "use client";
 
+import {
+  isProjectBookmarked,
+  toggleProjectBookmark,
+} from "@/lib/bookmark-project";
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
-import ShareDropdown from "./share-dropdown";
 import { useEffect, useState } from "react";
+import ShareDropdown from "./share-dropdown";
 
 const WebsiteLink = ({
   href,
@@ -41,35 +45,17 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
   const { website, github, twitter, medium, discord, telegram } =
     project.profile?.linktree;
   const { dapp, lnc } = project.profile;
+  const pid = project.slug;
 
-  const [starredProjects, setStarredProjects] = useState<string[]>([]);
+  const [isProjectStarred, setProjectStarred] = useState(false);
 
   useEffect(() => {
-    let starredProjects: string[] = [];
-    if (localStorage.getItem("starredProjects")) {
-      const starredProjectsString = localStorage.getItem("starredProjects");
-      if (starredProjectsString) {
-        starredProjects = JSON.parse(starredProjectsString);
-      }
-    }
-    setStarredProjects(starredProjects);
-  }, []);
+    setProjectStarred(isProjectBookmarked(pid));
+  }, [pid]);
 
-  const handleStarred = () => {
-    let updatedStarredProjects;
-    if (starredProjects.includes(project.slug)) {
-      updatedStarredProjects = starredProjects.filter(
-        (p) => p !== project.slug,
-      );
-    } else {
-      updatedStarredProjects = [...starredProjects, project.slug];
-    }
-
-    setStarredProjects(updatedStarredProjects);
-    localStorage.setItem(
-      "starredProjects",
-      JSON.stringify(updatedStarredProjects),
-    );
+  const handleStarProject = () => {
+    const updatedBookmarkState = toggleProjectBookmark(pid);
+    setProjectStarred(updatedBookmarkState);
   };
 
   return (
@@ -78,11 +64,12 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
         className={`relative flex flex-wrap items-center gap-1 ${direction === "left" ? "justify-start" : "justify-end"}`}
       >
         <button
-          onClick={handleStarred}
+          onClick={handleStarProject}
           className="flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
+          aria-label="Bookmark Project"
         >
           <i
-            className={`bi ${starredProjects.includes(project.slug) ? "bi-star-fill" : "bi-star"} text-xl text-[#80E9E5]`}
+            className={`bi ${isProjectStarred ? "bi-star-fill" : "bi-star"} text-xl text-[#80E9E5]`}
           ></i>
         </button>
         {website && (
