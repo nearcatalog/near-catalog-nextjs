@@ -40,6 +40,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Discord"
               >
                 <i className="bi bi-discord text-[32px]" />
               </Link>
@@ -47,6 +48,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Chat"
               >
                 <i className="bi bi-chat text-[32px]" />
               </Link>
@@ -54,6 +56,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Twitter"
               >
                 <i className="bi bi-twitter-x text-[32px]" />
               </Link>
@@ -61,6 +64,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Github"
               >
                 <i className="bi bi-github text-[32px]" />
               </Link>
@@ -68,6 +72,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Telegram"
               >
                 <i className="bi bi-telegram text-[32px]" />
               </Link>
@@ -75,6 +80,7 @@ export default function Footer() {
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
                 href="#"
                 target="_blank"
+                aria-label="Youtube"
               >
                 <i className="bi bi-youtube text-[32px]" />
               </Link>
