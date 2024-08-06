@@ -33,7 +33,7 @@ interface SearchProps {
 export default function Search({ tags }: SearchProps) {
   const { setTags, tags: searchTags, setAllTags, allTags } = useSearchStore();
   const { isOpen, setIsOpen } = useTagsModalStore();
-  const [searchAllTags, setSearchAllTags] = useState(true);
+  const [allTagsEnabled, setAllTagsEnabled] = useState(true);
 
   useEffect(() => {
     setAllTags(tags);
@@ -41,14 +41,16 @@ export default function Search({ tags }: SearchProps) {
   }, [setAllTags, setTags, tags]);
 
   useEffect(() => {
-    if (searchAllTags) {
+    if (allTagsEnabled) {
       setTags(tags);
+    } else {
+      setTags([]);
     }
-  }, [searchAllTags, tags, setTags]);
+  }, [allTagsEnabled, tags, setTags]);
 
   const handleTagClick = (tag: string) => {
-    if (searchAllTags) {
-      setSearchAllTags(false);
+    if (allTagsEnabled) {
+      setAllTagsEnabled(false);
       setTags([tag]);
     } else {
       if (searchTags.includes(tag)) {
@@ -68,9 +70,10 @@ export default function Search({ tags }: SearchProps) {
         <input
           type="checkbox"
           name="desktop-tags"
-          checked={searchAllTags}
+          checked={allTagsEnabled}
           className="peer sr-only"
-          onChange={() => setSearchAllTags((prev) => !prev)}
+          aria-label="Toggle all tags"
+          onChange={() => setAllTagsEnabled((prev) => !prev)}
         />
         <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
         <span className="ms-3 text-sm font-medium text-gray-300">All Tags</span>

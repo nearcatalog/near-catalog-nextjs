@@ -35,17 +35,19 @@ function TagsModal() {
   const { isOpen, setIsOpen } = useTagsModalStore();
   const { tags, allTags, setTags } = useSearchStore();
 
-  const [searchAllTags, setSearchAllTags] = useState(true);
+  const [allTagsEnabled, setAllTagsEnabled] = useState(true);
 
   useEffect(() => {
-    if (searchAllTags) {
+    if (allTagsEnabled) {
       setTags(allTags);
+    } else {
+      setTags([]);
     }
-  }, [searchAllTags, setTags, allTags]);
+  }, [allTagsEnabled, setTags, allTags]);
 
   const handleTagClick = (tag: string) => {
-    if (searchAllTags) {
-      setSearchAllTags(false);
+    if (allTagsEnabled) {
+      setAllTagsEnabled(false);
       setTags([tag]);
     } else {
       if (tags.includes(tag)) {
@@ -73,9 +75,10 @@ function TagsModal() {
               <input
                 type="checkbox"
                 name="mobile-tags"
-                checked={searchAllTags}
+                checked={allTagsEnabled}
                 className="peer sr-only"
-                onChange={() => setSearchAllTags((prev) => !prev)}
+                onChange={() => setAllTagsEnabled((prev) => !prev)}
+                aria-label="Toggle all tags"
               />
               <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
               <span className="ms-3 text-sm font-medium text-gray-300">

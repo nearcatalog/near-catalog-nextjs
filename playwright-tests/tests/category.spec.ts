@@ -2,11 +2,11 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Category Page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("./category/aurora");
+    await page.goto("/category/aurora");
   });
 
   test("should have title", async ({ page }) => {
-    await page.goto("./category/aurora");
+    await page.goto("/category/aurora");
 
     // Expect a heading to be visible
     await expect(
