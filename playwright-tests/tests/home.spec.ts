@@ -2,10 +2,10 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Homepage", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("./");
+    await page.goto("/");
   });
 
-  test("Should redirect to project submission page", async ({ page }) => {
+  test("should redirect to project submission page", async ({ page }) => {
     const getSubmitProjectButton = () =>
       page
         .getByRole("navigation")
@@ -24,7 +24,7 @@ test.describe("Homepage", () => {
     );
   });
 
-  test("Project in ecosystem section should redirect to project page", async ({
+  test("project in ecosystem section should redirect to project page", async ({
     page,
   }) => {
     const firstProject = page.locator(".no-scrollbar > div").first();
@@ -41,7 +41,7 @@ test.describe("Homepage", () => {
     await expect(projectPageHeading).toBeVisible();
   });
 
-  test("Clicking on project in Hot Project should redirect to project page", async ({
+  test("clicking on project in Hot Project should redirect to project page", async ({
     page,
   }) => {
     const section = page.locator("#hot-projects div").first();
@@ -56,7 +56,7 @@ test.describe("Homepage", () => {
     await expect(projectPageHeading).toBeVisible();
   });
 
-  test("Should show projects in discover section", async ({ page }) => {
+  test("should show projects in discover section", async ({ page }) => {
     const getDiscoverSection = () =>
       page.getByRole("heading", { name: "Discover All Projects" });
     await expect(getDiscoverSection()).toBeVisible();
@@ -88,6 +88,31 @@ test.describe("Homepage", () => {
     await expect(
       page.locator("#all-projects div").filter({ hasText: "Defuse" }).nth(1),
     ).toBeVisible();
+  });
+
+  test("should deselect and reselect all tags when toggling", async ({
+    page,
+  }) => {
+    const tagsToggle = page.getByLabel("Toggle all tags");
+
+    await expect(tagsToggle).toBeVisible();
+
+    const tags = await page.getByTestId("tag").all();
+
+    // default should be all tags checked
+    await expect(tagsToggle).toBeChecked();
+    for (const tag of tags) {
+      // verify that all tags do not have classname opacity-50
+      expect(tag).not.toHaveClass(/opacity-50/);
+    }
+
+    // toggle all tags off
+    await tagsToggle.setChecked(true);
+    await page.waitForTimeout(100);
+    for (const tag of tags) {
+      // verify that all tags have classname opacity-50
+      expect(tag).toHaveClass(/opacity-50/);
+    }
   });
 
   test("should show error on no results found", async ({ page }) => {

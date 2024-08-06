@@ -8,13 +8,11 @@ import ProjectsList from "@/components/ui/project-list";
 
 const ITEMS_PER_PAGE = 12;
 
-interface ProjectsContainerProps {
+interface FilterProjectsProps {
   projects: Record<ProjectId, ProjectRecord>;
 }
 
-export default function ProjectsContainer({
-  projects,
-}: ProjectsContainerProps) {
+export default function FilterProjects({ projects }: FilterProjectsProps) {
   const { tags, searchKey } = useSearchStore();
   const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
   const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>(
@@ -30,7 +28,7 @@ export default function ProjectsContainer({
     if (tags.length > 0) {
       result = result.filter((project) => {
         const projectTags = Object.values(project.profile.tags);
-        return tags.some((tag) => projectTags.includes(tag));
+        return tags.some((tag: any) => projectTags.includes(tag));
       });
     }
 
