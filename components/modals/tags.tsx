@@ -1,25 +1,32 @@
 "use client";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import { useTagsModalStore } from "@/store/tags-modal-store";
 import { useSearchStore } from "@/store/search-store";
+import { useTagsModalStore } from "@/store/tags-modal-store";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
+
+interface TagsModalProps {
+  tags: string[];
+}
 
 const Tags = ({
   handleTagClick,
+  allTags,
+  selectedTags,
 }: {
   handleTagClick: (tag: string) => void;
+  allTags: string[];
+  selectedTags: string[];
 }) => {
-  const { tags, allTags } = useSearchStore();
   return (
     <div className="flex flex-wrap gap-2 md:hidden">
       {allTags.map((tag) => (
         <div
           key={tag}
           onClick={() => handleTagClick(tag)}
-          className={`${tags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
+          className={`${selectedTags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
         >
-          {tags.includes(tag) ? (
+          {selectedTags.includes(tag) ? (
             <i className="bi bi-check text-xl" />
           ) : (
             <i className="bi bi-x text-xl" />
@@ -31,29 +38,41 @@ const Tags = ({
   );
 };
 
-function TagsModal() {
+function TagsModal({ tags }: TagsModalProps) {
+  const { setTags } = useSearchStore();
   const { isOpen, setIsOpen } = useTagsModalStore();
-  const { tags, allTags, setTags } = useSearchStore();
-
-  const [searchAllTags, setSearchAllTags] = useState(true);
+  const [selectedTags, setSelectedTags] = useState<string[]>(tags);
+  const [allTagsEnabled, setAllTagsEnabled] = useState(true);
 
   useEffect(() => {
-    if (searchAllTags) {
-      setTags(allTags);
-    }
-  }, [searchAllTags, setTags, allTags]);
+    setTags(selectedTags);
+  }, [selectedTags, setTags]);
 
   const handleTagClick = (tag: string) => {
-    if (searchAllTags) {
-      setSearchAllTags(false);
-      setTags([tag]);
+    let updatedTags: string[];
+    if (allTagsEnabled) {
+      setAllTagsEnabled(false);
+      updatedTags = [tag];
     } else {
-      if (tags.includes(tag)) {
-        setTags(tags.filter((searchTag) => searchTag !== tag));
+      if (selectedTags.includes(tag)) {
+        updatedTags = selectedTags.filter((t) => t !== tag);
       } else {
-        setTags(Array.from(new Set([...tags, tag])));
+        updatedTags = [...selectedTags, tag];
       }
     }
+    setSelectedTags(updatedTags);
+  };
+
+  const handleToggleAllTags = () => {
+    setAllTagsEnabled((prev) => {
+      const newAllTagsEnabled = !prev;
+      if (newAllTagsEnabled) {
+        setSelectedTags(tags);
+      } else {
+        setSelectedTags([]);
+      }
+      return newAllTagsEnabled;
+    });
   };
 
   return (
@@ -73,9 +92,10 @@ function TagsModal() {
               <input
                 type="checkbox"
                 name="mobile-tags"
-                checked={searchAllTags}
+                checked={allTagsEnabled}
                 className="peer sr-only"
-                onChange={() => setSearchAllTags((prev) => !prev)}
+                onChange={handleToggleAllTags}
+                aria-label="Toggle all tags"
               />
               <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
               <span className="ms-3 text-sm font-medium text-gray-300">
@@ -83,7 +103,11 @@ function TagsModal() {
               </span>
             </label>
             <div className="flex flex-col gap-2">
-              <Tags handleTagClick={handleTagClick} />
+              <Tags
+                handleTagClick={handleTagClick}
+                allTags={tags}
+                selectedTags={selectedTags}
+              />
             </div>
           </div>
           <div className="mt-6 flex justify-center">
