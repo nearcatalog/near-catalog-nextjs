@@ -1,8 +1,13 @@
 import SectionHeading from "@/components/ui/section-heading";
+import { Metadata } from "next";
 import { lazy } from "react";
-// import Bookmarks from "./_components/bookmarks";
 
 const Bookmarks = lazy(() => import("./_components/bookmarks"));
+
+export const metadata: Metadata = {
+  title: "Bookmarked Projects",
+  description: "Your bookmarked projects",
+};
 
 export default function Bookmarked() {
   return (
