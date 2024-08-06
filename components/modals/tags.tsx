@@ -1,8 +1,9 @@
 "use client";
 
+import { useSearchStore } from "@/store/search-store";
 import { useTagsModalStore } from "@/store/tags-modal-store";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TagsModalProps {
   tags: string[];
@@ -38,11 +39,14 @@ const Tags = ({
 };
 
 function TagsModal({ tags }: TagsModalProps) {
+  const { setTags } = useSearchStore();
   const { isOpen, setIsOpen } = useTagsModalStore();
-
   const [selectedTags, setSelectedTags] = useState<string[]>(tags);
-
   const [allTagsEnabled, setAllTagsEnabled] = useState(true);
+
+  useEffect(() => {
+    setTags(selectedTags);
+  }, [selectedTags, setTags]);
 
   const handleTagClick = (tag: string) => {
     let updatedTags: string[];
