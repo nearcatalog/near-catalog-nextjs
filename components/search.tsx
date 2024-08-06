@@ -1,7 +1,8 @@
 "use client";
 
+import { useSearchStore } from "@/store/search-store";
 import { useTagsModalStore } from "@/store/tags-modal-store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchInput from "./search-input";
 
 const Tags = ({
@@ -33,9 +34,14 @@ interface SearchProps {
 }
 
 export default function Search({ tags }: SearchProps) {
+  const { setTags } = useSearchStore();
   const { isOpen, setIsOpen } = useTagsModalStore();
   const [allTagsEnabled, setAllTagsEnabled] = useState(true);
   const [selectedTags, setSelectedTags] = useState<string[]>(tags);
+
+  useEffect(() => {
+    setTags(selectedTags);
+  }, [selectedTags, setTags]);
 
   const handleTagClick = (tag: string) => {
     let updatedTags: string[];
