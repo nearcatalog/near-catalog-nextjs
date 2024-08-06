@@ -1,79 +1,70 @@
 "use client";
 
+import { useState, useEffect, useCallback } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useSearchStore } from "@/store/search-store";
-import Image from "next/image";
-
-import ProjectCard from "@/components/ui/project-card";
 import { ProjectId, ProjectRecord } from "@/lib/types";
-import MobileDropdown from "@/components/home/mobile-dropdown";
+import ProjectsList from '@/components/ui/project-list';
 
-interface FilteredProjectsProps {
+const ITEMS_PER_PAGE = 12;
+
+interface ProjectsContainerProps {
   projects: Record<ProjectId, ProjectRecord>;
 }
 
-export default function FilteredProjects({ projects }: FilteredProjectsProps) {
+export default function ProjectsContainer({ projects }: ProjectsContainerProps) {
   const { tags, searchKey } = useSearchStore();
+  const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
+  const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const { ref, inView } = useInView();
 
-  const projectValues: ProjectRecord[] = Object.values(projects);
+  const filterProjects = useCallback(() => {
+    let result = Object.values(projects);
 
-  let filteredProjects = projectValues;
+    if (tags.length > 0) {
+      result = result.filter((project) => {
+        const projectTags = Object.values(project.profile.tags);
+        return tags.some((tag) => projectTags.includes(tag));
+      });
+    }
 
-  if (tags.length > 0) {
-    filteredProjects = filteredProjects.filter((project: any) => {
-      const projectTags = Object.values(project.profile.tags);
-      return tags.some((tag: string) => projectTags.includes(tag));
-    });
-  }
+    if (searchKey !== "") {
+      result = result.filter((project) => {
+        const projectName = project.profile.name.toLowerCase();
+        return projectName.startsWith(searchKey.toLowerCase());
+      });
+    }
 
-  if (searchKey !== "") {
-    filteredProjects = filteredProjects.filter((project: any) => {
-      const projectName = project.profile.name.toLowerCase();
-      return projectName.startsWith(searchKey.toLowerCase());
-    });
-  }
+    setFilteredProjects(result);
+    setPage(1);
+    setHasMore(result.length > ITEMS_PER_PAGE);
+  }, [projects, tags, searchKey]);
 
-  if (tags.length === 0) {
-    return (
-      <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
-        <Image
-          src={"/assets/images/error.webp"}
-          alt={"Not found error"}
-          width={182}
-          height={144}
-        />
-        <h2>No Tags Selected</h2>
-      </div>
-    );
-  }
+  useEffect(() => {
+    filterProjects();
+  }, [filterProjects]);
 
-  if (filteredProjects.length === 0) {
-    return (
-      <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
-        <Image
-          src={"/assets/images/error.webp"}
-          alt={"Not found error"}
-          width={182}
-          height={144}
-        />
-        <h2>Sorry, we could not find the results for:</h2>
-        <p className="text-2xl uppercase">{searchKey}</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const endIndex = page * ITEMS_PER_PAGE;
+    setDisplayedProjects(filteredProjects.slice(0, endIndex));
+    setHasMore(endIndex < filteredProjects.length);
+  }, [filteredProjects, page]);
+
+  useEffect(() => {
+    if (inView && hasMore) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [inView, hasMore]);
 
   return (
     <>
-      <MobileDropdown projects={projectValues} />
-      <div className="projects-desktop mt-4 hidden max-w-full grid-cols-3 place-items-center items-stretch gap-4 md:grid lg:grid-cols-4">
-        {Object.values(filteredProjects).map((project: any) => (
-          <ProjectCard key={project.slug} project={project} maxWidth />
-        ))}
-      </div>
-      <div className="projects-mobile mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:hidden">
-        {Object.values(projects).map((project: any) => (
-          <ProjectCard key={project.slug} project={project} maxWidth />
-        ))}
-      </div>
+      <ProjectsList 
+        projects={displayedProjects}
+        allProjects={Object.values(projects)}
+      />
+      {hasMore && <div ref={ref} style={{ height: '20px' }}></div>}
     </>
   );
 }
