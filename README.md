@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img src="https://builders.mypinata.cloud/ipfs/QmVTVpyQoxDKW66Rv9335NhaQANT4k4YyZBzWJ18AYpQzp" alt="near landscape" height="100" />
+<img src="https://builders.mypinata.cloud/ipfs/QmcNogThQvv2vTdvScoLUXCV4ncZv7h79quB7yhhTXwhC9" alt="near landscape" height="100" />
 <br />
 <br />
   <p>
