@@ -95,7 +95,7 @@ test.describe("Homepage", () => {
     await expect(searchInput).toBeVisible();
     await searchInput.fill("test");
     await expect(
-      page.getByRole("heading", { name: "Sorry, we could not find the" }),
+      page.getByRole("heading", { name: "Sorry, we could not find any results" }),
     ).toBeVisible();
   });
 });
