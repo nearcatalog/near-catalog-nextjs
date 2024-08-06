@@ -8,7 +8,10 @@ interface ProjectsListProps {
   allProjects: ProjectRecord[];
 }
 
-export default function ProjectsList({ projects, allProjects }: ProjectsListProps) {
+export default function ProjectsList({
+  projects,
+  allProjects,
+}: ProjectsListProps) {
   if (projects.length === 0) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">

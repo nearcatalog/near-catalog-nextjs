@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useState, useEffect, useCallback } from "react";
+import { useInView } from "react-intersection-observer";
 import { useSearchStore } from "@/store/search-store";
 import { ProjectId, ProjectRecord } from "@/lib/types";
-import ProjectsList from '@/components/ui/project-list';
+import ProjectsList from "@/components/ui/project-list";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -12,10 +12,14 @@ interface ProjectsContainerProps {
   projects: Record<ProjectId, ProjectRecord>;
 }
 
-export default function ProjectsContainer({ projects }: ProjectsContainerProps) {
+export default function ProjectsContainer({
+  projects,
+}: ProjectsContainerProps) {
   const { tags, searchKey } = useSearchStore();
   const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
-  const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>([]);
+  const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>(
+    [],
+  );
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
@@ -60,11 +64,11 @@ export default function ProjectsContainer({ projects }: ProjectsContainerProps) 
 
   return (
     <>
-      <ProjectsList 
+      <ProjectsList
         projects={displayedProjects}
         allProjects={Object.values(projects)}
       />
-      {hasMore && <div ref={ref} style={{ height: '20px' }}></div>}
+      {hasMore && <div ref={ref} style={{ height: "20px" }}></div>}
     </>
   );
 }

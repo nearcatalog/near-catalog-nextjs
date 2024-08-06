@@ -90,20 +90,22 @@ test.describe("Homepage", () => {
     ).toBeVisible();
   });
 
-  test("should deselect and reselect all tags when toggling", async ({ page }) => {
+  test("should deselect and reselect all tags when toggling", async ({
+    page,
+  }) => {
     const tagsToggle = page.getByLabel("Toggle all tags");
-    
+
     await expect(tagsToggle).toBeVisible();
-  
+
     const tags = await page.getByTestId("tag").all();
-  
+
     // default should be all tags checked
     await expect(tagsToggle).toBeChecked();
     for (const tag of tags) {
       // verify that all tags do not have classname opacity-50
       expect(tag).not.toHaveClass(/opacity-50/);
     }
-  
+
     // toggle all tags off
     await tagsToggle.setChecked(true);
     await page.waitForTimeout(100);
