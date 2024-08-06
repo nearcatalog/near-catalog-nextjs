@@ -1,7 +1,7 @@
-import "bootstrap-icons/font/bootstrap-icons.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import "bootstrap-icons/font/bootstrap-icons.min.css";
 
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
