@@ -1,59 +1,16 @@
 import { fetchProject } from "@/lib/near-catalog";
 import Image from "next/image";
-import Script from "next/script";
 import DiscoverMore from "./_components/discover-more";
 import LinkTree from "./_components/linktree";
 import PriceInfo from "./_components/price-info";
 import ProjectInfo from "./_components/project-info";
 import TokenInfo from "./_components/token-info";
+import TwitterTimelineEmbed from "./_components/twitter-embed";
 
 interface ProjectPageProps {
   params: {
     pid: string;
   };
-}
-
-function Loader() {
-  return (
-    <div className="my-3 rounded-3xl">
-      <div className="flex size-6 w-fit animate-spin items-center justify-center p-4">
-        <i className="bi bi-arrow-repeat text-2xl"></i>
-      </div>
-    </div>
-  );
-}
-
-function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
-  return (
-    <div className="my-3 rounded-3xl bg-[#1b1d2a]">
-      <div className="p-4">
-        <small>
-          <i>Open link in new tab with right click or hold</i>
-        </small>
-      </div>
-      <div
-        className="overflow-y-auto rounded-xl"
-        style={{ maxHeight: "500px", minHeight: "500px" }}
-      >
-        <a
-          className="twitter-timeline h-full"
-          data-theme="dark"
-          data-dnt="true"
-          data-height="500"
-          data-tweet-limit="10"
-          href={href}
-        >
-          <div className="flex flex-col items-center justify-center gap-2">
-            <span className="underline underline-offset-2">
-              Tweets by {name} 🚀
-            </span>
-            <Loader />
-          </div>
-        </a>
-        <Script async src="https://platform.twitter.com/widgets.js"></Script>
-      </div>
-    </div>
-  );
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
