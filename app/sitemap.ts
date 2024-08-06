@@ -1,27 +1,19 @@
 import site from "@/config/site";
 import { MetadataRoute } from "next";
-import { ProjectType as Project } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
+import { fetchAllProjects } from "@/lib/near-catalog";
 
 export const dynamic = "force-dynamic";
-
-async function getProjects() {
-  const res = await fetch(
-    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
-    { cache: "no-cache" },
-  );
-  const data = await res.json();
-  return data;
-}
 
 const BASE_URL = site.url;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await getProjects();
+  const projects = await fetchAllProjects();
   const projectSlugs = Object.keys(projects);
 
-  const projectArray: Project[] = Object.values(projects);
+  const projectArray: ProjectRecord[] = Object.values(projects);
   let tags: string[] = projectArray
-    .map((project: Project) => Object.keys(project.profile.tags))
+    .map((project: ProjectRecord) => Object.keys(project.profile.tags))
     .flat();
   const uniqueTags = Array.from(new Set(tags)).sort();
 

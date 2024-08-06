@@ -58,7 +58,7 @@ export default function EcosystemProjects({
         {...events}
       >
         {projects.map((project) => (
-          <Project key={project} project={project} />
+          <Project key={project} pid={project} />
         ))}
       </div>
     </div>

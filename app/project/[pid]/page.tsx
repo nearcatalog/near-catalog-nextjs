@@ -1,54 +1,16 @@
+import { fetchProject } from "@/lib/near-catalog";
 import Image from "next/image";
-import ProjectInfo from "./_components/project-info";
-import DiscoverMore from "./_components/discover-more";
-import TokenInfo from "./_components/token-info";
-import PriceInfo from "./_components/price-info";
 import Script from "next/script";
-import Link from "next/link";
+import DiscoverMore from "./_components/discover-more";
 import LinkTree from "./_components/linktree";
-
-const WebsiteLink = ({
-  href,
-  ariaLabel,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  ariaLabel: string;
-  className?: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={ariaLabel}
-      className={
-        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
-        className
-      }
-    >
-      {children}
-    </Link>
-  );
-};
+import PriceInfo from "./_components/price-info";
+import ProjectInfo from "./_components/project-info";
+import TokenInfo from "./_components/token-info";
 
 interface ProjectPageProps {
   params: {
     pid: string;
   };
-}
-
-async function getProjectData(pid: string) {
-  const res = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${pid}`,
-    { cache: "no-cache" },
-  ).catch((error) => {
-    throw new Error(error);
-  });
-  const data = await res.json();
-  return data;
 }
 
 function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
@@ -81,7 +43,7 @@ function TwitterTimelineEmbed({ href, name }: { href: string; name: string }) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { pid } = params;
-  const projectData = await getProjectData(pid);
+  const projectData = await fetchProject(pid);
 
   if (!projectData) {
     return (

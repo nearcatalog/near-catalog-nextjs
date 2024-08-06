@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { fetchProject } from "@/lib/near-catalog";
 import { ImageResponse } from "next/og";
 
 // Route segment config
@@ -24,14 +25,7 @@ export default async function Image({ params }: { params: { pid: string } }) {
   ).then((res) => res.arrayBuffer());
 
   // project data
-  const project = await fetch(
-    `https://nearcatalog.xyz/wp-json/nearcatalog/v1/project?pid=${params.pid}`,
-    { cache: "no-cache" },
-  )
-    .then((res) => res.json())
-    .catch((error) => {
-      throw new Error("Error fetching project data", error);
-    });
+  const project = await fetchProject(params.pid);
 
   if (!project) {
     return new ImageResponse(

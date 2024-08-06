@@ -1,30 +1,22 @@
 import Image from "next/image";
 import SectionHeading from "@/components/ui/section-heading";
 import SearchImage from "@/public/assets/images/search.webp";
-import Search from "../search";
-import FilteredProjects from "./filtered-projects";
-import { ProjectType as Project } from "@/lib/types";
-
-async function getProjects() {
-  const res = await fetch(
-    "https://nearcatalog.xyz/wp-json/nearcatalog/v1/projects",
-    { cache: "no-cache" },
-  );
-  const data = await res.json();
-  return data;
-}
+import Search from "@/components/search";
+import FilteredProjects from "@/components/home/filtered-projects";
+import { ProjectRecord } from "@/lib/types";
+import { fetchAllProjects } from "@/lib/near-catalog";
 
 export default async function Discover() {
-  const projects = await getProjects();
+  const projects = await fetchAllProjects();
   const projectsLength = Object.keys(projects).length;
 
   if (!projects) {
     return <div>Error fetching projects</div>;
   }
 
-  const projectArray: Project[] = Object.values(projects);
+  const projectArray: ProjectRecord[] = Object.values(projects);
   let tags: string[] = projectArray
-    .map((project: Project) => Object.values(project.profile.tags))
+    .map((project: ProjectRecord) => Object.values(project.profile.tags))
     .flat();
   const uniqueTags = Array.from(new Set(tags)).sort();
 

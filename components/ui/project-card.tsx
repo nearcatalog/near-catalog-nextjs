@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ProjectType } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
 import { useSearchStore } from "@/store/search-store";
 
 const DESCRIPTION_MAX_CHARACTERS = 90;
 
-interface ProjectProps {
-  project: ProjectType;
+interface ProjectCardProps {
+  project: ProjectRecord;
   maxWidth?: boolean;
 }
 
@@ -26,7 +26,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
   );
 };
 
-export default function Project({ project, maxWidth }: ProjectProps) {
+export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
   const router = useRouter();
   const { setSearchKey } = useSearchStore();
   const { profile } = project;

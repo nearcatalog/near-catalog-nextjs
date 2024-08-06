@@ -2,13 +2,13 @@
 import { useSearchStore } from "@/store/search-store";
 import Link from "next/link";
 import Image from "next/image";
-import { ProjectType } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
 
 export default function MobileDropdown({
   projects,
   showOnDesktop,
 }: {
-  projects: ProjectType[];
+  projects: ProjectRecord[];
   showOnDesktop?: boolean;
 }) {
   const { searchKey, setSearchKey } = useSearchStore();

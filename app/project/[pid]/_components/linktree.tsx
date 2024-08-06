@@ -1,4 +1,4 @@
-import { ProjectType } from "@/lib/types";
+import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
 import ShareDropdown from "./share-dropdown";
 
@@ -30,7 +30,7 @@ const WebsiteLink = ({
 };
 
 interface LinkTreeProps {
-  project: ProjectType;
+  project: ProjectRecord;
   direction?: "left" | "right";
 }
 
