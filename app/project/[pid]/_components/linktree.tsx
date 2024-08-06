@@ -1,6 +1,9 @@
+"use client";
+
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
 import ShareDropdown from "./share-dropdown";
+import { useEffect, useState } from "react";
 
 const WebsiteLink = ({
   href,
@@ -39,13 +42,48 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
     project.profile?.linktree;
   const { dapp, lnc } = project.profile;
 
+  const [starredProjects, setStarredProjects] = useState<string[]>([]);
+
+  useEffect(() => {
+    let starredProjects: string[] = [];
+    if (localStorage.getItem("starredProjects")) {
+      const starredProjectsString = localStorage.getItem("starredProjects");
+      if (starredProjectsString) {
+        starredProjects = JSON.parse(starredProjectsString);
+      }
+    }
+    setStarredProjects(starredProjects);
+  }, []);
+
+  const handleStarred = () => {
+    let updatedStarredProjects;
+    if (starredProjects.includes(project.slug)) {
+      updatedStarredProjects = starredProjects.filter(
+        (p) => p !== project.slug,
+      );
+    } else {
+      updatedStarredProjects = [...starredProjects, project.slug];
+    }
+
+    setStarredProjects(updatedStarredProjects);
+    localStorage.setItem(
+      "starredProjects",
+      JSON.stringify(updatedStarredProjects),
+    );
+  };
+
   return (
     <>
       <div
         className={`relative flex flex-wrap items-center gap-1 ${direction === "left" ? "justify-start" : "justify-end"}`}
       >
-        <button className="flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50">
-          <i className="bi bi-star text-xl text-[#80E9E5]"></i>
+        <button
+          onClick={handleStarred}
+          className="flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
+        >
+          <i
+            className={`bi ${starredProjects.includes(project.slug) ? "bi-star-fill" : "bi-star"} text-xl text-[#80E9E5]`}
+          ></i>
         </button>
         {website && (
           <WebsiteLink

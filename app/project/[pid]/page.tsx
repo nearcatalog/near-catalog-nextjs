@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       : {};
 
   return (
-    <div className="container mx-auto my-4 px-4 lg:my-12">
+    <main className="container mx-auto my-4 px-4 lg:my-12">
       <div className="flex flex-col gap-4 lg:flex-row">
         <div
           className={`w-full ${Object.keys(tokenInfo).length ? "lg:max-w-[65%]" : null}`}
@@ -142,6 +142,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         ) : null}
       </div>
-    </div>
+    </main>
   );
 }

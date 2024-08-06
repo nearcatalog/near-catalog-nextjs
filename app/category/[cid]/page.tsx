@@ -11,6 +11,27 @@ interface CategoryPageProps {
   };
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { cid: string };
+}) {
+  const { cid } = params;
+  const categoryData: ProjectCategory = await fetchProjectCategory(cid);
+
+  if (!categoryData.cat_title) {
+    return {
+      title: "Category Not Found",
+      description: `Sorry, we could not find the category: ${cid}`,
+    };
+  }
+
+  return {
+    title: categoryData.cat_title,
+    description: categoryData.cat_description,
+  };
+}
+
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { cid } = params;
 
@@ -36,7 +57,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="container relative mx-auto flex flex-col gap-4 px-4 py-12">
+    <main className="container relative mx-auto flex flex-col gap-4 px-4 py-12">
       <Image
         className="absolute right-1/2 top-0 z-0 h-[141px] w-[221px] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[222px] md:w-[347px] md:translate-x-0"
         src={SearchImage}
@@ -54,6 +75,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <ProjectCard key={project.slug} project={project} maxWidth />
         ))}
       </div>
-    </div>
+    </main>
   );
 }
