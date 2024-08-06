@@ -9,7 +9,9 @@ export const NEAR_CATALOG_API =
 export async function fetchAllProjects(): Promise<
   Record<ProjectId, ProjectRecord>
 > {
-  const response = await fetch(`${NEAR_CATALOG_API}/projects`);
+  const response = await fetch(`${NEAR_CATALOG_API}/projects`, {
+    next: { revalidate: 30 },
+  });
   if (!response.ok) {
     throw new Error(
       "Request to Near Catalog API failed with status: " + response.status,
@@ -22,7 +24,9 @@ export async function fetchAllProjects(): Promise<
  * Fetches a project by its PID (project ID)
  */
 export async function fetchProject(pid: string): Promise<ProjectRecord> {
-  const response = await fetch(`${NEAR_CATALOG_API}/project?pid=${pid}`);
+  const response = await fetch(`${NEAR_CATALOG_API}/project?pid=${pid}`, {
+    next: { revalidate: 30 },
+  });
   if (!response.ok) {
     throw new Error(
       "Request to Near Catalog API failed with status: " + response.status,
@@ -39,6 +43,9 @@ export async function fetchRelatedProjects(
 ): Promise<Record<ProjectId, ProjectRecord>> {
   const response = await fetch(
     `${NEAR_CATALOG_API}/related-projects?pid=${pid}`,
+    {
+      next: { revalidate: 30 },
+    },
   );
   if (!response.ok) {
     throw new Error(
@@ -56,6 +63,9 @@ export async function fetchProjectCategory(
 ): Promise<ProjectCategory> {
   const response = await fetch(
     `${NEAR_CATALOG_API}/projects-by-category?cid=${cid}`,
+    {
+      next: { revalidate: 30 },
+    },
   );
   if (!response.ok) {
     throw new Error(
