@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img src="./public/assets/images/logo.svg" alt="near landscape" height="100" />
+<img src="https://builders.mypinata.cloud/ipfs/Qmcqobusok9iYD4NKshxpnMWLwTCAGQxtP8bwmVx4nGDPA" alt="near landscape" height="100" />
 <br />
 <br />
   <p>
