@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Bookmarked() {
   return (
-    <main>
+    <main className="container mx-auto my-4 px-4 lg:my-12">
       <SectionHeading
         title="Bookmarked Projects"
         description="Your bookmarked projects"
