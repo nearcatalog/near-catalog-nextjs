@@ -15,7 +15,7 @@ const DESCRIPTION_MAX_CHARACTERS = 63;
 
 function SkeletonProject() {
   return (
-    <div className="flex w-full max-w-60 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2">
+    <div className="flex w-full max-w-60 shrink-0 flex-col items-center justify-center gap-2 rounded-lg bg-black p-4 pt-2">
       <div className="h-16 w-16 animate-pulse rounded-full bg-gray-900" />
       <div className="mb-2 h-4 w-full animate-pulse rounded-full bg-gray-900" />
       <div className="h-3 w-full animate-pulse rounded-full bg-gray-900" />
@@ -55,7 +55,7 @@ export default function Project({ pid }: ProjectProps) {
   return (
     <div
       onClick={() => router.push(`/project/${pid}#top`, { scroll: true })}
-      className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-black p-4 pt-2"
+      className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black p-4 pt-2"
       style={{
         userSelect: "none",
       }}

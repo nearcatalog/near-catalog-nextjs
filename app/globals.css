@@ -109,11 +109,15 @@ a {
 .scroll-shadow.left {
   left: 0;
   background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.8));
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
 }
 
 .scroll-shadow.right {
   right: 0;
   background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8));
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
 }
 
 .no-select {

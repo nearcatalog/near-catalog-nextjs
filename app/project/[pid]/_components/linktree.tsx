@@ -58,7 +58,7 @@ export default function LinkTree({ project }: LinkTreeProps) {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex min-w-64 flex-col gap-2">
       <div
         className={`relative flex flex-wrap items-center gap-1 lg:justify-end`}
       >
@@ -93,31 +93,31 @@ export default function LinkTree({ project }: LinkTreeProps) {
       </div>
       <div className="mt-2 flex flex-col gap-2">
         <div
-          className={`mb-3 flex flex-wrap items-center justify-start gap-2 lg:justify-end`}
+          className={`mb-3 flex flex-wrap items-center justify-start gap-3 lg:justify-end`}
         >
           {twitter && (
             <Link href={twitter} aria-label="Twitter">
-              <i className="bi bi-twitter-x text-xl text-[#80E9E5]" />
+              <i className="bi bi-twitter-x text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {github && (
             <Link href={github} aria-label={`${project.profile.name} Github`}>
-              <i className="bi bi-github text-xl text-[#80E9E5]" />
+              <i className="bi bi-github text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {medium && (
             <Link href={medium} aria-label="Medium">
-              <i className="bi bi-medium text-xl text-[#80E9E5]" />
+              <i className="bi bi-medium text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {discord && (
             <Link href={discord} aria-label="Discord">
-              <i className="bi bi-discord text-xl text-[#80E9E5]" />
+              <i className="bi bi-discord text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {telegram && (
             <Link href={telegram} aria-label="Telegram">
-              <i className="bi bi-telegram text-xl text-[#80E9E5]" />
+              <i className="bi bi-telegram text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {lnc.score && (

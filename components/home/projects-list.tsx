@@ -27,7 +27,7 @@ export default function ProjectsList({
 
   return (
     <div
-      className={`shadow-[rgba(0, 0, 0, 0.55)] container absolute left-1/2 top-0 z-20 mt-16 flex -translate-x-1/2 flex-col gap-1 rounded-3xl border border-[#BEBDBE] bg-[#1A1A17] py-4 text-white shadow-lg ${showOnDesktop ? "" : "md:hidden"}`}
+      className={`shadow-[rgba(0, 0, 0, 0.55)] container absolute left-1/2 top-0 z-20 mt-16 flex -translate-x-1/2 flex-col gap-1 rounded-lg border border-[#BEBDBE] bg-[#1A1A17] py-4 text-white shadow-lg ${showOnDesktop ? "" : "md:hidden"}`}
     >
       {filteredProjects.length ? (
         filteredProjects.map((project: any) => (

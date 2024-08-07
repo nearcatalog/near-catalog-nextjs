@@ -118,7 +118,7 @@ export default async function PriceInfo({
             <div className="flex flex-col p-1" key={item.label}>
               <p className="text-sm">{item.label}</p>
               <p
-                className={`${item.label === "ATH" ? "text-green-500" : undefined} text-sm font-medium`}
+                className={`${item.label === "ATH" ? "text-green-500" : undefined} text-sm font-bold`}
               >
                 {item.value}
               </p>

@@ -87,7 +87,7 @@ function TagsModal({ tags }: TagsModalProps) {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
-        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-[#1A1A17] px-6 py-2 focus:outline-none">
+        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 py-2 focus:outline-none">
           <Dialog.Title className="flex items-center justify-between">
             <span className="text-xs font-medium">Select Tags</span>
             <Dialog.Close>

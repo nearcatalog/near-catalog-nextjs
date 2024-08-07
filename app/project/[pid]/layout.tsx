@@ -48,8 +48,10 @@ export default async function ProjectLayout({ params, children }: Props) {
   const projectValues: ProjectRecord[] = Object.values(projects);
   return (
     <div className="relative mt-4" id="top">
-      <SearchInput />
-      <ProjectsList projects={projectValues} showOnDesktop />
+      <div className="relative mx-4">
+        <SearchInput />
+        <ProjectsList projects={projectValues} showOnDesktop />
+      </div>
       {children}
     </div>
   );
