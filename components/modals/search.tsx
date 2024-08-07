@@ -58,7 +58,7 @@ export default function SearchModal() {
   }, [isOpen, setTags]);
 
   if (!projects) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const projectArray: ProjectRecord[] = Object.values(projects);
