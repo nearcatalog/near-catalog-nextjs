@@ -14,19 +14,19 @@ type Route = {
 
 const routes: Route[] = [
   {
-    name: "Ecosystem Support",
+    name: "Ecosystem",
     href: "/#ecosystem-support",
   },
   {
-    name: "Hot Projects",
+    name: "Trending",
     href: "/#hot-projects",
   },
   {
-    name: "Discover All Projects",
+    name: "Discover",
     href: "/#all-projects",
   },
   {
-    name: "Bookmarked Projects",
+    name: "Bookmarks",
     href: "/bookmarks",
   },
 ];
