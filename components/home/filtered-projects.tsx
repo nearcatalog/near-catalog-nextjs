@@ -62,10 +62,7 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
 
   return (
     <>
-      <ProjectsList
-        projects={displayedProjects}
-        allProjects={Object.values(projects)}
-      />
+      <ProjectsList projects={displayedProjects} />
       {hasMore && <div ref={ref} style={{ height: "20px" }}></div>}
     </>
   );
