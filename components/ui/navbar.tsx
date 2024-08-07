@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useSearchModalStore } from "@/store/search-modal-store";
 
 type Route = {
   name: string;
@@ -70,7 +71,7 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
     <Link
       href={href}
       onClick={handleClick}
-      className="rounded-full px-4 py-2 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828]"
+      className="rounded-full px-2 py-1 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828] lg:px-4 lg:py-2"
     >
       {children}
     </Link>
@@ -79,6 +80,9 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const { setIsOpen: setSearchModalOpen } = useSearchModalStore();
 
   const handleClick = () => {
     setIsOpen((prev) => !prev);
@@ -87,7 +91,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar sticky top-0 z-20 bg-black/60 backdrop-blur-sm">
-        <div className="container mx-auto flex h-14 items-center justify-between gap-2 px-5 py-2 md:h-20 md:py-4">
+        <div className="container mx-auto flex h-16 items-center justify-between gap-2 px-5 md:h-20 md:py-4">
           <Link
             href="/"
             onClick={() => isOpen && handleClick()}
@@ -100,7 +104,7 @@ export default function Navbar() {
               priority={true}
             />
           </Link>
-          <div className="mx-auto hidden items-center gap-2 md:flex">
+          <div className="mx-auto hidden items-center gap-1 md:flex md:gap-2">
             {routes.map((route) => (
               <NavLink key={route.name} href={route.href}>
                 {route.name}
@@ -108,21 +112,36 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden min-w-max flex-1 shrink-0 justify-end md:flex">
+          <div className="hidden min-w-max flex-1 shrink-0 items-center justify-end gap-2 md:flex">
             <GradientButton
               target="_blank"
               href={"https://submit.nearcatalog.xyz/new-project/"}
             >
               Submit your project
             </GradientButton>
+            <button
+              aria-label="Search"
+              onClick={() => setSearchModalOpen(true)}
+              className="bg=[#1A1A17] hidden h-10 items-center gap-2 rounded-full border border-gray-400 px-4 py-2 text-white transition-colors duration-300 ease-in-out hover:bg-[#2b2d3a] md:flex"
+            >
+              <i className="bi bi-search flex items-center justify-center text-lg text-white" />
+              <span className="hidden lg:block">Search</span>
+            </button>
           </div>
-          <div className="align-center flex justify-center md:hidden">
+          <div className="align-center flex items-center justify-center gap-4 md:hidden">
             <button aria-label="Toggle Menu" onClick={handleClick}>
               {isOpen ? (
-                <i className="bi bi-x text-2xl text-white" />
+                <i className="bi bi-x flex items-center justify-center text-3xl text-white" />
               ) : (
-                <i className="bi bi-list text-xl text-white" />
+                <i className="bi bi-list flex items-center justify-center text-3xl text-white" />
               )}
+            </button>
+            <button
+              aria-label="Search"
+              onClick={() => setSearchModalOpen(true)}
+              className="flex items-center text-white"
+            >
+              <i className="bi bi-search flex items-center justify-center text-lg" />
             </button>
           </div>
         </div>

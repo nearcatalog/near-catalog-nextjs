@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
 import site from "@/config/site";
+import SearchModal from "@/components/modals/search";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Navbar />
           <div className="flex-grow">{children}</div>
           <Footer />
+          <SearchModal />
         </div>
       </body>
     </html>

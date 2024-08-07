@@ -7,6 +7,7 @@ import { useSearchStore } from "@/store/search-store";
 interface ProjectCardProps {
   project: ProjectRecord;
   maxWidth?: boolean;
+  onClick?: () => void;
 }
 
 const Tags = ({ tags }: { tags: string[] }) => {
@@ -24,7 +25,11 @@ const Tags = ({ tags }: { tags: string[] }) => {
   );
 };
 
-export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  maxWidth,
+  onClick,
+}: ProjectCardProps) {
   const router = useRouter();
   const { setSearchKey } = useSearchStore();
   const { profile } = project;
@@ -38,6 +43,10 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
       onClick={() => {
         router.push(`/project/${project.slug}#top`, { scroll: true });
         setSearchKey("");
+
+        if (onClick) {
+          onClick();
+        }
       }}
       className={`grow-1 min-h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} gap- shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-lg bg-[#11141B] px-5 py-4 transition-all duration-300 ease-in-out hover:bg-[#2b2d3a] md:justify-normal md:px-8 md:py-7`}
     >

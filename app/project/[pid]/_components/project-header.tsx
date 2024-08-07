@@ -14,7 +14,7 @@ export default function ProjectHeader({
       <Image
         src={profile?.image?.url}
         alt={profile?.name}
-        className="pointer-events-none size-[7.5rem] rounded-full object-cover"
+        className="pointer-events-none size-[7.5rem] rounded-full bg-black object-cover"
         width={120}
         height={120}
         sizes="120px"

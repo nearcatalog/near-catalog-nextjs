@@ -1,7 +1,5 @@
-import ProjectsList from "@/components/home/projects-list";
-import SearchInput from "@/components/search-input";
 import type { Metadata, ResolvingMetadata } from "next";
-import { fetchAllProjects, fetchProject } from "@/lib/near-catalog";
+import { fetchProject } from "@/lib/near-catalog";
 import { ProjectRecord } from "@/lib/types";
 
 type MetadataProps = {
@@ -38,20 +36,9 @@ type Props = MetadataProps & {
   children: React.ReactNode;
 };
 
-export default async function ProjectLayout({ params, children }: Props) {
-  const { pid } = params;
-  if (!pid) {
-    return <div>Project ID not found</div>;
-  }
-
-  const projects = await fetchAllProjects();
-  const projectValues: ProjectRecord[] = Object.values(projects);
+export default function ProjectLayout({ params, children }: Props) {
   return (
     <div className="relative mt-4" id="top">
-      <div className="relative mx-4">
-        <SearchInput />
-        <ProjectsList projects={projectValues} showOnDesktop />
-      </div>
       {children}
     </div>
   );

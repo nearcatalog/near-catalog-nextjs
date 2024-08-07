@@ -5,9 +5,10 @@ import ProjectCard from "@/components/ui/project-card";
 interface ProjectsListProps {
   projects: ProjectRecord[];
   allProjects: ProjectRecord[];
+  onClick?: () => void;
 }
 
-export default function ProjectsList({ projects }: ProjectsListProps) {
+export default function ProjectsList({ projects, onClick }: ProjectsListProps) {
   if (projects.length === 0) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
@@ -26,7 +27,12 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
     <>
       <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} maxWidth />
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            onClick={onClick}
+            maxWidth
+          />
         ))}
       </div>
     </>

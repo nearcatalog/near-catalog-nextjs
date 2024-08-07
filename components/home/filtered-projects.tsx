@@ -10,9 +10,13 @@ const ITEMS_PER_PAGE = 12;
 
 interface FilterProjectsProps {
   projects: Record<ProjectId, ProjectRecord>;
+  onClick?: () => void;
 }
 
-export default function FilterProjects({ projects }: FilterProjectsProps) {
+export default function FilterProjects({
+  projects,
+  onClick,
+}: FilterProjectsProps) {
   const { tags, searchKey } = useSearchStore();
   const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
   const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>(
@@ -65,6 +69,7 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
       <ProjectsList
         projects={displayedProjects}
         allProjects={Object.values(projects)}
+        onClick={onClick}
       />
       {hasMore && <div ref={ref} style={{ height: "20px" }}></div>}
     </>
