@@ -24,7 +24,7 @@ const Tags = ({
         <div
           key={tag}
           onClick={() => handleTagClick(tag)}
-          className={`${selectedTags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
+          className={`${selectedTags.includes(tag) ? "" : "opacity-50"} inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
         >
           {selectedTags.includes(tag) ? (
             <i className="bi bi-check text-xl" />
@@ -78,20 +78,20 @@ function TagsModal({ tags }: TagsModalProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <div className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-full border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden">
+        <div className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-lg border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden">
           <span>
             {`Selected Tags: ${selectedTags.length === tags.length ? "All" : selectedTags.join(", ")}`}
           </span>
-          <i className="bi bi-chevron-down h-4 w-4 text-xl" />
+          <i className="bi bi-chevron-down flex h-4 w-4 items-center justify-center text-xl" />
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
         <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 py-2 focus:outline-none">
-          <Dialog.Title className="flex items-center justify-between">
-            <span className="text-xs font-medium">Select Tags</span>
+          <Dialog.Title className="mb-2 flex items-center justify-between">
+            <span className="text-lg font-medium">Select Tags</span>
             <Dialog.Close>
-              <i className="bi bi-x text-xl" />
+              <i className="bi bi-x text-2xl" />
             </Dialog.Close>
           </Dialog.Title>
           <Dialog.Description className="hidden" />
