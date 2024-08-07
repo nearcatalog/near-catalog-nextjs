@@ -2,7 +2,7 @@ import Script from "next/script";
 
 function Loader() {
   return (
-    <div className="ounded-lg">
+    <div className="rounded-lg">
       <div className="flex size-6 w-fit animate-spin items-center justify-center p-4">
         <i className="bi bi-arrow-repeat text-2xl"></i>
       </div>
