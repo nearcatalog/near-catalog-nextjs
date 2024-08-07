@@ -2,7 +2,7 @@ import Script from "next/script";
 
 function Loader() {
   return (
-    <div className="my-3 rounded-3xl">
+    <div className="my-3 rounded-lg">
       <div className="flex size-6 w-fit animate-spin items-center justify-center p-4">
         <i className="bi bi-arrow-repeat text-2xl"></i>
       </div>
@@ -18,7 +18,7 @@ export default function TwitterTimelineEmbed({
   name: string;
 }) {
   return (
-    <div className="my-3 rounded-3xl bg-[#1b1d2a]">
+    <div className="my-3 rounded-lg bg-[#1b1d2a]">
       <div className="p-4">
         <small>
           <i>Open link in new tab with right click or hold</i>

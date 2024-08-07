@@ -43,21 +43,21 @@ export default function LoadingPage() {
       <div className="mt-4 flex flex-col gap-4">
         <h3 className="text-2xl font-bold">Discover More</h3>
         <div className={`grid grid-cols-1 gap-4 md:grid-cols-3`}>
-          <div className="flex animate-pulse flex-col gap-2 rounded-3xl bg-[#1b1d2a] p-4 md:flex-row">
+          <div className="flex animate-pulse flex-col gap-2 rounded-lg bg-[#1b1d2a] p-4 md:flex-row">
             <div className="h-16 w-16 rounded-full bg-gray-700"></div>
             <div className="flex flex-col gap-1">
               <div className="h-4 w-32 rounded-md bg-gray-700"></div>
               <div className="h-3 w-24 rounded-md bg-gray-700"></div>
             </div>
           </div>
-          <div className="flex animate-pulse flex-col gap-2 rounded-3xl bg-[#1b1d2a] p-4 md:flex-row">
+          <div className="flex animate-pulse flex-col gap-2 rounded-lg bg-[#1b1d2a] p-4 md:flex-row">
             <div className="h-16 w-16 rounded-full bg-gray-700"></div>
             <div className="flex flex-col gap-1">
               <div className="h-4 w-32 rounded-md bg-gray-700"></div>
               <div className="h-3 w-24 rounded-md bg-gray-700"></div>
             </div>
           </div>
-          <div className="flex animate-pulse flex-col gap-2 rounded-3xl bg-[#1b1d2a] p-4 md:flex-row">
+          <div className="flex animate-pulse flex-col gap-2 rounded-lg bg-[#1b1d2a] p-4 md:flex-row">
             <div className="h-16 w-16 rounded-full bg-gray-700"></div>
             <div className="flex flex-col gap-1">
               <div className="h-4 w-32 rounded-md bg-gray-700"></div>
