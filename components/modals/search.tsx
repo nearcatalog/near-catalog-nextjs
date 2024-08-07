@@ -13,10 +13,10 @@ import Link from "next/link";
 
 function Tags({
   tags,
-  onClick,
+  handleOnClick,
 }: {
   tags: Record<string, string>;
-  onClick: () => void;
+  handleOnClick: () => void;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -25,7 +25,7 @@ function Tags({
           href={`/category/${key}`}
           className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
           key={index}
-          onClick={onClick}
+          onClick={handleOnClick}
         >
           {tags[key]}
         </Link>
@@ -98,10 +98,8 @@ export default function SearchModal() {
             <SearchInput bgColor="#1A1A17" />
           </div>
           <div className="mb-4 flex flex-col gap-2 px-4">
-            <Tags tags={uniqueTags} onClick={() => setIsOpen(false)} />
-            <FilterProjects
-              projects={projects}
-            />
+            <Tags tags={uniqueTags} handleOnClick={() => setIsOpen(false)} />
+            <FilterProjects projects={projects} />
           </div>
         </Dialog.Content>
       </Dialog.Portal>
