@@ -101,7 +101,6 @@ export default function SearchModal() {
             <Tags tags={uniqueTags} onClick={() => setIsOpen(false)} />
             <FilterProjects
               projects={projects}
-              onClick={() => setIsOpen(false)}
             />
           </div>
         </Dialog.Content>

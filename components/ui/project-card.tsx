@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ProjectRecord } from "@/lib/types";
 import { useSearchStore } from "@/store/search-store";
+import { useSearchModalStore } from "@/store/search-modal-store";
 
 interface ProjectCardProps {
   project: ProjectRecord;
@@ -25,13 +26,11 @@ const Tags = ({ tags }: { tags: string[] }) => {
   );
 };
 
-export default function ProjectCard({
-  project,
-  maxWidth,
-  onClick,
-}: ProjectCardProps) {
+export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
   const router = useRouter();
   const { setSearchKey } = useSearchStore();
+  const { isOpen: searchModalOpen, setIsOpen: setSearchModalOpen } =
+    useSearchModalStore();
   const { profile } = project;
 
   const title = profile.name;
@@ -44,8 +43,8 @@ export default function ProjectCard({
         router.push(`/project/${project.slug}#top`, { scroll: true });
         setSearchKey("");
 
-        if (onClick) {
-          onClick();
+        if (searchModalOpen) {
+          setSearchModalOpen(false);
         }
       }}
       className={`grow-1 min-h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} gap- shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-lg bg-[#11141B] px-5 py-4 transition-all duration-300 ease-in-out hover:bg-[#2b2d3a] md:justify-normal md:px-8 md:py-7`}
