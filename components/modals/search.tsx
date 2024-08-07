@@ -36,7 +36,7 @@ function Tags({
 
 export default function SearchModal() {
   const { isOpen, setIsOpen } = useSearchModalStore();
-  const { setTags, tags: searchTags } = useSearchStore();
+  const { setTags } = useSearchStore();
 
   const [projects, setProjects] = useState<null | Record<
     string,
