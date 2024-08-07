@@ -7,6 +7,7 @@ import FilterProjects from "../home/filtered-projects";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import { useEffect, useState } from "react";
+import { useSearchStore } from "@/store/search-store";
 
 import Link from "next/link";
 
@@ -35,6 +36,7 @@ function Tags({
 
 export default function SearchModal() {
   const { isOpen, setIsOpen } = useSearchModalStore();
+  const { setTags, tags: searchTags } = useSearchStore();
 
   const [projects, setProjects] = useState<null | Record<
     string,
@@ -48,6 +50,12 @@ export default function SearchModal() {
         throw new Error(err);
       });
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setTags([]);
+    }
+  }, [isOpen, setTags]);
 
   if (!projects) {
     return <div>Loading...</div>;
