@@ -38,10 +38,9 @@ const WebsiteLink = ({
 
 interface LinkTreeProps {
   project: ProjectRecord;
-  direction?: "left" | "right";
 }
 
-export default function LinkTree({ project, direction }: LinkTreeProps) {
+export default function LinkTree({ project }: LinkTreeProps) {
   const { website, github, twitter, medium, discord, telegram } =
     project.profile?.linktree;
   const { dapp, lnc } = project.profile;
@@ -59,9 +58,9 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div
-        className={`relative flex flex-wrap items-center gap-1 ${direction === "left" ? "justify-start" : "justify-end"}`}
+        className={`relative flex flex-wrap items-center gap-1 lg:justify-end`}
       >
         <button
           onClick={handleStarProject}
@@ -94,7 +93,7 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
       </div>
       <div className="mt-2 flex flex-col gap-2">
         <div
-          className={`mb-3 flex flex-wrap items-center gap-2 ${direction === "left" ? "justify-start" : "justify-end"}`}
+          className={`mb-3 flex flex-wrap items-center justify-start gap-2 lg:justify-end`}
         >
           {twitter && (
             <Link href={twitter} aria-label="Twitter">
@@ -138,6 +137,6 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }

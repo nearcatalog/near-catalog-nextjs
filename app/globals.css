@@ -77,7 +77,7 @@ a {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-0.3125rem);
   }
   100% {
     transform: translateY(0);
@@ -96,13 +96,13 @@ a {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 7.5rem;
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 2;
 
-  @media (max-width: 768px) {
-    width: 40px;
+  @media (max-width: 48rem) {
+    width: 2.5rem;
   }
 }
 

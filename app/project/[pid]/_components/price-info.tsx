@@ -1,22 +1,35 @@
 import Image from "next/image";
 
-async function getPriceData(tokenInfo: any) {
-  const res = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${tokenInfo.platform.coingecko}`,
+async function fetchCoinGeckoData(platformId: string) {
+  const response = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${platformId}`,
     {
       next: {
         revalidate: 30,
       },
     },
   );
-  try {
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw new Error(`Error fetching price data: ${error}`);
+
+  if (!response.ok) {
+    throw new Error(`Error fetching data: ${response.statusText}`);
   }
+
+  return response.json();
 }
+
+const formatNumber = (
+  num: number | undefined,
+  decimals: number = 8,
+  fallback: string = "-",
+) => (num !== undefined ? num.toFixed(decimals) : fallback);
+
+const formatLargeNumber = (num: number | undefined, fallback: string = "-") =>
+  num !== undefined
+    ? num
+        .toFixed(0)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : fallback;
 
 export default async function PriceInfo({
   tokenInfo,
@@ -25,145 +38,104 @@ export default async function PriceInfo({
   tokenInfo: any;
   name: string;
 }) {
-  if (!tokenInfo?.platform?.coingecko) {
-    return "";
-  }
-  const data = await getPriceData(tokenInfo);
+  if (!tokenInfo?.platform?.coingecko) return null;
 
-  if (Object.keys(data).length === 0) {
+  let data;
+  try {
+    data = await fetchCoinGeckoData(tokenInfo.platform.coingecko);
+  } catch (error) {
+    console.log(error);
     return <></>;
   }
+
+  if (Object.keys(data).length === 0) return <></>;
+
+  const {
+    market_data: {
+      current_price = {},
+      price_change_percentage_24h_in_currency = {},
+      ath = {},
+      high_24h = {},
+      low_24h = {},
+      total_volume = {},
+      market_cap = {},
+      circulating_supply = {},
+    } = {},
+  } = data;
+
+  const priceChangeClassName =
+    (price_change_percentage_24h_in_currency?.usd ?? 0) < 0
+      ? "text-red-500"
+      : "text-green-500";
+
   return (
-    <div className="mb-4 rounded-3xl bg-[#1b1d2a] p-4">
-      {data !== null ? (
-        <div>
-          <h3 className="text-base font-bold">{name} Token Status</h3>
-          <div className="flex flex-col">
-            <div className="flex flex-col gap-2 p-2">
-              <div className="flex items-center gap-2">
-                <Image
-                  alt={name}
-                  src={tokenInfo.icon.small}
-                  className="rounded-full object-cover"
-                  width={25}
-                  height={25}
-                />
-                <b>{tokenInfo.symbol}</b>/usd
-              </div>
-              <h4 className="text-3xl font-bold">
-                $
-                {data.market_data?.current_price?.usd
-                  ? data.market_data?.current_price?.usd
-                  : " -"}
-                <small
-                  className={`+ text-sm font-medium ${
-                    data.market_data?.price_change_percentage_24h_in_currency
-                      ?.usd < 0
-                      ? "text-red-500"
-                      : "text-green-500"
-                  } `}
-                >
-                  {data.market_data?.price_change_percentage_24h_in_currency
-                    ?.usd
-                    ? data.market_data?.price_change_percentage_24h_in_currency?.usd.toFixed(
-                        2,
-                      )
-                    : "-"}
-                  %
-                </small>
-              </h4>
-            </div>
-            <div className="flex flex-col flex-wrap gap-4 p-2 sm:flex-row">
-              <div className="max-w-1/2 flex-grow basis-0 overflow-hidden text-ellipsis">
-                ATH
-                <p className="text-green-500">
-                  $
-                  {data?.market_data?.ath.usd
-                    ? data?.market_data?.ath.usd.toFixed(8)
-                    : " -"}
-                </p>
-              </div>
-              <div className="max-w-1/2 flex-grow basis-0">
-                24h high
-                <p>
-                  <b>
-                    $
-                    {data?.market_data?.high_24h.usd
-                      ? data?.market_data?.high_24h.usd.toFixed(8)
-                      : " -"}
-                  </b>
-                </p>
-              </div>
-              <div className="max-w-1/2 flex-grow basis-0">
-                Volume 24h
-                <p>
-                  <b>
-                    {"$" + data.market_data?.total_volume?.usd
-                      ? data.market_data?.total_volume?.usd
-                          .toFixed(0)
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      : " -"}
-                  </b>
-                </p>
-              </div>
-              <div className="max-w-1/2 flex-grow basis-0">
-                24h low
-                <p>
-                  <b>
-                    $
-                    {data.market_data?.low_24h?.usd
-                      ? data.market_data?.low_24h?.usd.toFixed(8)
-                      : " -"}
-                  </b>
-                </p>
-              </div>
-              <div className="max-w-1/2 flex-grow basis-0">
-                Market Cap
-                <p>
-                  <b>
-                    {data.market_data?.market_cap?.usd
-                      ? "$" +
-                        data.market_data?.market_cap.usd
-                          .toFixed(0)
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      : " -"}
-                  </b>
-                </p>
-              </div>
-              <div className="max-w-1/2 flex-grow basis-0">
-                Circulating Supply
-                <p>
-                  <b>
-                    {data.market_data?.circulating_supply
-                      ? data.market_data?.circulating_supply
-                          .toFixed(0)
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      : "-"}
-                  </b>
-                </p>
-              </div>
-            </div>
+    <div className="rounded-lg bg-[#1b1d2a] p-4">
+      <h3 className="text-xl font-bold">{name} Token Status</h3>
+      <div className="flex flex-col">
+        <div className="flex flex-col gap-2 p-2">
+          <div className="flex items-center gap-2">
+            <Image
+              alt={name}
+              src={tokenInfo.icon.small}
+              className="rounded-full object-cover"
+              width={25}
+              height={25}
+            />
+            <span>
+              <b>{tokenInfo.symbol}</b>
+              <small>/usd</small>
+            </span>
           </div>
-          <div>
-            <a
-              target="_blank"
-              style={{ color: "inherit" }}
-              rel="nofollow"
-              href={
-                `https://www.coingecko.com/en/coins/` +
-                tokenInfo.platform.coingecko
-              }
+          <h4 className="text-3xl font-medium">
+            ${current_price?.usd ?? " -"}
+            <small
+              className={`ml-2 text-sm font-medium ${priceChangeClassName}`}
             >
-              View on CoinGecko
-            </a>
-          </div>
+              {formatNumber(
+                price_change_percentage_24h_in_currency?.usd,
+                2,
+                "-",
+              )}
+              %
+            </small>
+          </h4>
         </div>
-      ) : (
-        <div> {data.error ? data.error : "Loading ..."} </div>
-      )}
+        <div className="flex flex-col flex-wrap gap-4 lg:flex-row">
+          {[
+            { label: "ATH", value: formatNumber(ath?.usd, 8) },
+            { label: "24h high", value: formatNumber(high_24h?.usd, 8) },
+            {
+              label: "Volume 24h",
+              value: formatLargeNumber(total_volume?.usd),
+            },
+            { label: "24h low", value: formatNumber(low_24h?.usd, 8) },
+            { label: "Market Cap", value: formatLargeNumber(market_cap?.usd) },
+            {
+              label: "Circulating Supply",
+              value: formatLargeNumber(circulating_supply),
+            },
+          ].map((item) => (
+            <div className="flex flex-col p-1" key={item.label}>
+              <p className="text-sm">{item.label}</p>
+              <p
+                className={`${item.label === "ATH" ? "text-green-500" : undefined} text-sm font-medium`}
+              >
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-2">
+        <a
+          target="_blank"
+          style={{ color: "inherit" }}
+          rel="nofollow"
+          href={`https://www.coingecko.com/en/coins/${tokenInfo.platform.coingecko}`}
+        >
+          View on CoinGecko ↗
+        </a>
+      </div>
     </div>
   );
 }

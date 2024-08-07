@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:flex-row">
           <div className="flex max-w-72 flex-col gap-4">
             <h4 className="text-sm font-bold">Did we miss something?</h4>
-            <p className="text-[12px] font-medium">
+            <p className="text-xs font-medium">
               Is your project also built on NEAR but you could not find it in
               our Landscape? Submit your project and we will review it shortly.
             </p>
@@ -42,7 +42,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Discord"
               >
-                <i className="bi bi-discord text-[32px]" />
+                <i className="bi bi-discord text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
@@ -50,7 +50,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Chat"
               >
-                <i className="bi bi-chat text-[32px]" />
+                <i className="bi bi-chat text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
@@ -58,7 +58,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Twitter"
               >
-                <i className="bi bi-twitter-x text-[32px]" />
+                <i className="bi bi-twitter-x text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
@@ -66,7 +66,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Github"
               >
-                <i className="bi bi-github text-[32px]" />
+                <i className="bi bi-github text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
@@ -74,7 +74,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Telegram"
               >
-                <i className="bi bi-telegram text-[32px]" />
+                <i className="bi bi-telegram text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
@@ -82,7 +82,7 @@ export default function Footer() {
                 target="_blank"
                 aria-label="Youtube"
               >
-                <i className="bi bi-youtube text-[32px]" />
+                <i className="bi bi-youtube text-[2rem]" />
               </Link>
             </div>
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">

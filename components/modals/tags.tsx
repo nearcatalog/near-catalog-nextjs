@@ -86,8 +86,8 @@ function TagsModal({ tags }: TagsModalProps) {
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[6px]" />
-        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-[#1A1A17] px-6 py-2 focus:outline-none">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
+        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-2xl bg-[#1A1A17] px-6 py-2 focus:outline-none">
           <Dialog.Title className="flex items-center justify-between">
             <span className="text-xs font-medium">Select Tags</span>
             <Dialog.Close>
@@ -105,7 +105,7 @@ function TagsModal({ tags }: TagsModalProps) {
                 onChange={handleToggleAllTags}
                 aria-label="Toggle all tags"
               />
-              <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+              <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[.125rem] after:top-[.125rem] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
               <span className="ms-3 text-sm font-medium text-gray-300">
                 All Tags
               </span>

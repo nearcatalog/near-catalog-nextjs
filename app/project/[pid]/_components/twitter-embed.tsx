@@ -2,7 +2,7 @@ import Script from "next/script";
 
 function Loader() {
   return (
-    <div className="my-3 rounded-lg">
+    <div className="ounded-lg">
       <div className="flex size-6 w-fit animate-spin items-center justify-center p-4">
         <i className="bi bi-arrow-repeat text-2xl"></i>
       </div>
@@ -18,12 +18,10 @@ export default function TwitterTimelineEmbed({
   name: string;
 }) {
   return (
-    <div className="my-3 rounded-lg bg-[#1b1d2a]">
-      <div className="p-4">
-        <small>
-          <i>Open link in new tab with right click or hold</i>
-        </small>
-      </div>
+    <div className="flex flex-col gap-4 rounded-lg bg-[#1b1d2a] p-4">
+      <h3 className="text-xl font-bold">
+        <i className="bi bi-twitter-x"></i> {name} Twitter
+      </h3>
       <div
         className="overflow-y-auto rounded-xl"
         style={{ maxHeight: "500px", minHeight: "500px" }}
@@ -36,10 +34,7 @@ export default function TwitterTimelineEmbed({
           data-tweet-limit="10"
           href={href}
         >
-          <div className="flex flex-col items-center justify-center gap-2">
-            <span className="underline underline-offset-2">
-              Tweets by {name} 🚀
-            </span>
+          <div className="my-4 flex flex-col items-center justify-center gap-2">
             <Loader />
           </div>
         </a>

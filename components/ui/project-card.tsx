@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { ProjectRecord } from "@/lib/types";
 import { useSearchStore } from "@/store/search-store";
 
-const DESCRIPTION_MAX_CHARACTERS = 90;
-
 interface ProjectCardProps {
   project: ProjectRecord;
   maxWidth?: boolean;
@@ -32,12 +30,7 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
   const { profile } = project;
 
   const title = profile.name;
-
   const description = profile.tagline;
-  const truncatedDescription =
-    description.length > DESCRIPTION_MAX_CHARACTERS
-      ? `${Array.from(description).slice(0, DESCRIPTION_MAX_CHARACTERS).join("")}...`
-      : description;
 
   return (
     <div
@@ -46,24 +39,24 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
         router.push(`/project/${project.slug}#top`, { scroll: true });
         setSearchKey("");
       }}
-      className={`grow-1 h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-[32px] bg-[#11141B] px-8 py-7 md:justify-normal`}
+      className={`grow-1 h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-[2rem] bg-[#11141B] px-8 py-7 md:justify-normal`}
     >
       <div className="flex h-full w-full items-center gap-2 overflow-hidden md:h-auto md:flex-col md:items-start">
         <Image
-          className="size-[96px] rounded-full md:size-[120px]"
+          className="size-[6rem] rounded-full md:size-[6rem]"
           src={profile.image.url}
           alt={profile.name}
           width={120}
           height={120}
         />
         <div className="flex flex-col gap-1">
-          <h3 className="m-0 overflow-ellipsis break-words p-0 text-[32px] font-bold leading-9 text-white md:break-words">
+          <h3 className="m-0 overflow-ellipsis break-words p-0 text-[1.25rem] font-bold text-white md:break-words">
             {title}
           </h3>
         </div>
       </div>
-      <p className="m-0 overflow-ellipsis break-words p-0 text-[16px] font-medium md:break-words">
-        {truncatedDescription}
+      <p className="m-0 overflow-ellipsis break-words p-0 text-sm font-medium md:break-words">
+        {description}
       </p>
       <Tags tags={Object.values(profile.tags)} />
     </div>
