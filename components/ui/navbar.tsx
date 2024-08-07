@@ -41,7 +41,7 @@ interface NavLinkProps {
 function NavLink({ href, children, onClick }: NavLinkProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const handleClick = async (e: any) => {
+  const handleNavLink = async (e: any) => {
     if (href.startsWith("/#")) {
       e.preventDefault();
       const targetId = href.substring(2); // Remove '/#'
@@ -70,7 +70,7 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
   return (
     <Link
       href={href}
-      onClick={handleClick}
+      onClick={handleNavLink}
       className="rounded-full px-2 py-1 text-center font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#1A1A17] focus:bg-[#282828] lg:px-4 lg:py-2"
     >
       {children}
@@ -80,11 +80,10 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
 
   const { setIsOpen: setSearchModalOpen } = useSearchModalStore();
 
-  const handleClick = () => {
+  const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
 
@@ -94,7 +93,7 @@ export default function Navbar() {
         <div className="container mx-auto flex h-16 items-center justify-between gap-2 px-5 md:h-20 md:py-4">
           <Link
             href="/"
-            onClick={() => isOpen && handleClick()}
+            onClick={() => isOpen && toggleDropdown()}
             className="min-w-max flex-1"
           >
             <Image
@@ -129,7 +128,7 @@ export default function Navbar() {
             </button>
           </div>
           <div className="align-center flex items-center justify-center gap-4 md:hidden">
-            <button aria-label="Toggle Menu" onClick={handleClick}>
+            <button aria-label="Toggle Menu" onClick={toggleDropdown}>
               {isOpen ? (
                 <i className="bi bi-x flex items-center justify-center text-3xl text-white" />
               ) : (
@@ -153,7 +152,7 @@ export default function Navbar() {
           className={`mt-14 ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-5 opacity-0"} m-4 flex flex-col items-center gap-6 transition-all duration-300 ease-in-out`}
         >
           {routes.map((route, index) => (
-            <NavLink key={index} href={route.href} onClick={handleClick}>
+            <NavLink key={index} href={route.href} onClick={toggleDropdown}>
               {route.name}
             </NavLink>
           ))}

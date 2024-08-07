@@ -53,7 +53,7 @@ export default function TokenInfo({ tokenInfo }: TokenInfoProps) {
   const auroraRef = useRef<HTMLDivElement>(null);
   const ethereumRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = (ref: React.RefObject<HTMLDivElement>) => {
+  const selectContent = (ref: React.RefObject<HTMLDivElement>) => {
     const range = document.createRange();
     range.selectNode(ref.current!);
     const selection = window.getSelection();
@@ -75,7 +75,7 @@ export default function TokenInfo({ tokenInfo }: TokenInfoProps) {
               explorerUrl={`https://nearblocks.io/address/${near}`}
               tokenAddress={near}
               refObj={nearRef}
-              onClick={handleClick}
+              onClick={selectContent}
             />
           )}
           {aurora && (
@@ -85,7 +85,7 @@ export default function TokenInfo({ tokenInfo }: TokenInfoProps) {
               explorerUrl={`https://explorer.aurora.dev/address/${aurora}`}
               tokenAddress={aurora}
               refObj={auroraRef}
-              onClick={handleClick}
+              onClick={selectContent}
             />
           )}
           {ethereum && (
@@ -95,7 +95,7 @@ export default function TokenInfo({ tokenInfo }: TokenInfoProps) {
               explorerUrl={`https://etherscan.io/address/${ethereum}`}
               tokenAddress={ethereum}
               refObj={ethereumRef}
-              onClick={handleClick}
+              onClick={selectContent}
             />
           )}
         </div>
