@@ -14,7 +14,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
     <div className="mt-auto flex flex-wrap items-center gap-2">
       {tags.map((value, key) => (
         <p
-          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-full bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
+          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
           key={key}
         >
           {value}

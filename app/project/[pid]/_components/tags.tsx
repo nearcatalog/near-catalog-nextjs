@@ -6,7 +6,7 @@ export default function Tags({ tags }: { tags: Record<string, string> }) {
       {Object.keys(tags).map((key, index) => (
         <Link
           href={`/category/${key}`}
-          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-full bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
+          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
           key={index}
         >
           {tags[key]}
