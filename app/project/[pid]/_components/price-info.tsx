@@ -45,7 +45,14 @@ export default async function PriceInfo({
     data = await fetchCoinGeckoData(tokenInfo.platform.coingecko);
   } catch (error) {
     console.log(error);
-    return <></>;
+    return (
+      <div className="rounded-lg bg-[#1b1d2a] p-4">
+        <h3 className="space-x-2 text-xl font-bold text-red-500">
+          <i className="bi bi-exclamation-triangle"></i>
+          <span>Error fetching data</span>
+        </h3>
+      </div>
+    );
   }
 
   if (Object.keys(data).length === 0) return <></>;
