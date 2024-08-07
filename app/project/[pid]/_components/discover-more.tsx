@@ -11,7 +11,7 @@ function ProjectCard({ project }: { project: any }) {
   return (
     <Link
       href={`/project/${project.slug}#top`}
-      className="flex flex-row gap-2 rounded-3xl bg-[#1b1d2a] p-4 transition-colors duration-300 ease-in-out hover:bg-[#2b2d3a]"
+      className="flex flex-row gap-2 rounded-lg bg-[#1b1d2a] p-4 transition-colors duration-300 ease-in-out hover:bg-[#2b2d3a]"
     >
       <Image
         src={project.profile.image.url}
@@ -49,7 +49,7 @@ export default async function DiscoverMore({
     );
   }
   return (
-    <div className="mt-4 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Discover More</h2>
       <div
         className={`discover-more grid grid-cols-1 gap-4 ${gridSize >= 3 ? "md:grid-cols-2" : "md:grid-cols-3"}`}

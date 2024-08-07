@@ -4,7 +4,6 @@ import ProjectCard from "@/components/ui/project-card";
 
 interface ProjectsListProps {
   projects: ProjectRecord[];
-  allProjects: ProjectRecord[];
 }
 
 export default function ProjectsList({ projects }: ProjectsListProps) {

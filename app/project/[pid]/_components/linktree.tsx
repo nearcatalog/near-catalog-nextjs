@@ -27,7 +27,7 @@ const WebsiteLink = ({
       rel="noreferrer"
       aria-label={ariaLabel}
       className={
-        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
+        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
         className
       }
     >
@@ -38,10 +38,9 @@ const WebsiteLink = ({
 
 interface LinkTreeProps {
   project: ProjectRecord;
-  direction?: "left" | "right";
 }
 
-export default function LinkTree({ project, direction }: LinkTreeProps) {
+export default function LinkTree({ project }: LinkTreeProps) {
   const { website, github, twitter, medium, discord, telegram } =
     project.profile?.linktree;
   const { dapp, lnc } = project.profile;
@@ -59,9 +58,9 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
   };
 
   return (
-    <>
+    <div className="flex min-w-64 flex-col gap-2">
       <div
-        className={`relative flex flex-wrap items-center gap-1 ${direction === "left" ? "justify-start" : "justify-end"}`}
+        className={`relative flex flex-wrap items-center gap-1 lg:justify-end`}
       >
         <button
           onClick={handleStarProject}
@@ -78,7 +77,7 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
             ariaLabel={project.profile.name}
             className={dapp ? "rounded-e-none" : ""}
           >
-            <i className="bi bi-globe text-2xl text-[#80E9E5]" /> Go to project
+            <i className="bi bi-globe text-xl text-[#80E9E5]" /> Website
           </WebsiteLink>
         )}
         {dapp && (
@@ -87,43 +86,38 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
             ariaLabel="Go to App"
             className={website ? "rounded-s-none" : ""}
           >
-            <i className="bi bi-app-indicator text-2xl text-[#80E9E5]" /> App
+            <i className="bi bi-app-indicator text-xl text-[#80E9E5]" /> App
           </WebsiteLink>
         )}
         <ShareDropdown project={project} />
       </div>
       <div className="mt-2 flex flex-col gap-2">
-        <p
-          className={`${direction === "left" ? "text-left" : "text-right"} text-xs font-medium`}
-        >
-          Connect with {project.profile?.name} on Social Media:
-        </p>
         <div
-          className={`mb-3 flex flex-wrap items-center gap-2 ${direction === "left" ? "justify-start" : "justify-end"}`}
+          className={`mb-3 flex flex-wrap items-center justify-start gap-3 lg:justify-end`}
         >
           {twitter && (
             <Link href={twitter} aria-label="Twitter">
-              <i className="bi bi-twitter-x text-2xl text-[#80E9E5]" />
+              <i className="bi bi-twitter-x text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {github && (
             <Link href={github} aria-label={`${project.profile.name} Github`}>
-              <i className="bi bi-github text-2xl text-[#80E9E5]" />
+              <i className="bi bi-github text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {medium && (
             <Link href={medium} aria-label="Medium">
-              <i className="bi bi-medium text-2xl text-[#80E9E5]" />
+              <i className="bi bi-medium text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {discord && (
             <Link href={discord} aria-label="Discord">
-              <i className="bi bi-discord text-2xl text-[#80E9E5]" />
+              <i className="bi bi-discord text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {telegram && (
             <Link href={telegram} aria-label="Telegram">
-              <i className="bi bi-telegram text-2xl text-[#80E9E5]" />
+              <i className="bi bi-telegram text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {lnc.score && (
@@ -143,6 +137,6 @@ export default function LinkTree({ project, direction }: LinkTreeProps) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }

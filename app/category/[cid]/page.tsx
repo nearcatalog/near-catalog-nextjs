@@ -59,7 +59,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <main className="container relative mx-auto flex flex-col gap-4 px-4 py-12">
       <Image
-        className="absolute right-1/2 top-0 z-0 h-[141px] w-[221px] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[222px] md:w-[347px] md:translate-x-0"
+        className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
         src={SearchImage}
         alt={"Discover All Projects"}
         style={{ userSelect: "none" }}
