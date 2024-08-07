@@ -27,7 +27,7 @@ const WebsiteLink = ({
       rel="noreferrer"
       aria-label={ariaLabel}
       className={
-        "p flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
+        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
         className
       }
     >
