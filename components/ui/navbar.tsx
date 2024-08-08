@@ -101,7 +101,6 @@ export default function Navbar() {
               className="h-10 w-24 object-contain md:h-14 md:w-28"
               alt="Near Logo"
               priority={true}
-              placeholder="blur"
             />
           </Link>
           <div className="mx-auto hidden items-center gap-1 md:flex md:gap-2">

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import ProjectCard from "@/components/ui/project-card";
+import ErrorImage from "@/public/assets/images/error.webp";
 import { getBookmarkedProjects } from "@/lib/bookmark-project";
 
 export default function Bookmarks() {
@@ -29,7 +30,7 @@ export default function Bookmarks() {
       {starredProjects.length === 0 ? (
         <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
           <Image
-            src={"/assets/images/error.webp"}
+            src={ErrorImage}
             alt={"Not found error"}
             width={182}
             placeholder="blur"

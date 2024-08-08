@@ -7,6 +7,7 @@ import ProjectHeader from "./_components/project-header";
 import TokenInfo from "./_components/token-info";
 import TwitterTimelineEmbed from "./_components/twitter-embed";
 import Markdown from "react-markdown";
+import ErrorImage from "@/public/assets/images/error.webp";
 
 interface ProjectPageProps {
   params: {
@@ -22,7 +23,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
           height={144}

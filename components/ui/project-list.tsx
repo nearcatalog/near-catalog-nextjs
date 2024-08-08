@@ -5,6 +5,7 @@ import { ProjectRecord } from "@/lib/types";
 import ProjectCard from "@/components/ui/project-card";
 import { useSearchStore } from "@/store/search-store";
 import ProjectSkeleton from "@/components/ui/project-skeleton";
+import ErrorImage from "@/public/assets/images/error.webp";
 
 interface ProjectsListProps {
   projects: ProjectRecord[];
@@ -16,7 +17,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
           placeholder="blur"

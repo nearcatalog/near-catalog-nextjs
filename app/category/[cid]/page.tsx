@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/section-heading";
 import { fetchProjectCategory } from "@/lib/near-catalog";
 import { ProjectCategory } from "@/lib/types";
 import SearchImage from "@/public/assets/images/search.webp";
+import ErrorImage from "@/public/assets/images/error.webp";
 import Image from "next/image";
 
 interface CategoryPageProps {
@@ -45,7 +46,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
           placeholder="blur"

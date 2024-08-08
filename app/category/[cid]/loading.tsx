@@ -1,27 +1,6 @@
 import Image from "next/image";
 import SearchImage from "@/public/assets/images/search.webp";
-
-const ProjectSkeleton = ({ maxWidth }: { maxWidth?: boolean }) => {
-  return (
-    <div
-      className={`grow-1 h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} shrink-0 animate-pulse flex-col items-start justify-start gap-3 rounded-[2rem] bg-[#11141B] px-8 py-7`}
-      style={{ userSelect: "none" }}
-    >
-      <div className="flex h-full w-full items-center gap-2 md:h-auto md:flex-col md:items-start">
-        <div className="size-[6rem] h-24 w-24 shrink-0 rounded-full bg-gray-700 md:size-[7.5rem]"></div>
-        <div className="flex w-full flex-col gap-1">
-          <div className="h-8 w-3/4 rounded-md bg-gray-700"></div>
-        </div>
-      </div>
-      <div className="h-4 w-5/6 rounded-md bg-gray-700"></div>
-      <div className="mt-auto flex w-full flex-wrap items-center gap-2">
-        <div className="h-6 w-16 rounded-full bg-gray-700"></div>
-        <div className="h-6 w-16 rounded-full bg-gray-700"></div>
-        <div className="h-6 w-16 rounded-full bg-gray-700"></div>
-      </div>
-    </div>
-  );
-};
+import ProjectSkeleton from "@/components/ui/project-skeleton";
 
 export default function LoadingPage() {
   return (
@@ -39,7 +18,7 @@ export default function LoadingPage() {
       </div>
       <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Array.from({ length: 4 }).map((_, index) => (
-          <ProjectSkeleton key={index} maxWidth />
+          <ProjectSkeleton key={index} />
         ))}
       </div>
     </div>

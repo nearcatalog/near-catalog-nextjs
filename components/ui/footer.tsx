@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-5 pt-10 md:items-center md:justify-center md:pt-0 lg:pt-0">
           <Link href="#" target="_blank">
-            <Image src={NearLogo} alt="Near Logo" placeholder="blur" />
+            <Image src={NearLogo} alt="Near Logo" />
           </Link>
           <p className="max-w-60 font-medium md:w-fit md:font-extrabold">
             Built with ❤️ by Banyan, NEAR Balkans and NEAR Catalog 🚀{" "}
