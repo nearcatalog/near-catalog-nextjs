@@ -89,7 +89,7 @@ export default function SearchModal() {
               </Dialog.Close>
             </Dialog.Title>
             <Dialog.Description className="hidden" />
-            <SearchInput bgColor="#1A1A17" />
+            <SearchInput bgColor="#1A1A17" autoSelect />
           </div>
           <div className="mb-4 flex flex-col gap-2 px-4">
             <Tags tags={uniqueTags} handleTagClick={() => setIsOpen(false)} />
