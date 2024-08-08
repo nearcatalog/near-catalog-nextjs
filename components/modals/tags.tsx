@@ -78,12 +78,12 @@ function TagsModal({ tags }: TagsModalProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <div className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-lg border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden">
+        <button className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-lg border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden">
           <span>
             {`Selected Tags: ${selectedTags.length === tags.length ? "All" : selectedTags.join(", ")}`}
           </span>
           <i className="bi bi-chevron-down flex h-4 w-4 items-center justify-center text-xl" />
-        </div>
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
