@@ -21,7 +21,7 @@ function ProjectCard({ project }: { project: any }) {
         width={64}
         height={64}
       />
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 overflow-hidden">
         <h3 className="text-base font-bold">{project.profile.name}</h3>
         <p className="text-sm font-medium">{project.profile.tagline}</p>
       </div>

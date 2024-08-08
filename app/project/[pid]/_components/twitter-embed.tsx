@@ -33,12 +33,17 @@ export default function TwitterTimelineEmbed({
           data-height="500"
           data-tweet-limit="10"
           href={href}
+          aria-label="Twitter Timeline"
         >
           <div className="my-4 flex flex-col items-center justify-center gap-2">
             <Loader />
           </div>
         </a>
-        <Script defer src="https://platform.twitter.com/widgets.js" />
+        <Script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          strategy="beforeInteractive"
+        />
       </div>
     </div>
   );

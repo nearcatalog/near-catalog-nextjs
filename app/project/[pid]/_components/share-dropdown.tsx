@@ -20,6 +20,7 @@ export default function ShareDropdown({ project }: ShareDropdownProps) {
     <>
       <button
         onClick={toggleOpen}
+        aria-label="Share dropdown"
         className={`flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 ${open ? "bg-[#80E9E5]/40 text-black" : ""}`}
       >
         <i className="bi bi-three-dots-vertical text-xl text-[#80E9E5]"></i>
