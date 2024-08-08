@@ -29,7 +29,7 @@ export default function ShareDropdown({ project }: ShareDropdownProps) {
         <div className="absolute right-0 top-full mt-2 flex w-fit flex-col gap-2 rounded-lg bg-[#1c1b2a] p-2 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
           <div className="flex min-w-fit shrink-0">
             <Link
-              href={`https://x.com/intent/post?text=Check out ${project.profile.name} - ${project.profile.tagline}%0A${site.url}project/${project.slug}%0A📒@nearcatalog`}
+              href={`https://x.com/intent/post?text=Check out ${project.profile.name} - ${project.profile.tagline}%0A${site.url}/project/${project.slug}%0A📒@nearcatalog`}
               target="_blank"
               className="flex w-full shrink-0 items-center gap-1 rounded-lg px-2 py-1 hover:bg-[#80E9E5]/40"
             >
