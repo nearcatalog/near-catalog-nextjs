@@ -11,7 +11,9 @@ export default function LoadingPage() {
         alt={"Discover All Projects"}
         placeholder="blur"
         width={347}
+        loading="lazy"
         height={222}
+        sizes="(min-width: 768px) 221px, 347px"
       />
       <div className="flex animate-pulse flex-col items-center justify-center gap-3 px-2">
         <div className="h-10 w-1/2 rounded-md bg-gray-700 md:h-12"></div>
