@@ -78,12 +78,6 @@ export default function SearchModal() {
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <Dialog.Trigger asChild>
-        <div className="mt-4 flex w-full cursor-pointer items-center justify-between truncate rounded-lg border border-[#3F3F3F] bg-[#1A1A17] px-4 py-2 text-white md:hidden">
-          <span></span>
-          <i className="bi bi-chevron-down flex h-4 w-4 items-center justify-center text-xl" />
-        </div>
-      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
         <Dialog.Content className="pb-2focus:outline-none fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 md:max-w-[80%]">

@@ -12,9 +12,13 @@ export default function EcosystemSupport() {
       <Image
         src={Mountains}
         alt={"Mountains"}
-        priority
-        sizes="(max-width: 768px) 100vw, 1200px"
+        loading="lazy"
+        placeholder="blur"
         className="absolute left-0 top-0 z-[0] h-full w-full object-cover"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0, 0, 0, 1) ,rgba(0,0,0,0))",
+        }}
       />
       <div className="container z-[1] mx-auto flex flex-col items-center justify-center gap-12">
         <SectionHeading
