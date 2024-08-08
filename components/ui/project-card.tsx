@@ -52,7 +52,7 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
     >
       <div className="flex w-full items-center gap-2 overflow-hidden md:h-auto md:flex-col md:items-start">
         <Image
-          className="size-[4rem] rounded-full md:size-[6rem]"
+          className="size-[4rem] rounded-full bg-gray-700 md:size-[6rem]"
           src={profile.image.url}
           alt={profile.name}
           width={120}
