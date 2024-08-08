@@ -18,12 +18,13 @@ test.describe("Category Page", () => {
     const projects = page.locator(".projects");
     await expect(projects).toBeVisible();
 
-    const firstProject = projects.locator("div").first();
+    const firstProject = projects.getByRole("link").first();
     await expect(firstProject).toBeVisible();
 
     await expect(firstProject.locator("h3")).toBeVisible();
     await firstProject.click();
     await page.waitForURL("**/project/*");
+    await page.waitForLoadState("networkidle");
     const projectPageHeading = page.locator("h2").first();
     await expect(projectPageHeading).toBeVisible();
   });

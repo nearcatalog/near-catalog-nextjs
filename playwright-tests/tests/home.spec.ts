@@ -27,8 +27,10 @@ test.describe("Homepage", () => {
   test("project in ecosystem section should redirect to project page", async ({
     page,
   }) => {
-    const firstProject = page.locator(".no-scrollbar > div").first();
+    const ecosystemProjects = page.locator(".no-scrollbar").first();
+    await expect(ecosystemProjects).toBeVisible();
 
+    const firstProject = ecosystemProjects.getByRole("link").first();
     await expect(firstProject).toBeVisible();
 
     const projectHeading = firstProject.locator("h3");

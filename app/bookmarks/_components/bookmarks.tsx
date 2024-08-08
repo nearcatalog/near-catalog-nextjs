@@ -42,17 +42,17 @@ export default function Bookmarks() {
               <h2>No bookmarked projects found</h2>
             </div>
           )}
-      <div className="mt-8 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {loading
-          ? Array.from({ length: 4 }).map((_, index) => (
-              <ProjectSkeleton key={index} />
-            ))
-          : null}
+      <div className="projects mt-8 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {starredProjects.length > 0 &&
           typeof projects === "object" &&
           starredProjects.map((pid: ProjectId) => (
             <ProjectCard key={pid} project={projects[pid]} maxWidth />
           ))}
+        {loading
+          ? Array.from({ length: 4 }).map((_, index) => (
+              <ProjectSkeleton key={index} />
+            ))
+          : null}
       </div>
     </>
   );

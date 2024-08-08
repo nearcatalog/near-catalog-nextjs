@@ -73,7 +73,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         height={222}
         sizes="(min-width: 768px) 221px, 347px"
       />
-      <div className="relative z-[1] flex flex-col gap-4">
+      <div className="projects relative z-[1] flex flex-col gap-4">
         <SectionHeading
           title={categoryData.cat_title}
           description={categoryData.cat_description}
