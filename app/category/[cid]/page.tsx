@@ -48,6 +48,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           src={"/assets/images/error.webp"}
           alt={"Not found error"}
           width={182}
+          placeholder="blur"
           height={144}
         />
         <h2>Sorry, we could not find the category:</h2>
@@ -63,6 +64,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         src={SearchImage}
         alt={"Discover All Projects"}
         style={{ userSelect: "none" }}
+        placeholder="blur"
         width={347}
         height={222}
       />

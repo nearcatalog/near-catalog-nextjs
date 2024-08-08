@@ -35,6 +35,7 @@ export default async function Discover() {
           className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
           src={SearchImage}
           alt={"Discover All Projects"}
+          placeholder="blur"
           width={347}
           height={222}
         />

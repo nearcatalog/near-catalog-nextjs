@@ -12,9 +12,10 @@ export default function EcosystemSupport() {
       <Image
         src={Mountains}
         alt={"Mountains"}
-        loading="lazy"
+        priority
         placeholder="blur"
         className="absolute left-0 top-0 z-[0] h-full w-full object-cover"
+        sizes="100vw"
         style={{
           maskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0, 0, 0, 1) ,rgba(0,0,0,0))",

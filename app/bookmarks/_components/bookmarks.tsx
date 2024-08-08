@@ -32,6 +32,7 @@ export default function Bookmarks() {
             src={"/assets/images/error.webp"}
             alt={"Not found error"}
             width={182}
+            placeholder="blur"
             height={144}
           />
           <h2>No bookmarked projects found</h2>

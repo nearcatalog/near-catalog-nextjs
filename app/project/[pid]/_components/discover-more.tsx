@@ -41,6 +41,7 @@ export default async function DiscoverMore({
           src={"/assets/images/error.webp"}
           alt={"Not found error"}
           width={182}
+          placeholder="blur"
           height={144}
         />
         <h2>Sorry, we could not find the results for:</h2>

@@ -26,6 +26,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           alt={"Not found error"}
           width={182}
           height={144}
+          placeholder="blur"
         />
         <h2>Sorry, we could not find the results for:</h2>
         <p className="text-2xl uppercase">{pid}</p>
