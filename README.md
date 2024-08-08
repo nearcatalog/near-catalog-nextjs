@@ -65,7 +65,7 @@ See the full [testing guide](./playwright-tests/README.md).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-It uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load [Inter](https://fonts.google.com/specimen/Inter), a custom Google Font.
+It uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load [Manrope](https://fonts.google.com/specimen/Manrope), a custom Google Font.
 
 ### Routes
 
@@ -84,6 +84,7 @@ The state is stored in the `store` folder. There are two stores that are used in
 
 - `search-store.ts`: Manages the search state, including the search query and the tags that are selected.
 - `tags-modal-store.ts`: Manages the state of the tags modal for mobile devices.
+- `search-modal-store.ts`: Manages the state of search modal.
 
 ## Contributing
 
