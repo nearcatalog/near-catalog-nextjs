@@ -37,7 +37,8 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
   const description = profile.tagline;
 
   return (
-    <div
+    <button
+      role="link"
       style={{ userSelect: "none" }}
       onClick={() => {
         router.push(`/project/${project.slug}#top`, { scroll: true });
@@ -58,15 +59,15 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
           height={120}
         />
         <div className="flex flex-col gap-1">
-          <h3 className="m-0 overflow-ellipsis break-words p-0 text-[1.25rem] font-bold leading-tight text-white md:break-words">
+          <h3 className="m-0 overflow-ellipsis break-words p-0 text-left text-[1.25rem] font-bold leading-tight text-white md:break-words">
             {title}
           </h3>
         </div>
       </div>
-      <p className="m-0 overflow-ellipsis break-words p-0 text-sm font-medium md:break-words">
+      <p className="m-0 overflow-ellipsis break-words p-0 text-left text-sm font-medium md:break-words">
         {description}
       </p>
       <Tags tags={Object.values(profile.tags)} />
-    </div>
+    </button>
   );
 }

@@ -53,7 +53,8 @@ export default function Project({ pid }: ProjectProps) {
       : description;
 
   return (
-    <div
+    <button
+      role="link"
       onClick={() => router.push(`/project/${pid}#top`, { scroll: true })}
       className="flex w-full max-w-60 shrink-0 cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black p-4 pt-2"
       style={{
@@ -73,6 +74,6 @@ export default function Project({ pid }: ProjectProps) {
       <p className="max-w-full text-center text-xs font-medium text-[#7E7E7E]">
         {truncatedDescription}
       </p>
-    </div>
+    </button>
   );
 }
