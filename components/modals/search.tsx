@@ -3,13 +3,12 @@
 import { useSearchModalStore } from "@/store/search-modal-store";
 import * as Dialog from "@radix-ui/react-dialog";
 import SearchInput from "../search-input";
-import FilterProjects from "../home/filtered-projects";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import { useEffect, useState } from "react";
-import { useSearchStore } from "@/store/search-store";
 
 import Link from "next/link";
+import SearchProjects from "../home/searchProjects";
 
 function Tags({
   tags,
@@ -82,12 +81,13 @@ export default function SearchModal() {
               </Dialog.Close>
             </Dialog.Title>
             <Dialog.Description className="hidden" />
-            <SearchInput bgColor="#1A1A17" autoSelect />
+            <SearchInput bgColor="#1A1A17" autoSelect showClearButton />
           </div>
           <div className="mb-4 flex flex-col gap-2 px-4">
-            <Tags tags={uniqueTags} handleTagClick={() => setIsOpen(false)} />
-            {searchKey !== "" && (
-              <FilterProjects projects={projects} searchKey={searchKey} />
+            {searchKey !== "" ? (
+              <SearchProjects searchKey={searchKey} />
+            ) : (
+              <Tags tags={uniqueTags} handleTagClick={() => setIsOpen(false)} />
             )}
           </div>
         </Dialog.Content>
