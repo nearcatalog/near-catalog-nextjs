@@ -5,6 +5,9 @@ import { useInView } from "react-intersection-observer";
 import { useSearchStore } from "@/store/search-store";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import ProjectsList from "@/components/ui/project-list";
+import Image from "next/image";
+import ErrorImage from "@/public/assets/images/error.webp";
+import ProjectSkeleton from "../ui/project-skeleton";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -62,8 +65,31 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
 
   return (
     <>
-      <ProjectsList projects={displayedProjects} />
-      {hasMore && <div ref={ref} style={{ height: "20px" }}></div>}
+      {filteredProjects.length === 0 ? (
+        searchKey !== "" ? (
+          <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
+            <Image
+              src={ErrorImage}
+              alt={"Not found error"}
+              width={182}
+              height={144}
+            />
+            <h2>Sorry, we could not find any results for</h2>
+            <p className="text-2xl uppercase">{searchKey}</p>
+          </div>
+        ) : (
+          <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
+              <ProjectSkeleton key={index} />
+            ))}
+          </div>
+        )
+      ) : (
+        <>
+          <ProjectsList projects={displayedProjects} />
+          {hasMore && <div ref={ref} style={{ height: "20px" }}></div>}
+        </>
+      )}
     </>
   );
 }
