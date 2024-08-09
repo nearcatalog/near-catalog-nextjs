@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const privacyPolicy = `
 # Privacy Policy
@@ -50,5 +51,5 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <Markdown>{privacyPolicy}</Markdown>;
+  return <Markdown remarkPlugins={[remarkGfm]}>{privacyPolicy}</Markdown>;
 }

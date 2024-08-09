@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const cookiesPolicy = `
 # Cookies Policy
@@ -45,5 +46,5 @@ export const metadata: Metadata = {
 };
 
 export default function CookiesPage() {
-  return <Markdown>{cookiesPolicy}</Markdown>;
+  return <Markdown remarkPlugins={[remarkGfm]}>{cookiesPolicy}</Markdown>;
 }
