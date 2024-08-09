@@ -5,9 +5,10 @@
 
 <div align="center">
 
-<img src="https://builders.mypinata.cloud/ipfs/QmcNogThQvv2vTdvScoLUXCV4ncZv7h79quB7yhhTXwhC9" alt="NEAR Catalog" height="100" />
+<p style="font-size: 2.5rem; font-weight: bold;">📒NEARCatalog</p>
 <br />
 <br />
+
   <p>
     <strong>Ecosystem directory for <a href="https://near.org/" target="_blank">NEAR Protocol</a>.</strong>
   </p>
