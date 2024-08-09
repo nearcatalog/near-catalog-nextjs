@@ -5,7 +5,7 @@ export default function PolicyLayout({
 }) {
   return (
     <div className="container mx-auto my-4 p-4">
-      <div className="prose prose-invert max-w-none">{children}</div>
+      <div className="prose prose-invert mx-auto max-w-[768px]">{children}</div>
     </div>
   );
 }
