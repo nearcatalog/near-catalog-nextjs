@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Markdown from "react-markdown";
 
 const cookiesPolicy = `
@@ -36,6 +37,12 @@ We may update this cookies policy from time to time. We encourage you to review 
 
 If you have any questions about this cookies policy, please contact us at [hello@near.foundation](mailto:hello@near.foundation).
 `;
+
+export const metadata: Metadata = {
+  title: "Cookies Policy",
+  description:
+    "NEAR Catalog uses cookies to improve your experience on our website. This policy explains how we use cookies and how you can manage them.",
+};
 
 export default function CookiesPage() {
   return <Markdown>{cookiesPolicy}</Markdown>;
