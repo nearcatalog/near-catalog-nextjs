@@ -18,22 +18,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const uniqueTags = Array.from(new Set(tags)).sort();
 
   const projectRoutes = projectSlugs.map((slug) => ({
-    url: `${BASE_URL}project/${slug}`,
+    url: `${BASE_URL}/project/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
   }));
 
   const categoryRoutes = uniqueTags.map((slug) => ({
-    url: `${BASE_URL}category/${slug}`,
+    url: `${BASE_URL}/category/${slug}`,
     lastModified: new Date(),
     priority: 0.5,
   }));
 
   return [
     {
-      url: `${BASE_URL}`,
+      url: `${BASE_URL}/`,
       priority: 0.9,
-      // changeFrequency: "always",
       lastModified: new Date(),
     },
     ...projectRoutes,

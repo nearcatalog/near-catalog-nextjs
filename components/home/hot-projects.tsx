@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import SectionHeading from "@/components/ui/section-heading";
 import Fire from "@/components/icons/fire";
 import { fetchHotProjects } from "@/lib/near-catalog";
@@ -26,9 +26,7 @@ export default async function HotProjects() {
         />
       </section>
       <div className="max-w-full">
-        <Suspense fallback={<div>Loading...</div>}>
-          <ScrollableProjects projects={projects} />
-        </Suspense>
+        <ScrollableProjects projects={projects} />
       </div>
     </>
   );

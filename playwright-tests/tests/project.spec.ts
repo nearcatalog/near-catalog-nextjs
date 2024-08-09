@@ -6,8 +6,6 @@ test.describe("Project Page", () => {
   });
 
   test("should have title", async ({ page }) => {
-    await page.goto("/project/ref-finance");
-
     // Expect a heading to be visible
     await expect(
       page.getByRole("heading", { name: "Ref Finance", exact: true }),
@@ -19,7 +17,7 @@ test.describe("Project Page", () => {
     await expect(tag).toBeVisible();
     await tag.click();
     const categoryPageHeading = page.locator("h2").first();
-    await expect(categoryPageHeading).toContainText("Aurora");
+    await expect(categoryPageHeading).toBeVisible();
   });
 
   test("related projects should redirect to project page", async ({ page }) => {

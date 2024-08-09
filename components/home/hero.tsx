@@ -1,6 +1,6 @@
 import HomeStats from "@/components/home/stats";
 import GradientButton from "@/components/ui/gradient-button";
-import HomeImages from "./images";
+import HomeImages from "@/components/home/images";
 
 export default function HomeHero() {
   return (

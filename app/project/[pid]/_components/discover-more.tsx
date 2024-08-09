@@ -1,6 +1,7 @@
 import { fetchRelatedProjects } from "@/lib/near-catalog";
 import Image from "next/image";
 import Link from "next/link";
+import ErrorImage from "@/public/assets/images/error.webp";
 
 interface DiscoverMoreProps {
   pid: string;
@@ -20,7 +21,7 @@ function ProjectCard({ project }: { project: any }) {
         width={64}
         height={64}
       />
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 overflow-hidden">
         <h3 className="text-base font-bold">{project.profile.name}</h3>
         <p className="text-sm font-medium">{project.profile.tagline}</p>
       </div>
@@ -38,9 +39,10 @@ export default async function DiscoverMore({
     return (
       <div className="flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
+          placeholder="blur"
           height={144}
         />
         <h2>Sorry, we could not find the results for:</h2>

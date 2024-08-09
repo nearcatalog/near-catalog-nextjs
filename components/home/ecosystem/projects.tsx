@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Project from "./project";
+import Project from "@/components/home/ecosystem/project";
 import { useDraggable } from "react-use-draggable-scroll";
 
 interface EcosystemProjectsProps {

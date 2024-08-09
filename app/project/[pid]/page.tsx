@@ -7,6 +7,8 @@ import ProjectHeader from "./_components/project-header";
 import TokenInfo from "./_components/token-info";
 import TwitterTimelineEmbed from "./_components/twitter-embed";
 import Markdown from "react-markdown";
+import ErrorImage from "@/public/assets/images/error.webp";
+import remarkGfm from "remark-gfm";
 
 interface ProjectPageProps {
   params: {
@@ -22,10 +24,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
           height={144}
+          placeholder="blur"
         />
         <h2>Sorry, we could not find the results for:</h2>
         <p className="text-2xl uppercase">{pid}</p>
@@ -50,7 +53,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="rounded-lg bg-[#1b1d2a] p-4">
             <h2 className="mb-3 text-xl font-bold">About ${profile.name}</h2>
             <div className="prose prose-invert min-h-[15.625rem] max-w-none">
-              <Markdown>{profile?.description}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>
+                {profile?.description}
+              </Markdown>
             </div>
           </div>
           <DiscoverMore

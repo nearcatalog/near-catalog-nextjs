@@ -5,9 +5,10 @@
 
 <div align="center">
 
-<img src="https://builders.mypinata.cloud/ipfs/QmcNogThQvv2vTdvScoLUXCV4ncZv7h79quB7yhhTXwhC9" alt="near landscape" height="100" />
+<p style="font-size: 2.5rem; font-weight: bold;">📒NEARCatalog</p>
 <br />
 <br />
+
   <p>
     <strong>Ecosystem directory for <a href="https://near.org/" target="_blank">NEAR Protocol</a>.</strong>
   </p>
@@ -74,7 +75,6 @@ This project uses the [Next.js App Router](https://nextjs.org/docs/app), and so 
 - `/`: Home page of the application. It displays a list of projects that are available on the NEAR platform.
 - `/project/:projectId`: Displays the details of a specific project. It includes information about the project, such as the name, description, and the list of tags associated with the project.
 - `/category/:categoryId`: Displays a list of projects that are associated with a specific category.
-- `/bookmarks`: Shows your projects bookmarked in local storage
 
 ### Global State
 

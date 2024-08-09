@@ -2,9 +2,9 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "NEAR Landscape",
-    short_name: "NEAR Landscape",
-    description: "NEAR Landscape",
+    name: "NEAR Catalog",
+    short_name: "NEAR Catalog",
+    description: "NEAR Catalog",
     start_url: "/",
     display: "standalone",
     background_color: "#000",

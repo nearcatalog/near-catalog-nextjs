@@ -32,17 +32,20 @@ export default function HomeStats() {
         <Image
           className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2"
           src={LeftBlur}
+          placeholder="blur"
           alt="Left Blur"
         />
         <Image
           className="pointer-events-none absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
           src={MiddleBlur}
           alt="Middle Blur"
+          placeholder="blur"
         />
         <Image
           className="pointer-events-none absolute right-0 top-1/2 z-0 -translate-y-1/2"
           src={RightBlur}
           alt="Right Blur"
+          placeholder="blur"
         />
       </div>
       <div className="z-[5] flex flex-col items-center justify-center gap-2 text-black md:hidden">

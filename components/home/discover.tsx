@@ -2,10 +2,10 @@ import Image from "next/image";
 import SectionHeading from "@/components/ui/section-heading";
 import SearchImage from "@/public/assets/images/search.webp";
 import Search from "@/components/search";
-import FilteredProjects from "@/components/home/filtered-projects";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import TagsModal from "@/components/modals/tags";
+import SearchProjects from "@/components/home/searchProjects";
 
 export default async function Discover() {
   const projects = await fetchAllProjects();
@@ -16,10 +16,19 @@ export default async function Discover() {
   }
 
   const projectArray: ProjectRecord[] = Object.values(projects);
-  let tags: string[] = projectArray
-    .map((project: ProjectRecord) => Object.values(project.profile.tags))
+  let tags: Record<string, string>[] = projectArray
+    .map((project: ProjectRecord) => project.profile.tags)
     .flat();
-  const uniqueTags = Array.from(new Set(tags)).sort();
+
+  let uniqueTags: Record<string, string> = {};
+
+  tags.forEach((tag) => {
+    Object.keys(tag).forEach((key) => {
+      if (!uniqueTags[key]) {
+        uniqueTags[key] = tag[key];
+      }
+    });
+  });
 
   return (
     <section
@@ -35,6 +44,7 @@ export default async function Discover() {
           className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
           src={SearchImage}
           alt={"Discover All Projects"}
+          placeholder="blur"
           width={347}
           height={222}
         />
@@ -42,7 +52,7 @@ export default async function Discover() {
       <div className="z-1 relative my-16">
         <Search tags={uniqueTags} />
         <TagsModal tags={uniqueTags} />
-        <FilteredProjects projects={projects} />
+        <SearchProjects />
       </div>
     </section>
   );

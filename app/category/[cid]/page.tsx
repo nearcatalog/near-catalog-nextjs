@@ -1,9 +1,10 @@
-import ProjectCard from "@/components/ui/project-card";
 import SectionHeading from "@/components/ui/section-heading";
 import { fetchProjectCategory } from "@/lib/near-catalog";
 import { ProjectCategory } from "@/lib/types";
 import SearchImage from "@/public/assets/images/search.webp";
+import ErrorImage from "@/public/assets/images/error.webp";
 import Image from "next/image";
+import CategoryProjectsList from "./_components/category-projects-list";
 
 interface CategoryPageProps {
   params: {
@@ -27,8 +28,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryData.cat_title,
-    description: categoryData.cat_description,
+    title: `${categoryData.cat_title} Projects`,
+    description:
+      categoryData.cat_description ||
+      `Discover ${categoryData.cat_title} projects`,
   };
 }
 
@@ -45,10 +48,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return (
       <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
-          src={"/assets/images/error.webp"}
+          src={ErrorImage}
           alt={"Not found error"}
           width={182}
+          priority
+          placeholder="blur"
           height={144}
+          sizes="182px"
         />
         <h2>Sorry, we could not find the category:</h2>
         <p className="text-2xl uppercase">{cid}</p>
@@ -57,23 +63,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main className="container relative mx-auto flex flex-col gap-4 px-4 py-12">
+    <main className="container relative mx-auto px-4 py-12" id="top">
       <Image
         className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
         src={SearchImage}
         alt={"Discover All Projects"}
         style={{ userSelect: "none" }}
+        placeholder="blur"
         width={347}
+        priority
         height={222}
+        sizes="(min-width: 768px) 221px, 347px"
       />
-      <SectionHeading
-        title={categoryData.cat_title}
-        description={categoryData.cat_description}
-      />
-      <div className="projects mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {Object.values(categoryData.data).map((project: any) => (
-          <ProjectCard key={project.slug} project={project} maxWidth />
-        ))}
+      <div className="projects relative z-[1] flex flex-col gap-4">
+        <SectionHeading
+          title={categoryData.cat_title}
+          description={categoryData.cat_description}
+        />
+        <CategoryProjectsList projects={categoryData.data} />
       </div>
     </main>
   );
