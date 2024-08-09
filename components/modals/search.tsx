@@ -35,8 +35,7 @@ function Tags({
 }
 
 export default function SearchModal() {
-  const { isOpen, setIsOpen } = useSearchModalStore();
-  const { setTags, searchKey } = useSearchStore();
+  const { isOpen, setIsOpen, searchKey } = useSearchModalStore();
 
   const [projects, setProjects] = useState<null | Record<
     string,
@@ -50,12 +49,6 @@ export default function SearchModal() {
         throw new Error(err);
       });
   }, []);
-
-  useEffect(() => {
-    if (isOpen) {
-      setTags([]);
-    }
-  }, [isOpen, setTags]);
 
   if (!projects) {
     return null;
@@ -93,7 +86,9 @@ export default function SearchModal() {
           </div>
           <div className="mb-4 flex flex-col gap-2 px-4">
             <Tags tags={uniqueTags} handleTagClick={() => setIsOpen(false)} />
-            {searchKey !== "" && <FilterProjects projects={projects} />}
+            {searchKey !== "" && (
+              <FilterProjects projects={projects} searchKey={searchKey} />
+            )}
           </div>
         </Dialog.Content>
       </Dialog.Portal>

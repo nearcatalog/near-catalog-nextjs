@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSearchStore } from "@/store/search-store";
+import { useSearchModalStore } from "@/store/search-modal-store";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import ProjectsList from "@/components/ui/project-list";
 import Image from "next/image";
@@ -13,10 +14,14 @@ const ITEMS_PER_PAGE = 12;
 
 interface FilterProjectsProps {
   projects: Record<ProjectId, ProjectRecord>;
+  searchKey?: string;
 }
 
-export default function FilterProjects({ projects }: FilterProjectsProps) {
-  const { tags, searchKey } = useSearchStore();
+export default function FilterProjects({
+  projects,
+  searchKey,
+}: FilterProjectsProps) {
+  const { tags, searchKey: globalSearchKey } = useSearchStore();
   const [filteredProjects, setFilteredProjects] = useState<ProjectRecord[]>([]);
   const [displayedProjects, setDisplayedProjects] = useState<ProjectRecord[]>(
     [],
@@ -24,6 +29,8 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
+
+  const activeSearchKey = searchKey || globalSearchKey;
 
   const filterProjects = useCallback(() => {
     let result = Object.values(projects);
@@ -35,17 +42,17 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
       });
     }
 
-    if (searchKey !== "") {
+    if (activeSearchKey !== "") {
       result = result.filter((project) => {
         const projectName = project.profile.name.toLowerCase();
-        return projectName.startsWith(searchKey.toLowerCase());
+        return projectName.startsWith(activeSearchKey.toLowerCase());
       });
     }
 
     setFilteredProjects(result);
     setPage(1);
     setHasMore(result.length > ITEMS_PER_PAGE);
-  }, [projects, tags, searchKey]);
+  }, [projects, tags, activeSearchKey]);
 
   useEffect(() => {
     filterProjects();
@@ -66,7 +73,7 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
   return (
     <>
       {filteredProjects.length === 0 ? (
-        searchKey !== "" ? (
+        activeSearchKey !== "" ? (
           <div className="my-32 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
             <Image
               src={ErrorImage}
@@ -75,7 +82,7 @@ export default function FilterProjects({ projects }: FilterProjectsProps) {
               height={144}
             />
             <h2>Sorry, we could not find any results for</h2>
-            <p className="text-2xl uppercase">{searchKey}</p>
+            <p className="text-2xl uppercase">{activeSearchKey}</p>
           </div>
         ) : (
           <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
