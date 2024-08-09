@@ -22,8 +22,6 @@ export default function TwitterTimelineEmbed({
     href.includes("https://twitter.com/") || href.includes("https://x.com/")
       ? href.split("/").slice(-1)[0]
       : href;
-
-  console.log(userName);
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-[#1b1d2a] p-4">
       <h3 className="space-x-2 text-xl font-bold">
