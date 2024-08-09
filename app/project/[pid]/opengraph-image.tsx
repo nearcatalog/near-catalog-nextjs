@@ -21,7 +21,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { pid: string } }) {
   // Font
   const manropeSemiBold = fetch(
-    new URL("./_opengraph/Manrope-SemiBold.ttf", import.meta.url),
+    new URL("../../_opengraph/Manrope-SemiBold.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   // project data
