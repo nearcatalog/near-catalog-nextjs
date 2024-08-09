@@ -14,7 +14,9 @@ export default function Search({ tags }: SearchProps) {
         <SearchInput />
       </div>
 
-      <Tags tags={tags} />
+      <div className="hidden md:block">
+        <Tags tags={tags} />
+      </div>
     </div>
   );
 }
