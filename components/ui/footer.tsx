@@ -60,12 +60,8 @@ export default function Footer() {
               </Link>
             </div>
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">
-              <Link href="#" target="_blank">
-                Cookie Policy
-              </Link>
-              <Link href="#" target="_blank">
-                Privacy Policy
-              </Link>
+              <Link href="/policy/cookies">Cookie Policy</Link>
+              <Link href="/policy/privacy">Privacy Policy</Link>
             </div>
           </div>
         </div>
