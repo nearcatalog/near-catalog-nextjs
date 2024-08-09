@@ -1,4 +1,7 @@
+"use client";
+
 import Script from "next/script";
+import { useEffect } from "react";
 
 function Loader() {
   return (
@@ -17,6 +20,15 @@ export default function TwitterTimelineEmbed({
   href: string;
   name: string;
 }) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const twttr = (window as any).twttr;
+      if (twttr) {
+        twttr.widgets.load();
+      }
+    }
+  });
+
   // Extract the username from the URL if it is a URL else keep it as it is
   const userName =
     href.includes("https://twitter.com/") || href.includes("https://x.com/")
@@ -38,7 +50,7 @@ export default function TwitterTimelineEmbed({
           data-tweet-limit="3"
           data-dnt="true"
           data-theme="dark"
-          href={`https://twitter.com/${userName}?ref_src=twsrc%5Etfw`}
+          href={`https://twitter.com/${userName}`}
         >
           <Loader />
         </a>
