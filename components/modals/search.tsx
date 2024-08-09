@@ -6,32 +6,8 @@ import SearchInput from "../search-input";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import { useEffect, useState } from "react";
-
-import Link from "next/link";
 import SearchProjects from "../home/searchProjects";
-
-function Tags({
-  tags,
-  handleTagClick,
-}: {
-  tags: Record<string, string>;
-  handleTagClick: () => void;
-}) {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      {Object.keys(tags).map((key, index) => (
-        <Link
-          href={`/category/${key}#top`}
-          className="flex h-6 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#005253] px-2 py-1 text-xs font-medium text-[#abf8f3]"
-          key={index}
-          onClick={handleTagClick}
-        >
-          {tags[key]}
-        </Link>
-      ))}
-    </div>
-  );
-}
+import Tags from "@/app/project/[pid]/_components/tags";
 
 export default function SearchModal() {
   const { isOpen, setIsOpen, searchKey } = useSearchModalStore();
