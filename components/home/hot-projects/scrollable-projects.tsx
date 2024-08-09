@@ -2,7 +2,7 @@
 
 import ProjectCard from "@/components/ui/project-card";
 import { useDraggable } from "react-use-draggable-scroll";
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 
 interface ScrollableProjectsProps {
@@ -12,11 +12,7 @@ interface ScrollableProjectsProps {
 export default function ScrollableProjects({
   projects,
 }: ScrollableProjectsProps) {
-  const projectKeys = Object.keys(projects).slice(0, 5);
-  const [duplicatedProjects, setDuplicatedProjects] = useState<ProjectId[]>([
-    ...projectKeys,
-    ...projectKeys,
-  ]);
+  const projectKeys = Object.keys(projects);
   const containerRef =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(containerRef, {
@@ -50,32 +46,19 @@ export default function ScrollableProjects({
     };
   }, []);
 
-  const viewportWidth = window.innerWidth;
   useEffect(() => {
     const scrollElement = containerRef.current;
     let scrollInterval: NodeJS.Timeout;
 
-    // do not start scrolling if the viewport is smaller than the container
-    if (viewportWidth > containerRef.current?.scrollWidth / 2) {
-      if (duplicatedProjects.length > projectKeys.length) {
-        setDuplicatedProjects(projectKeys);
-      }
-      return;
-    }
-
     const startScrolling = () => {
       scrollInterval = setInterval(() => {
-        const scrollOffset = 24;
-        const padding = 16;
         if (scrollElement) {
-          const scrollSpeed = 1;
+          scrollElement.scrollLeft += 1;
           if (
             scrollElement.scrollLeft + scrollElement.clientWidth >=
-            scrollElement.scrollWidth / 2 + (viewportWidth + padding)
+            scrollElement.scrollWidth
           ) {
-            scrollElement.scrollLeft = scrollOffset; // Reset scroll to top when it reaches the bottom
-          } else {
-            scrollElement.scrollLeft += scrollSpeed;
+            scrollElement.scrollLeft = 0; // Reset scroll to top when it reaches the bottom
           }
         }
       }, 15); // Adjust the speed of scrolling here
@@ -86,7 +69,7 @@ export default function ScrollableProjects({
     }
 
     return () => clearInterval(scrollInterval);
-  }, [isHovered, isTouched, projectKeys, duplicatedProjects, viewportWidth]);
+  }, [isHovered, isTouched]);
 
   return (
     <div className="relative max-w-full">
@@ -105,8 +88,8 @@ export default function ScrollableProjects({
         onTouchEnd={() => setIsTouched(false)}
         className="no-scrollbar mt-14 flex gap-4 overflow-x-auto px-4"
       >
-        {duplicatedProjects.map((pid: any, index) => (
-          <ProjectCard project={projects[pid]} key={index} />
+        {projectKeys.map((pid: any) => (
+          <ProjectCard project={projects[pid]} key={pid} />
         ))}
       </div>
     </div>
