@@ -36,7 +36,7 @@ function Tags({
 
 export default function SearchModal() {
   const { isOpen, setIsOpen } = useSearchModalStore();
-  const { setTags } = useSearchStore();
+  const { setTags, searchKey } = useSearchStore();
 
   const [projects, setProjects] = useState<null | Record<
     string,
@@ -80,7 +80,7 @@ export default function SearchModal() {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
-        <Dialog.Content className="pb-2focus:outline-none fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 md:max-w-[80%]">
+        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 pb-2 focus:outline-none md:max-w-[80%]">
           <div className="sticky -top-1 flex flex-col gap-2 bg-[#1A1A17] p-4">
             <Dialog.Title className="mb-2 flex items-center justify-between">
               <span className="text-lg font-medium">Search</span>
@@ -93,7 +93,7 @@ export default function SearchModal() {
           </div>
           <div className="mb-4 flex flex-col gap-2 px-4">
             <Tags tags={uniqueTags} handleTagClick={() => setIsOpen(false)} />
-            <FilterProjects projects={projects} />
+            {searchKey !== "" && <FilterProjects projects={projects} />}
           </div>
         </Dialog.Content>
       </Dialog.Portal>
