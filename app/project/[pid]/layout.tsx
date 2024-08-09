@@ -26,7 +26,7 @@ export async function generateMetadata(
     description: project.profile.tagline,
     keywords: Object.values(project.profile.tags),
     openGraph: {
-      title: `${project.profile.name} - NEAR Landscape`,
+      title: `${project.profile.name} - NEAR Catalog`,
       description: project.profile.tagline,
     },
   };
