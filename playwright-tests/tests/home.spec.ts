@@ -95,7 +95,9 @@ test.describe("Homepage", () => {
   test("should show error on no results found", async ({ page }) => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
-    await searchInput.fill("testtesttest");
+    await searchInput.fill("test");
+    await searchInput.fill("testtest");
+
     await expect(
       page.getByRole("heading", {
         name: "Sorry, we could not find any results",
