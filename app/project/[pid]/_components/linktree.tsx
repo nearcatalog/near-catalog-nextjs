@@ -1,8 +1,5 @@
-"use client";
-
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import ShareDropdown from "./share-dropdown";
 
 const WebsiteLink = ({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, FC } from "react";
+import { useRef } from "react";
 
 type TokenInfoProps = {
   tokenInfo: {
@@ -21,32 +21,34 @@ type ChainInfoProps = {
   onClick: (ref: React.RefObject<HTMLDivElement>) => void;
 };
 
-const ChainInfo: FC<ChainInfoProps> = ({
+function ChainInfo({
   chainName,
   chainTitle,
   explorerUrl,
   tokenAddress,
   refObj,
   onClick,
-}) => (
-  <div className="flex flex-col">
-    <a
-      href={explorerUrl}
-      target="_blank"
-      title={chainTitle}
-      rel="noopener noreferrer"
-    >
-      {chainName} ↗
-    </a>
-    <div
-      ref={refObj}
-      onClick={() => onClick(refObj)}
-      className="max-w-full break-all rounded-md bg-[#2b2d3a] p-1 text-xs"
-    >
-      {tokenAddress}
+}: ChainInfoProps) {
+  return (
+    <div className="flex flex-col">
+      <a
+        href={explorerUrl}
+        target="_blank"
+        title={chainTitle}
+        rel="noopener noreferrer"
+      >
+        {chainName} ↗
+      </a>
+      <div
+        ref={refObj}
+        onClick={() => onClick(refObj)}
+        className="max-w-full break-all rounded-md bg-[#2b2d3a] p-1 text-xs"
+      >
+        {tokenAddress}
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default function TokenInfo({ tokenInfo }: TokenInfoProps) {
   const nearRef = useRef<HTMLDivElement>(null);

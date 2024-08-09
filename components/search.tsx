@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import SearchInput from "./search-input";
+import SearchInput from "@/components/search-input";
 import Tags from "@/app/project/[pid]/_components/tags";
 
 interface SearchProps {

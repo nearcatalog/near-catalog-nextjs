@@ -1,6 +1,5 @@
 import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
-import Image from "next/image";
 
 export default function Footer() {
   return (

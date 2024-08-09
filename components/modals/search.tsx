@@ -2,11 +2,11 @@
 
 import { useSearchModalStore } from "@/store/search-modal-store";
 import * as Dialog from "@radix-ui/react-dialog";
-import SearchInput from "../search-input";
+import SearchInput from "@/components/search-input";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import { useEffect, useState } from "react";
-import SearchProjects from "../home/searchProjects";
+import SearchProjects from "@/components/home/searchProjects";
 import Tags from "@/app/project/[pid]/_components/tags";
 
 export default function SearchModal() {

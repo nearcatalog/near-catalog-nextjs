@@ -5,7 +5,7 @@ import Search from "@/components/search";
 import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import TagsModal from "@/components/modals/tags";
-import SearchProjects from "./searchProjects";
+import SearchProjects from "@/components/home/searchProjects";
 
 export default async function Discover() {
   const projects = await fetchAllProjects();

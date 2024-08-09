@@ -4,7 +4,7 @@ import { fetchAllProjects, searchProjects } from "@/lib/near-catalog";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import { useSearchStore } from "@/store/search-store";
 import { useEffect, useState } from "react";
-import ProjectSkeleton from "../ui/project-skeleton";
+import ProjectSkeleton from "@/components/ui/project-skeleton";
 import ProjectsList from "@/components/ui/project-list";
 import ErrorImage from "@/public/assets/images/error.webp";
 import Image from "next/image";
