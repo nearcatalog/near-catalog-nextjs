@@ -28,8 +28,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryData.cat_title,
-    description: categoryData.cat_description,
+    title: `${categoryData.cat_title} Projects`,
+    description:
+      categoryData.cat_description ||
+      `Discover ${categoryData.cat_title} projects`,
   };
 }
 
