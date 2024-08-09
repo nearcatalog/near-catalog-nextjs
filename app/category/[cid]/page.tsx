@@ -28,8 +28,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryData.cat_title,
-    description: categoryData.cat_description,
+    title: `${categoryData.cat_title} Projects`,
+    description:
+      categoryData.cat_description ||
+      `Discover ${categoryData.cat_title} projects`,
   };
 }
 
@@ -61,7 +63,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main className="container relative mx-auto px-4 py-12">
+    <main className="container relative mx-auto px-4 py-12" id="top">
       <Image
         className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
         src={SearchImage}

@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "About Acme";
+export const alt = "NEAR Catalog";
 export const size = {
   width: 1200,
   height: 630,
@@ -21,7 +21,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { pid: string } }) {
   // Font
   const manropeSemiBold = fetch(
-    new URL("./_opengraph/Manrope-SemiBold.ttf", import.meta.url),
+    new URL("../../_opengraph/Manrope-SemiBold.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   // project data
@@ -33,11 +33,12 @@ export default async function Image({ params }: { params: { pid: string } }) {
         <div
           style={{
             fontSize: 128,
-            background: "white",
+            background: "black",
             width: "100%",
             height: "100%",
             display: "flex",
             alignItems: "center",
+            color: "white",
             justifyContent: "center",
           }}
         >
@@ -75,7 +76,7 @@ export default async function Image({ params }: { params: { pid: string } }) {
       <div
         style={{
           fontSize: 72,
-          background: "linear-gradient(to right, #4b6cb7, #182848)",
+          background: "black",
           width: "100%",
           height: "100%",
           display: "flex",

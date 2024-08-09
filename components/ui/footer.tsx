@@ -1,8 +1,5 @@
 import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
-import Image from "next/image";
-
-import NearLogo from "@/public/assets/images/logo.svg";
 
 export default function Footer() {
   return (
@@ -38,31 +35,15 @@ export default function Footer() {
             <div className="flex flex-wrap gap-5 text-[#34f0e8] md:items-center md:justify-end">
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
+                href="https://x.com/nearcatalog"
                 target="_blank"
-                aria-label="Discord"
-              >
-                <i className="bi bi-discord text-[2rem]" />
-              </Link>
-              <Link
-                className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
-                target="_blank"
-                aria-label="Chat"
-              >
-                <i className="bi bi-chat text-[2rem]" />
-              </Link>
-              <Link
-                className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
-                target="_blank"
-                aria-label="Twitter"
+                aria-label="X"
               >
                 <i className="bi bi-twitter-x text-[2rem]" />
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
+                href="https://github.com/nearcatalog"
                 target="_blank"
                 aria-label="Github"
               >
@@ -70,37 +51,30 @@ export default function Footer() {
               </Link>
               <Link
                 className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
+                href="https://t.me/nearcatalogchat"
                 target="_blank"
                 aria-label="Telegram"
               >
                 <i className="bi bi-telegram text-[2rem]" />
               </Link>
-              <Link
-                className="transition-opacity duration-300 ease-in-out hover:opacity-50"
-                href="#"
-                target="_blank"
-                aria-label="Youtube"
-              >
-                <i className="bi bi-youtube text-[2rem]" />
-              </Link>
             </div>
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">
-              <Link href="#" target="_blank">
-                Cookie Policy
-              </Link>
-              <Link href="#" target="_blank">
-                Privacy Policy
-              </Link>
+              <Link href="/policy/cookies">Cookie Policy</Link>
+              <Link href="/policy/privacy">Privacy Policy</Link>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-5 pt-10 md:items-center md:justify-center md:pt-0 lg:pt-0">
-          <Link href="#" target="_blank">
-            <Image src={NearLogo} alt="Near Logo" />
+          <Link
+            href="#"
+            target="_blank"
+            className="text-2xl font-bold text-white"
+          >
+            📒NEARCatalog
           </Link>
-          <p className="max-w-60 font-medium md:w-fit md:font-extrabold">
-            Built with ❤️ by Banyan, NEAR Balkans and NEAR Catalog 🚀{" "}
+          <p className="max-w-92 font-medium">
+            Build by NEAR Catalog, NEAR China, NEAR Banyan, NEAR Balkans and
+            Build DAO
           </p>
         </div>
       </div>

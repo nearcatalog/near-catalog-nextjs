@@ -1,12 +1,5 @@
-"use client";
-
-import {
-  isProjectBookmarked,
-  toggleProjectBookmark,
-} from "@/lib/bookmark-project";
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import ShareDropdown from "./share-dropdown";
 
 const WebsiteLink = ({
@@ -27,7 +20,7 @@ const WebsiteLink = ({
       rel="noreferrer"
       aria-label={ariaLabel}
       className={
-        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
+        "flex items-center justify-center gap-1 rounded-lg border border-[#80E9E5] px-2 py-1 text-sm font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50 " +
         className
       }
     >
@@ -46,31 +39,11 @@ export default function LinkTree({ project }: LinkTreeProps) {
   const { dapp, lnc } = project.profile;
   const pid = project.slug;
 
-  const [isProjectStarred, setProjectStarred] = useState(false);
-
-  useEffect(() => {
-    setProjectStarred(isProjectBookmarked(pid));
-  }, [pid]);
-
-  const handleStarProject = () => {
-    const updatedBookmarkState = toggleProjectBookmark(pid);
-    setProjectStarred(updatedBookmarkState);
-  };
-
   return (
     <div className="flex min-w-64 flex-col gap-2">
       <div
         className={`relative flex flex-wrap items-center gap-1 lg:justify-end`}
       >
-        <button
-          onClick={handleStarProject}
-          className="flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
-          aria-label="Bookmark Project"
-        >
-          <i
-            className={`bi ${isProjectStarred ? "bi-star-fill" : "bi-star"} text-xl text-[#80E9E5]`}
-          ></i>
-        </button>
         {website && (
           <WebsiteLink
             href={website}
@@ -97,27 +70,27 @@ export default function LinkTree({ project }: LinkTreeProps) {
         >
           {twitter && (
             <Link href={twitter} aria-label="Twitter">
-              <i className="bi bi-twitter-x text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
+              <i className="bi bi-twitter-x text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {github && (
             <Link href={github} aria-label={`${project.profile.name} Github`}>
-              <i className="bi bi-github text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
+              <i className="bi bi-github text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {medium && (
             <Link href={medium} aria-label="Medium">
-              <i className="bi bi-medium text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
+              <i className="bi bi-medium text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {discord && (
             <Link href={discord} aria-label="Discord">
-              <i className="bi bi-discord text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
+              <i className="bi bi-discord text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {telegram && (
             <Link href={telegram} aria-label="Telegram">
-              <i className="bi bi-telegram text-xl text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
+              <i className="bi bi-telegram text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
           {lnc.score && (
@@ -125,11 +98,11 @@ export default function LinkTree({ project }: LinkTreeProps) {
               href={`https://learnnear.club/near-ecosystem/${lnc.slug}/`}
               target="_blank"
               aria-label="LNC"
-              className="flex gap-1 rounded bg-orange-400 px-2 py-1 font-extrabold text-black"
+              className="flex gap-1 rounded bg-orange-400 px-1 text-sm font-extrabold text-black"
             >
               <ul className="flex items-baseline">
-                <li className="text-xs">L</li>
-                <li className="text-sm">N</li>
+                <li className="text-[10px]">L</li>
+                <li className="text-xs">N</li>
                 <li>C</li>
               </ul>
               {lnc.score}

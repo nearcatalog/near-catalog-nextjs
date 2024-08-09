@@ -83,44 +83,21 @@ test.describe("Homepage", () => {
     ).toBeVisible();
   });
 
-  test("tags should filter projects", async ({ page }) => {
-    const tag = page.locator("div").filter({ hasText: /^Chain Abstraction$/ });
+  test("tags should redirect to category page", async ({ page }) => {
+    const tag = page.locator(".tags").first();
     await expect(tag).toBeVisible();
     await tag.click();
-    await expect(
-      page.locator("#all-projects div").filter({ hasText: "Defuse" }).nth(1),
-    ).toBeVisible();
-  });
-
-  test("should deselect and reselect all tags when toggling", async ({
-    page,
-  }) => {
-    const tagsToggle = page.getByLabel("Toggle all tags");
-
-    await expect(tagsToggle).toBeVisible();
-
-    const tags = await page.getByTestId("tag").all();
-
-    // default should be all tags checked
-    await expect(tagsToggle).toBeChecked();
-    for (const tag of tags) {
-      // verify that all tags do not have classname opacity-50
-      expect(tag).not.toHaveClass(/opacity-50/);
-    }
-
-    // toggle all tags off
-    await tagsToggle.setChecked(true);
-    await page.waitForTimeout(100);
-    for (const tag of tags) {
-      // verify that all tags have classname opacity-50
-      expect(tag).toHaveClass(/opacity-50/);
-    }
+    await page.waitForURL("/category/*");
+    const categoryPageHeading = page.locator("h2").first();
+    await expect(categoryPageHeading).toBeVisible();
   });
 
   test("should show error on no results found", async ({ page }) => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
     await searchInput.fill("test");
+    await searchInput.fill("testtest");
+
     await expect(
       page.getByRole("heading", {
         name: "Sorry, we could not find any results",

@@ -8,6 +8,7 @@ import TokenInfo from "./_components/token-info";
 import TwitterTimelineEmbed from "./_components/twitter-embed";
 import Markdown from "react-markdown";
 import ErrorImage from "@/public/assets/images/error.webp";
+import remarkGfm from "remark-gfm";
 
 interface ProjectPageProps {
   params: {
@@ -52,7 +53,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="rounded-lg bg-[#1b1d2a] p-4">
             <h2 className="mb-3 text-xl font-bold">About ${profile.name}</h2>
             <div className="prose prose-invert min-h-[15.625rem] max-w-none">
-              <Markdown>{profile?.description}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>
+                {profile?.description}
+              </Markdown>
             </div>
           </div>
           <DiscoverMore

@@ -36,6 +36,23 @@ export async function fetchProject(pid: string): Promise<ProjectRecord> {
 }
 
 /**
+ * Fetches projects by keywords
+ */
+export async function searchProjects(
+  keywords: string,
+): Promise<Record<ProjectId, ProjectRecord>> {
+  const response = await fetch(`${NEAR_CATALOG_API}/search?kw=${keywords}`, {
+    next: { revalidate: 300 },
+  });
+  if (!response.ok) {
+    throw new Error(
+      "Request to Near Catalog API failed with status: " + response.status,
+    );
+  }
+  return await response.json();
+}
+
+/**
  * Fetches related projects by PID
  */
 export async function fetchRelatedProjects(
