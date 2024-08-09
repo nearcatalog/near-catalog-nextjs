@@ -2,27 +2,11 @@
 
 import { useTagsModalStore } from "@/store/tags-modal-store";
 import * as Dialog from "@radix-ui/react-dialog";
-import Link from "next/link";
+import Tags from "@/app/project/[pid]/_components/tags";
 
 interface TagsModalProps {
   tags: Record<string, string>;
 }
-
-const Tags = ({ tags }: { tags: Record<string, string> }) => {
-  return (
-    <div className="flex flex-wrap gap-2 md:hidden">
-      {Object.keys(tags).map((key, index) => (
-        <Link
-          key={index}
-          href={`/category/${key}`}
-          className={`inline-flex h-6 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#17D9D466] px-2 py-1 text-xs font-medium text-white transition-colors duration-300 ease-in-out hover:bg-[#17D9D480] active:bg-[#17D9D499]`}
-        >
-          {tags[key]}
-        </Link>
-      ))}
-    </div>
-  );
-};
 
 function TagsModal({ tags }: TagsModalProps) {
   const { isOpen, setIsOpen } = useTagsModalStore();
