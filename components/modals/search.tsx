@@ -73,7 +73,7 @@ export default function SearchModal() {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-[.375rem]" />
-        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 pb-2 focus:outline-none md:max-w-[80%]">
+        <Dialog.Content className="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[28.125rem] translate-x-[-50%] translate-y-[-50%] overflow-y-auto rounded-lg bg-[#1A1A17] px-6 pb-2 focus:outline-none md:max-w-[80%] lg:max-w-6xl">
           <div className="sticky -top-1 flex flex-col gap-2 bg-[#1A1A17] p-4">
             <Dialog.Title className="mb-2 flex items-center justify-between">
               <span className="text-lg font-medium">Search</span>
