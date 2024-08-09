@@ -1,9 +1,5 @@
 "use client";
 
-import {
-  isProjectBookmarked,
-  toggleProjectBookmark,
-} from "@/lib/bookmark-project";
 import { ProjectRecord } from "@/lib/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -46,31 +42,11 @@ export default function LinkTree({ project }: LinkTreeProps) {
   const { dapp, lnc } = project.profile;
   const pid = project.slug;
 
-  const [isProjectStarred, setProjectStarred] = useState(false);
-
-  useEffect(() => {
-    setProjectStarred(isProjectBookmarked(pid));
-  }, [pid]);
-
-  const handleStarProject = () => {
-    const updatedBookmarkState = toggleProjectBookmark(pid);
-    setProjectStarred(updatedBookmarkState);
-  };
-
   return (
     <div className="flex min-w-64 flex-col gap-2">
       <div
         className={`relative flex flex-wrap items-center gap-1 lg:justify-end`}
       >
-        <button
-          onClick={handleStarProject}
-          className="flex items-center justify-center gap-1 rounded-lg px-2 py-1 text-xs font-bold text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50"
-          aria-label="Bookmark Project"
-        >
-          <i
-            className={`bi ${isProjectStarred ? "bi-star-fill" : "bi-star"} text-xl text-[#80E9E5]`}
-          ></i>
-        </button>
         {website && (
           <WebsiteLink
             href={website}

@@ -25,10 +25,6 @@ const routes: Route[] = [
     name: "Discover",
     href: "/#all-projects",
   },
-  {
-    name: "Bookmarks",
-    href: "/bookmarks",
-  },
 ];
 
 interface NavLinkProps {

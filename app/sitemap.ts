@@ -33,13 +33,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${BASE_URL}/`,
       priority: 0.9,
-      // changeFrequency: "always",
-      lastModified: new Date(),
-    },
-    {
-      url: `${BASE_URL}/bookmarks`,
-      priority: 0.5,
-      // changeFrequency: "always",
       lastModified: new Date(),
     },
     ...projectRoutes,
