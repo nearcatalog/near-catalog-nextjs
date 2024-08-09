@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ProjectRecord } from "@/lib/types";
 import ProjectCard from "@/components/ui/project-card";
-import ProjectSkeleton from "@/components/ui/project-skeleton";
 import ErrorImage from "@/public/assets/images/error.webp";
 
 interface ProjectsListProps {
