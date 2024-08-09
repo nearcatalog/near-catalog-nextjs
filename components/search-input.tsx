@@ -1,5 +1,3 @@
-"use client";
-
 import { useSearchStore } from "@/store/search-store";
 import { useEffect, useRef } from "react";
 
@@ -9,19 +7,12 @@ interface SearchInputProps {
 }
 
 export default function SearchInput({ bgColor, autoSelect }: SearchInputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const { searchKey } = useSearchStore();
-
-  useEffect(() => {
-    if (autoSelect && inputRef.current) {
-      inputRef.current.select();
-    }
-  }, [autoSelect]);
 
   return (
     <div className="container relative mx-auto">
       <input
-        ref={inputRef}
+        autoFocus={autoSelect}
         type="text"
         name="search"
         value={searchKey}
