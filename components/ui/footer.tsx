@@ -2,8 +2,6 @@ import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
 import Image from "next/image";
 
-import NearLogo from "@/public/assets/images/logo.svg";
-
 export default function Footer() {
   return (
     <footer className="bg-[#1B1F2A] px-4 text-[#BEBDBE]">
@@ -96,11 +94,16 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-5 pt-10 md:items-center md:justify-center md:pt-0 lg:pt-0">
-          <Link href="#" target="_blank">
-            <Image src={NearLogo} alt="Near Logo" />
+          <Link
+            href="#"
+            target="_blank"
+            className="text-2xl font-bold text-white"
+          >
+            📒NEARCatalog
           </Link>
-          <p className="max-w-60 font-medium md:w-fit md:font-extrabold">
-            Built with ❤️ by Banyan, NEAR Balkans and NEAR Catalog 🚀{" "}
+          <p className="max-w-92 font-medium">
+            Build by NEAR Catalog, NEAR China, NEAR Banyan, NEAR Balkans and
+            Build DAO
           </p>
         </div>
       </div>

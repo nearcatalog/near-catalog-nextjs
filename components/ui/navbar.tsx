@@ -1,7 +1,6 @@
 "use client";
 
 import GradientButton from "@/components/ui/gradient-button";
-import NearLogo from "@/public/assets/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -94,14 +93,9 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={() => isOpen && toggleDropdown()}
-            className="min-w-max flex-1"
+            className="md:base min-w-max flex-1 text-base font-bold text-white lg:text-xl"
           >
-            <Image
-              src={NearLogo}
-              className="h-10 w-24 object-contain md:h-14 md:w-28"
-              alt="Near Logo"
-              priority={true}
-            />
+            📒NEARCatalog
           </Link>
           <div className="mx-auto hidden items-center gap-1 md:flex md:gap-2">
             {routes.map((route) => (
