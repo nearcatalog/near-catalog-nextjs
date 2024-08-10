@@ -58,12 +58,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </Markdown>
             </div>
           </div>
-          <DiscoverMore
-            pid={pid}
-            gridSize={
-              Object.keys(tokenInfo).length || profile.linktree?.twitter ? 3 : 1
-            }
-          />
+          <DiscoverMore pid={pid} />
         </div>
         <div className="flex flex-col gap-4 lg:col-span-4">
           <PriceInfo tokenInfo={tokenInfo} name={profile.name} />
