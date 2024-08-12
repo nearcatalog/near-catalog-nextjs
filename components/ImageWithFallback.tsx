@@ -1,10 +1,10 @@
 "use client";
 
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps, StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 
 interface ImageWithFallbackProps extends Omit<ImageProps, "src"> {
-  src: string | null;
+  src: string | StaticImageData | null;
   fallback?: string;
 }
 
