@@ -50,13 +50,13 @@ export default function SearchProjects({ searchKey }: SearchProjectsProps) {
 
   if (!projects) {
     return loading ? (
-      <div className="mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="projects-list-skeleton mt-4 grid max-w-full grid-cols-1 place-items-center items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Array.from({ length: 12 }).map((_, index) => (
           <ProjectSkeleton key={index} />
         ))}
       </div>
     ) : (
-      <div className="mt-16 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
+      <div className="error-message mt-16 flex flex-col items-center justify-center gap-4 font-medium text-[#BEBDBE]">
         <Image
           src={ErrorImage}
           alt={"Not found error"}

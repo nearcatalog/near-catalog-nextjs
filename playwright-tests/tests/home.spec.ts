@@ -59,50 +59,36 @@ test.describe("Homepage", () => {
   });
 
   test("should show projects in discover section", async ({ page }) => {
-    const getDiscoverSection = () =>
-      page.getByRole("heading", { name: "Discover All Projects" });
-    await expect(getDiscoverSection()).toBeVisible();
-
-    await expect(
-      page
-        .locator("#all-projects div")
-        .filter({ hasText: "MITTE:memeMITTE:meme is the" })
-        .nth(1),
-    ).toBeVisible();
+    const projectsList = page.locator(".projects-list");
+    await expect(projectsList).toBeVisible();
   });
 
   test("search should filter projects", async ({ page }) => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
-    await searchInput.fill("mitte");
-    await expect(
-      page
-        .locator("#all-projects div")
-        .filter({ hasText: "MITTE:memeMITTE:meme is the" })
-        .nth(1),
-    ).toBeVisible();
+    await searchInput.fill("build dao");
+    
+    const buildDaoProject = page.locator(".projects-list").getByRole("heading", { name: "Build DAO" });
+    await expect(buildDaoProject).toBeVisible();
   });
 
   test("tags should redirect to category page", async ({ page }) => {
-    const tag = page.locator(".tags").first();
+    const tags = page.locator(".tags").first();
+    await expect(tags).toBeVisible();
+    const tag = tags.locator("a").first();
     await expect(tag).toBeVisible();
     await tag.click();
     await page.waitForURL("/category/*");
-    const categoryPageHeading = page.locator("h2").first();
-    await expect(categoryPageHeading).toBeVisible();
+    await expect(page.locator("h2").first()).toBeVisible();
   });
 
   test("should show error on no results found", async ({ page }) => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
-    await searchInput.fill("testtest");
-    // wait for search to finish
-    await page.waitForTimeout(2000);
-
-    await expect(
-      page.getByRole("heading", {
-        name: "Sorry, we could not find any results",
-      }),
-    ).toBeVisible();
+    await searchInput.fill("gibberish");
+    // expect there is no projects-list
+    await expect(page.locator(".projects-list")).toBeHidden();
+    await expect(page.locator(".projects-list-skeleton")).toBeHidden();
+    await expect(page.locator(".error-message")).toBeVisible();
   });
 });

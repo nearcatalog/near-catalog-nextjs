@@ -48,7 +48,7 @@ export default function ProjectCard({ project, maxWidth }: ProjectCardProps) {
           setSearchModalOpen(false);
         }
       }}
-      className={`grow-1 min-h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} gap- shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-lg bg-[#11141B] px-5 py-4 transition-all duration-300 ease-in-out hover:bg-[#2b2d3a] md:justify-normal md:px-8 md:py-7`}
+      className={`project-card grow-1 min-h-92 flex w-full ${maxWidth ? "" : "max-w-[20rem]"} gap- shrink-0 cursor-pointer flex-col items-start justify-start gap-3 overflow-hidden rounded-lg bg-[#11141B] px-5 py-4 transition-all duration-300 ease-in-out hover:bg-[#2b2d3a] md:justify-normal md:px-8 md:py-7`}
     >
       <div className="flex w-full items-center gap-2 overflow-hidden md:h-auto md:flex-col md:items-start">
         <ImageWithFallback
