@@ -30,7 +30,7 @@ test.describe("Homepage", () => {
     const projectHeading = firstProject.locator("h3");
     await expect(projectHeading).toBeVisible();
     await firstProject.click({ force: true });
-    const projectPageHeading = page.locator("h2").first();
+    const projectPageHeading = page.locator("#top div").locator("h2").first();
     await expect(projectPageHeading).toBeVisible();
   });
 
