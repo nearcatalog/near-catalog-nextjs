@@ -67,8 +67,10 @@ test.describe("Homepage", () => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
     await searchInput.fill("build dao");
-    
-    const buildDaoProject = page.locator(".projects-list").getByRole("heading", { name: "Build DAO" });
+
+    const buildDaoProject = page
+      .locator(".projects-list")
+      .getByRole("heading", { name: "Build DAO" });
     await expect(buildDaoProject).toBeVisible();
   });
 
