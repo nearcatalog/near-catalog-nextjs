@@ -70,7 +70,7 @@ test.describe("Homepage", () => {
 
     const buildDaoProject = page
       .locator(".projects-list")
-      .getByRole("heading", { name: "Build DAO" });
+      .getByText("Build DAO");
     await expect(buildDaoProject).toBeVisible();
   });
 
@@ -88,7 +88,6 @@ test.describe("Homepage", () => {
     const searchInput = page.getByPlaceholder("Search projects");
     await expect(searchInput).toBeVisible();
     await searchInput.fill("gibberish");
-    // expect there is no projects-list
     await expect(page.locator(".projects-list")).toBeHidden();
     await expect(page.locator(".projects-list-skeleton")).toBeHidden();
     await expect(page.locator(".error-message")).toBeVisible();

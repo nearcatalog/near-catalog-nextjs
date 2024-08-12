@@ -13,7 +13,9 @@ test.describe("Project Page", () => {
   });
 
   test("tags should redirect to category page", async ({ page }) => {
-    const tag = page.getByRole("link", { name: "Aurora", exact: true });
+    const tags = page.locator(".tags").first();
+    await expect(tags).toBeVisible();
+    const tag = tags.locator("a").first();
     await expect(tag).toBeVisible();
     await tag.click();
     const categoryPageHeading = page.locator("h2").first();
