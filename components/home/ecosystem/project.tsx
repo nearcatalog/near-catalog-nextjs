@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ProjectId, ProjectRecord } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import { fetchProject } from "@/lib/near-catalog";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 interface ProjectProps {
   pid: ProjectId;
@@ -61,7 +61,7 @@ export default function Project({ pid }: ProjectProps) {
         userSelect: "none",
       }}
     >
-      <Image
+      <ImageWithFallback
         src={projectData.profile.image.url}
         alt="Project Image"
         className="pointer-events-none size-16 rounded-full bg-gray-900 object-cover"

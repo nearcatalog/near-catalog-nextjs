@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         <div className="flex flex-col gap-4 lg:col-span-8">
           <div className="rounded-lg bg-[#1b1d2a] p-4">
-            <h2 className="mb-3 text-xl font-bold">About ${profile.name}</h2>
+            <h2 className="mb-3 text-xl font-bold">About {profile.name}</h2>
             <div className="prose prose-invert min-h-[15.625rem] max-w-none">
               <Markdown remarkPlugins={[remarkGfm]}>
                 {profile?.description}

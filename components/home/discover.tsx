@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SectionHeading from "@/components/ui/section-heading";
 import SearchImage from "@/public/assets/images/search.webp";
 import Search from "@/components/search";
@@ -6,6 +5,7 @@ import { ProjectRecord } from "@/lib/types";
 import { fetchAllProjects } from "@/lib/near-catalog";
 import TagsModal from "@/components/modals/tags";
 import SearchProjects from "@/components/home/searchProjects";
+import ImageWithFallback from "../ImageWithFallback";
 
 export default async function Discover() {
   const projects = await fetchAllProjects();
@@ -40,7 +40,7 @@ export default async function Discover() {
           title="Discover All Projects"
           description={`Explore ${projectsLength} innovative projects built within our vibrant ecosystem`}
         />
-        <Image
+        <ImageWithFallback
           className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"
           src={SearchImage}
           alt={"Discover All Projects"}

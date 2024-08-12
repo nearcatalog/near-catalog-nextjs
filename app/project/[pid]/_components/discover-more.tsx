@@ -2,6 +2,7 @@ import { fetchRelatedProjects } from "@/lib/near-catalog";
 import Image from "next/image";
 import Link from "next/link";
 import ErrorImage from "@/public/assets/images/error.webp";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 interface DiscoverMoreProps {
   pid: string;
@@ -13,7 +14,7 @@ function ProjectCard({ project }: { project: any }) {
       href={`/project/${project.slug}#top`}
       className="flex flex-row gap-2 rounded-lg bg-[#1b1d2a] p-4 transition-colors duration-300 ease-in-out hover:bg-[#2b2d3a]"
     >
-      <Image
+      <ImageWithFallback
         src={project.profile.image.url}
         alt={project.profile.name}
         className="h-16 w-16 rounded-full object-cover"
