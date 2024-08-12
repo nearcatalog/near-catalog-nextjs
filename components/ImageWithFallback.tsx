@@ -8,7 +8,7 @@ interface ImageWithFallbackProps extends Omit<ImageProps, "src"> {
   fallback?: string;
 }
 
-const DEFAULT_FALLBACK = "/assets/images/fallback.jpg";
+const DEFAULT_FALLBACK = "/assets/images/fallback.webp";
 
 export default function ImageWithFallback({
   fallback,
