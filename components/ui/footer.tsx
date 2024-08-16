@@ -61,20 +61,20 @@ export default function Footer() {
             <div className="flex gap-5 md:items-center md:justify-end lg:items-center lg:justify-end">
               <Link href="/policy/cookies">Cookie Policy</Link>
               <Link href="/policy/privacy">Privacy Policy</Link>
+              <Link href="/policy/tos">Terms of Use</Link>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-5 pt-10 md:items-center md:justify-center md:pt-0 lg:pt-0">
           <Link
-            href="#"
-            target="_blank"
+            href="/"
             className="text-2xl font-bold text-white"
           >
             📒NEARCatalog
           </Link>
-          <p className="max-w-92 font-medium">
-            Build by NEAR Catalog, NEAR China, NEAR Banyan, NEAR Balkans and
-            Build DAO
+          <p className="max-w-92 text-xs">
+            NEAR Catalog is made possible by the community of NEAR China, NEAR Vietnam Hub, NEAR Banyan, NEAR Balkans, 
+            Build DAO and you 🫵😍. <a href="https://submit.nearcatalog.xyz/new-project/">Submit new project here</a>
           </p>
         </div>
       </div>

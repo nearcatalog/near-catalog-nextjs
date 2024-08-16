@@ -18,11 +18,12 @@ export default async function HotProjects() {
           title={
             <div className="flex items-center justify-center gap-4">
               <Fire />
-              <h3>Hot Projects</h3>
+              <h3>Trending Projects</h3>
               <Fire />
             </div>
           }
-          description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
+          // description="Take a look at the hottest projects in our ecosystem based on usage and transactions"
+          description=""
         />
       </section>
       <div className="max-w-full">

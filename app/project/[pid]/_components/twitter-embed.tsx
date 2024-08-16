@@ -37,7 +37,7 @@ export default function TwitterTimelineEmbed({
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-[#1b1d2a] p-4">
       <h3 className="space-x-2 text-xl font-bold">
-        <i className="bi bi-twitter-x"></i> <span>{name} Twitter</span>
+        <i className="bi bi-twitter-x"></i> <span>Twitter</span>
       </h3>
       <div
         className="overflow-y-auto rounded-xl"

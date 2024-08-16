@@ -38,7 +38,7 @@ export default async function Discover() {
       <div className="relative flex flex-col items-center pt-24 md:pt-0">
         <SectionHeading
           title="Discover All Projects"
-          description={`Explore ${projectsLength} innovative projects built within our vibrant ecosystem`}
+          description={`Explore ${projectsLength}+ active innovative projects building within our vibrant ecosystem`}
         />
         <ImageWithFallback
           className="absolute right-1/2 top-0 z-0 h-[8.8125rem] w-[13.8125rem] -translate-y-1/3 translate-x-1/2 object-cover md:right-0 md:h-[13.875rem] md:w-[21.6875rem] md:translate-x-0"

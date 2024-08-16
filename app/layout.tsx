@@ -51,7 +51,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head />
       <body
-        className={`${manrope.className} min-h-screen bg-black font-sans antialiased`}
+        className={` min-h-screen bg-black font-sans antialiased`}
       >
         <div className="bg-background relative flex min-h-screen flex-col">
           <Navbar />

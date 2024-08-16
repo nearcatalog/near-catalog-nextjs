@@ -1,7 +1,8 @@
 import { ProjectCategory, ProjectId, ProjectRecord } from "@/lib/types";
 
 export const NEAR_CATALOG_API =
-  "https://nearcatalog.xyz/wp-json/nearcatalog/v1";
+  // "https://nearcatalog.xyz/wp-json/nearcatalog/v1";
+  "http://localhost/wp-json/nearcatalog/v1";
 
 /**
  * Fetches all projects
@@ -84,12 +85,14 @@ export async function fetchProjectCategory(
       next: { revalidate: 30 },
     },
   );
+  let rs =  await response.json();
+  // console.log("rs: " , rs);
   if (!response.ok) {
     throw new Error(
       "Request to Near Catalog API failed with status: " + response.status,
     );
   }
-  return await response.json();
+  return await rs;
 }
 
 /**
