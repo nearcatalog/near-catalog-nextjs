@@ -1,0 +1,270 @@
+.ag-format-container {
+    width: 1142px;
+    margin: 0 auto;
+  }
+  
+  
+  .ag-dragon-fly-block {
+    height: 100%;
+    background: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/dragon-fly/images/bg.jpg) no-repeat scroll 50% 0;
+    background-size: cover;
+  }
+  
+  /* dragon */
+  .ag-dragon {
+    height: 212px;
+    width: 300px;
+  
+    -webkit-animation: an-dragon-fly-right 20s ease-in infinite;
+    -moz-animation: an-dragon-fly-right 20s ease-in infinite;
+    -o-animation: an-dragon-fly-right 20s ease-in infinite;
+    animation: an-dragon-fly-right 20s ease-in infinite;
+  
+    position: fixed;
+    bottom: 0%;
+    left: 0;
+    scale:0.5;
+    cursor: pointer;
+  }
+  .ag-dragon:before {
+    content: "";
+    background: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-sprite/images/dragon.png) no-repeat scroll 0 0;
+    background-size: 100% auto;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+  
+    -webkit-animation: an-dragon-fly 1s steps(9) infinite;
+    -moz-animation: an-dragon-fly 1s steps(9) infinite;
+    -o-animation: an-dragon-fly 1s steps(9) infinite;
+    animation: an-dragon-fly 1s steps(9) infinite;
+  }
+  
+  @-webkit-keyframes an-dragon-fly-right {
+    to {
+      top: 5%;
+      left: 150%;
+  
+      -webkit-transform: scale(0.4);
+      transform: scale(0.4);
+    }
+  }
+  @-moz-keyframes an-dragon-fly-right {
+    to {
+      top: 5%;
+      left: 150%;
+  
+      -moz-transform: scale(0.4);
+      transform: scale(0.4);
+    }
+  }
+  @-o-keyframes an-dragon-fly-right {
+    to {
+      top: 5%;
+      left: 150%;
+  
+      -o-transform: scale(0.4);
+      transform: scale(0.4);
+    }
+  }
+  @keyframes an-dragon-fly-right {
+    to {
+      top: 5%;
+      left: 150%;
+  
+      -webkit-transform: scale(0.4);
+      -moz-transform: scale(0.4);
+      -o-transform: scale(0.4);
+      transform: scale(0.4);
+    }
+  }
+  
+  @-webkit-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @-moz-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @-o-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  /* /dragon */
+  
+  /* dragon small */
+  .ag-dragon-small {
+    height: 212px;
+    width: 300px;
+  
+    -webkit-animation: an-dragon-fly-left 35s linear -10s infinite running;
+    -moz-animation: an-dragon-fly-left 35s linear -10s infinite running;
+    -o-animation: an-dragon-fly-left 35s linear -10s infinite running;
+    animation: an-dragon-fly-left 35s linear -10s infinite running;
+  
+    position: fixed;
+    scale: 0.5;
+
+  }
+  .ag-dragon-small:before {
+    content: "";
+    background: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-sprite/images/dragon-small.png) no-repeat scroll 0 0;
+    background-size: 100% auto;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
+    -webkit-transform: scale(.5);
+    -moz-transform: scale(.5);
+    -o-transform: scale(.5);
+    -ms-transform: scale(.5);
+    transform: scale(.5);
+  
+    -webkit-animation: an-dragon-fly 1s steps(9) infinite;
+    -moz-animation: an-dragon-fly 1s steps(9) infinite;
+    -o-animation: an-dragon-fly 1s steps(9) infinite;
+    animation: an-dragon-fly 1s steps(9) infinite;
+  }
+  
+  @-webkit-keyframes an-dragon-fly-left {
+    0% {
+      margin-left: 300px;
+  
+      left: 100%;
+    }
+    80% {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+    to {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+  }
+  @-moz-keyframes an-dragon-fly-left {
+    0% {
+      margin-left: 300px;
+  
+      left: 100%;
+    }
+    80% {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+    to {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+  }
+  @-o-keyframes an-dragon-fly-left {
+    0% {
+      margin-left: 300px;
+  
+      left: 100%;
+    }
+    80% {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+    to {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+  }
+  @keyframes an-dragon-fly-left {
+    0% {
+      margin-left: 300px;
+  
+      left: 100%;
+    }
+    80% {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+    to {
+      margin-left: -300px;
+  
+      left: 0;
+    }
+  }
+  
+  @-webkit-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @-moz-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @-o-keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  @keyframes an-dragon-fly {
+    to {
+      background-position: 0 100%;
+    }
+  }
+  /* /dragon small */
+  
+  
+  @media only screen and (max-width: 767px) {
+    .ag-format-container {
+      width: 96%;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 639px) {
+  
+  }
+  
+  @media only screen and (max-width: 479px) {
+  
+  }
+  
+  @media (min-width: 768px) and (max-width: 979px) {
+    .ag-format-container {
+      width: 750px;
+    }
+  
+  }
+  
+  @media (min-width: 980px) and (max-width: 1161px) {
+    .ag-format-container {
+      width: 960px;
+    }
+  
+  }
+  

@@ -4,6 +4,7 @@ import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 
 import Footer from "@/components/ui/footer";
+import Dragon from "@/components/ui/dragon/dragon";
 import Navbar from "@/components/ui/navbar";
 import site from "@/config/site";
 import SearchModal from "@/components/modals/search";
@@ -24,13 +25,11 @@ export const metadata: Metadata = {
     "NEAR",
     "Catalog",
     "NEAR Catalog",
-    "NEAR Lanscape",
     "NEAR Ecosystem",
     "NEAR Ecosystem Support",
     "NEAR Community",
     "NEAR Community Support",
     "NEAR DAO",
-    "NEAR DAO Support",
   ],
   authors: [
     {
@@ -58,6 +57,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex-grow">{children}</div>
           <Footer />
           <SearchModal />
+          <Dragon/>
         </div>
       </body>
     </html>

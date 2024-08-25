@@ -27,11 +27,15 @@ export default function SearchProjects({ searchKey }: SearchProjectsProps) {
     if (!debouncedSearchKey) {
       setLoading(true);
       fetchAllProjects()
-        .then((data) => setProjects(data))
+        .then((data) => {
+          setProjects(data);
+          console.log("projects data:" , data);
+        })
         .catch((err) => {
           throw new Error(err);
         })
         .finally(() => setLoading(false));
+
     }
   }, [debouncedSearchKey]);
 

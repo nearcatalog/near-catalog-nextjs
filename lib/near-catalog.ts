@@ -18,7 +18,9 @@ export async function fetchAllProjects(): Promise<
       "Request to Near Catalog API failed with status: " + response.status,
     );
   }
-  return await response.json();
+  const rs = await response.json();
+  console.log("rs: " , rs);
+  return await rs;
 }
 
 /**

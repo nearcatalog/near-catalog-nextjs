@@ -16,6 +16,7 @@ export default async function Discover() {
   }
 
   const projectArray: ProjectRecord[] = Object.values(projects);
+  
   let tags: Record<string, string>[] = projectArray
     .map((project: ProjectRecord) => project.profile.tags)
     .flat();
