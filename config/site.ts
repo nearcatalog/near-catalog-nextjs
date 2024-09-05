@@ -1,5 +1,5 @@
 const site = {
-  url: "https://near-directory-nextjs-ten.vercel.app",
+  url: process.env.SITE_URL,
 };
 
 export default site;

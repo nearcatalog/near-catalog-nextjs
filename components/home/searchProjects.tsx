@@ -29,7 +29,7 @@ export default function SearchProjects({ searchKey }: SearchProjectsProps) {
       fetchAllProjects()
         .then((data) => {
           setProjects(data);
-          console.log("projects data:" , data);
+          console.log("projects data:" , Object.keys(data) );
         })
         .catch((err) => {
           throw new Error(err);
