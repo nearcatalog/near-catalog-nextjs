@@ -93,7 +93,7 @@ export default function LinkTree({ project }: LinkTreeProps) {
               <i className="bi bi-telegram text-[#80E9E5] transition-opacity duration-300 ease-in-out hover:opacity-50" />
             </Link>
           )}
-          {lnc.score && (
+          {lnc && lnc?.score && (
             <Link
               href={`https://learnnear.club/near-ecosystem/${lnc.slug}/`}
               target="_blank"
